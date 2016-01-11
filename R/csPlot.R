@@ -1,4 +1,4 @@
-n#' Plot CRs for each CS
+#' Plot CRs for each CS
 #'
 #' @description Plot the mean of median of each CRs, for each CS
 #' @param cs1,cs2 a numeric vector of values. If data is defined, it can refer
