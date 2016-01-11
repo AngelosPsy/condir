@@ -29,76 +29,43 @@
 #' \code{\link[BayesFactor]{ttest.tstat}}
 
 csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
-                                       alternative = "two.sided", conf.level = 0.95,
-                                       mu = 0, rscaleSens = c("medium", "wide", "ultrawide")){
-  # Since no more groups may be defined, the function terminates if that is
-  # the case. Also, if 1 group is selected, then it runs a paired samples
-  # t-test.
-  if(!is.null(group)){
-    ng = base::length(base::unique(stats::na.omit(group)))
-    if (ng == 1) {
-      group = NULL
-    } else {
-      if (ng != 2){
-        base::stop("You can define up to two groups.
-                   Number of groups defined: ", as.character(ng))
-      }
-      }
-    }
-  # Based on the group option, it is determined whether a paired samples or
-  # between-sample t-test will be performed.
-  paired = base::ifelse(base::is.null(group), TRUE, FALSE)
+                          alternative = "two.sided", conf.level = 0.95, mu = 0,
+                          rscaleSens = c("medium", "wide", "ultrawide")){
 
-  # You need to define the nullInterval for the BF test based on the 'alternative'
-  # option.
-  if (alternative == "two.sided"){
-    nullInterval = c(-Inf, Inf)
-  } else {
-    if (alternative == "greater") {
-      nullInterval = c(0, Inf)
-    } else {
-      if (alternative == "less"){
-        nullInterval = c(-Inf, 0)
-      }
-    }
-  }
+  #' Extract t statistic
+  ftt = csCompare(cs1 = cs1, cs2 = cs2, group = group, data = data,
+                  alternative = alternative, conf.level = conf.level, mu = mu,
+                  descriptives = TRUE)
 
-  #' Perform the t-tests based on the options above
-  if(paired){
-    n1 = base::nrow(stats::na.omit(base::cbind(cs1, cs2)))
-    n2 = 0
-    ftt = stats::t.test(x = cs1, y = cs2, data = data,
-                        alternative = alternative, mu = mu, paired = paired,
-                        var.equal = FALSE, conf.level = conf.level)
-  } else {
-    #cs3 = base::diff(data[, cs1], data[, cs2])
-    cs3 = cs1 - cs2
-    #cs3 = base::diff(data[, cs1], data[, cs2])
-    #groupLevels = base::attr(base::table(data[, group]), "dimnames")[[1]]
-    #n1 = length(data[, group][data[, group] == groupLevels[1]])
-    #n2 = length(data[, group][data[, group] == groupLevels[2]])
-    groupLevels = base::attr(base::table(group), "dimnames")[[1]]
-    n1 = length(group[group == groupLevels[1]])
-    n2 = length(group[group == groupLevels[2]])
-    ftt = stats::t.test(cs3~group, data = data,
-                        alternative = alternative, mu = mu, paired = paired,
-                        var.equal = FALSE, conf.level = conf.level)
+  #' Need to define the number of participants for each group
+  paired <- base::ifelse(base::is.null(group), TRUE, FALSE)
+  if (paired){
+    n1 <- base::nrow(stats::na.omit(base::cbind(cs1, cs2)))
+    n2 <- 0
+   } else {
+    groupLevels <- base::attr(base::table(group), "dimnames")[[1]]
+    n1 <- length(group[group == groupLevels[1]])
+    n2 <- length(group[group == groupLevels[2]])
   }
 
   # Need to compute Bayes factor
   btt = base::sapply(rscaleSens,
-   function(x) BayesFactor::ttest.tstat(t = ftt$statistic, n1 = n1, n2 = n2,
-                                 nullInterval = nullInterval, rscale = x,
-                                 complement = FALSE, simple = FALSE))
+   function(x) BayesFactor::ttest.tstat(t = ftt$freq.results$t.statistic,
+                                        n1 = n1, n2 = n2,
+                                        nullInterval = c(ftt$bayes.res$LN1,
+                                                         ftt$bayes$res$HN1),
+                                                         rscale = x,
+                                                         complement = FALSE,
+                                                         simple = FALSE))
   base::colnames(btt) = rscaleSens
-  #return(btt)
   # Structure results to a data frame so as to be easier to read
   res = matrix(-999, nrow = length(rscaleSens), ncol = 8)
   colnames(res) = c("nG1", "nG2", "LNI", "HNI", "rscale", "bf10", "bf01",
                     "propError")
+
   for (i in 1:length(rscaleSens)){
-    res[i, ] = c(nG1 = n1, nG2 = n2, LNI = nullInterval[[1]],
-    HNI = nullInterval[[2]], rscale = rscaleSens[i],
+    res[i, ] = c(nG1 = n1, nG2 = n2, LNI = as.character(ftt$bayes.res$LNI),
+    HNI = as.character(ftt$bayes.res$HNI), rscale = rscaleSens[i],
     bf10 = base::exp(btt[, i][["bf"]]),
     bf01 = 1/base::exp(btt[, i][["bf"]]), propError = btt[, i]$properror)
   }

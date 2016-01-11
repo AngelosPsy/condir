@@ -21,8 +21,8 @@
 #' the row means are computed before the t-tests are performed.
 #' In case \code{group} is \code{NULL},
 #' paired-samples t-tests are run. In case the \code{group} is different
-#' than \code{NULL}, then the csCompare first computes difference scores between the cs1
-#' and the cs2 (i.e., cs1 - cs2).
+#' than \code{NULL}, then the csCompare first computes difference scores between
+#'  the cs1 and the cs2 (i.e., cs1 - cs2).
 #' In case the group argument is defined
 #' but, after removal of NA's (\code{stats::na.omit}), only one group
 #' is defined, a paired samples t-test is run.
@@ -34,9 +34,9 @@
 csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                       alternative = "two.sided", conf.level = 0.95,
                       mu = 0, rscale = .707, descriptives = TRUE){
-    # Since no more groups may be defined, the function terminates if that is
-    # the case. Also, if 1 group is selected, then it runs a paired samples
-    # t-test.
+    # Since no more that 2 groups may be defined, the function terminates if
+    # that is the case. Also, if 1 group is selected, then it runs a paired
+    #  samples t-test.
     if(!base::is.null(group)){
      ng <- base::length(base::unique(stats::na.omit(group)))
      if (ng == 1) {
@@ -133,7 +133,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
 
     # Structure results. Then, depending on whether descriptives have been
     # asked or not, more results are generated.
-    freq.res <-data.frame(method = ftt$method, alternative = ftt$alternative,
+    freq.res <- data.frame(method = ftt$method, alternative = ftt$alternative,
                           WG1 = sTW1, WpG1 = sTp1,
                           WG2 = sTW2, WpG2 = sTp2,
                           null.value = ftt$null.value, LCI = ftt$conf.int[[1]],
@@ -144,11 +144,12 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     bayes.res <- data.frame(LNI = nullInterval[[1]],
                             HNI = nullInterval[[2]], rscale = rscale,
                             bf10 = base::exp(btt[["bf"]]),
-                            bf01 = 1/base::exp(btt[["bf"]]), propError = btt$properror,
-                            row.names = NULL)
+                            bf01 = 1/base::exp(btt[["bf"]]),
+                            propError = btt$properror, row.names = NULL)
 
     if(descriptives){
-      res <- base::list(freq.results = freq.res, bayes.res = bayes.res, descriptives = desc)
+      res <- base::list(freq.results = freq.res,
+                        bayes.res = bayes.res, descriptives = desc)
     } else {
       res <- base::list(results = res)
     }
