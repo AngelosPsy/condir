@@ -2,3 +2,9 @@
 .Rhistory
 .RData
 inst/doc
+condir.Rproj
+devtools-cheatsheet.pdf
+devtoolsOptions.R
+log.R
+obsolete
+vignettes

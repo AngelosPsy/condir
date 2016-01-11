@@ -54,7 +54,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     }
 
     if (base::dim(base::as.data.frame(cs2))[2] > 1){
-      cs2 = base::rowMeans(cs2)
+      cs2 <- base::rowMeans(cs2)
     }
 
     # Based on the group option, it is determined whether a paired samples or
