@@ -33,7 +33,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                           rscaleSens = c("medium", "wide", "ultrawide")){
 
   #' Extract t statistic
-  ftt = csCompare(cs1 = cs1, cs2 = cs2, group = group, data = data,
+  ftt <- csCompare(cs1 = cs1, cs2 = cs2, group = group, data = data,
                   alternative = alternative, conf.level = conf.level, mu = mu,
                   descriptives = TRUE)
 
@@ -57,18 +57,20 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                                                          rscale = x,
                                                          complement = FALSE,
                                                          simple = FALSE))
-  base::colnames(btt) = rscaleSens
+  base::colnames(btt) <- rscaleSens
   # Structure results to a data frame so as to be easier to read
-  res = matrix(-999, nrow = length(rscaleSens), ncol = 8)
-  colnames(res) = c("nG1", "nG2", "LNI", "HNI", "rscale", "bf10", "bf01",
+  res <- matrix(-999, nrow = length(rscaleSens), ncol = 8)
+  colnames(res) <- c("nG1", "nG2", "LNI", "HNI", "rscale", "bf10", "bf01",
                     "propError")
 
   for (i in 1:length(rscaleSens)){
-    res[i, ] = c(nG1 = n1, nG2 = n2, LNI = as.character(ftt$bayes.res$LNI),
+    res[i, ] <- c(nG1 = n1, nG2 = n2, LNI = as.character(ftt$bayes.res$LNI),
     HNI = as.character(ftt$bayes.res$HNI), rscale = rscaleSens[i],
     bf10 = base::exp(btt[, i][["bf"]]),
     bf01 = 1/base::exp(btt[, i][["bf"]]), propError = btt[, i]$properror)
   }
+
   res = data.frame(res)
+
   return(res)
 }
