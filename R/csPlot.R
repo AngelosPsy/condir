@@ -1,4 +1,4 @@
-#' Plot CRs for each CS
+n#' Plot CRs for each CS
 #'
 #' @description Plot the mean of median of each CRs, for each CS
 #' @param cs1,cs2 a numeric vector of values. If data is defined, it can refer
@@ -31,39 +31,38 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, col = c("black", "grey")
   # the case. Also, if 1 group is selected, then it runs a paired samples
   # t-test.
   if(!base::is.null(group)){
-    ng = base::length(base::unique(stats::na.omit(group)))
+    ng <- base::length(base::unique(stats::na.omit(group)))
     if (ng == 1) {
-      group = NULL
+      group <- NULL
     } else {
       if (ng != 2){
         base::stop("You can define up to two groups.
                    Number of groups defined: ", as.character(ng))
       }
-      }
     }
+  }
 
   # You need to define the variables according to whether the 'data'
   # argument is defined or not.
   if(!base::is.null(data)){
-    cs1 = data[, cs1]
-    cs2 = data[, cs2]
+    cs1 <- data[, cs1]
+    cs2 <- data[, cs2]
   }
 
   # Run descriptives
-    if(!base::is.null(group)){
-      desc = base::by(data.frame(cs1, cs2), group, psych::describe,
-                      skew = FALSE, ranges = FALSE)
-    } else {
-      desc = psych::describe(data.frame(cs1, cs2), skew = FALSE,
-                             ranges = FALSE)
-    }
+  if(!base::is.null(group)){
+    desc <- base::by(data.frame(cs1, cs2), group, psych::describe,
+                     skew = FALSE, ranges = FALSE)
+  } else {
+    desc <- psych::describe(data.frame(cs1, cs2), skew = FALSE,
+                            ranges = FALSE)
+  }
 
   # Set graphic parameters
-  op = graphics::par(no.readonly = TRUE)
+  op <- graphics::par(no.readonly = TRUE)
   base::on.exit(graphics::par(op))
-  graphics::par(mar=c(5.1, 4.1, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2
-                , mgp = c(2,1,.5),
-                cex.axis = 1, bty = "n", lwd = 1, xpd = T, pch = 19)
+  graphics::par(mar=c(5.1, 4.1, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
+                mgp = c(2,1,.5), cex.axis = 1, bty = "n", lwd = 1, xpd = T, pch = 19)
 
   if (base::length(col) != base::length(legend)){
     base::warning("The length of the color argument, (i.e., ", base::length(col), "),
@@ -72,15 +71,15 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, col = c("black", "grey")
   }
 
   if(!base::is.null(group)){
-    meanz = c(desc[[1]]["mean"], desc[[2]]["mean"])
-    sdz = c(desc[[1]]["se"], desc[[2]]["se"])
+    meanz <- c(desc[[1]]["mean"], desc[[2]]["mean"])
+    sdz <- c(desc[[1]]["se"], desc[[2]]["se"])
     graphics::barplot(base::matrix(base::unlist(meanz), 2, 2), col = col, beside = T, ...)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)
   } else {
-    meanz = desc[[1]]["mean"]
-    sdz = desc[[1]]["se"]
+    meanz <- desc[[1]]["mean"]
+    sdz <- desc[[1]]["se"]
     graphics::barplot(base::unlist(meanz), col = col, beside = T, ...)
     graphics::legend(x = "topright",  legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
