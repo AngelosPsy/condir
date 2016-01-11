@@ -8,3 +8,4 @@ devtoolsOptions.R
 log.R
 obsolete
 vignettes
+plotBF.robustnessCheck.R
