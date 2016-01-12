@@ -47,9 +47,10 @@ is defined, a paired samples t-test is run.
 In case of independent samples t-test, the function runs
 a Welch's t-test.
 }
+\examples{
+csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
+}
 \seealso{
 \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
-Run descriptives
-Perform t-test
 }
 

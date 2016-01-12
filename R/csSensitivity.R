@@ -28,17 +28,19 @@
 #' @seealso
 #' \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
 #' \code{\link[BayesFactor]{ttest.tstat}}
-
+#' @examples
+#' csSensitivity(cs1 = rnorm(10, 10, 2), cs2 = rnorm(10, 9, 3))
+#' @export
 csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,
                           rscaleSens = c("medium", "wide", "ultrawide")){
 
-  #' Extract t statistic
+  # Extract t statistic
   ftt <- csCompare(cs1 = cs1, cs2 = cs2, group = group, data = data,
                   alternative = alternative, conf.level = conf.level, mu = mu,
                   descriptives = TRUE)
 
-  #' Need to define the number of participants for each group
+  # Need to define the number of participants for each group
   paired <- base::ifelse(base::is.null(group), TRUE, FALSE)
   if (paired){
     n1 <- base::nrow(stats::na.omit(base::cbind(cs1, cs2)))

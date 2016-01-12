@@ -15,12 +15,13 @@ to either the column index or the column name of the data object.}
 
 \item{data}{numeric matrix or data frame that contains all data.}
 
-\item{col}{The color of the error bars to be used (either given as a numeric vector or
-a character string). The length of the chosen colors
-should be equal to the length of the legend names otherwise a warning is returned.}
+\item{col}{The color of the error bars to be used (either given as a numeric
+vector or a character string). The length of the chosen colors should
+be equal to the length of the legend names otherwise a warning is returned.}
 
-\item{legend}{The legend names to be used. The length of the legend labels should be
-the same as the length of the color string, otherwise a warning is returned.}
+\item{legend}{The legend names to be used. The length of the legend labels
+should be the same as the length of the color string, otherwise
+a warning is returned.}
 
 \item{...}{Additional arguments.}
 }
@@ -38,6 +39,9 @@ and the cs2
 In case the group argument is defined
 but, after removal of NA's (\code{stats::na.omit}), only one group
 is defined, a paired samples t-test is run.
+}
+\examples{
+csPlot(cs1 = rnorm(10, 10, 2), cs2 = rnorm(10, 9, 3))
 }
 \seealso{
 \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}

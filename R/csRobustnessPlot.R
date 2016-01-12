@@ -21,7 +21,9 @@
 #' BF10 (if \code{BF01} is set to FALSE).
 #' @seealso
 #' \code{\link[condir]{csCompare}}, #' \code{\link[condir]{csSensitivity}}
-
+#' @examples
+#' csRobustnessPlot(cs1 = rnorm(10, 10, 2), cs2 = rnorm(10, 9, 3))
+#' @export
 csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,
                           rscaleSens = c("medium", "wide", "ultrawide"),
@@ -31,7 +33,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                 alternative = alternative, conf.level = conf.level, mu = mu,
                 rscaleSens)
 
-    #' Redifine rscale factors if they have been given with their string names
+    # Redifine rscale factors if they have been given with their string names
     base::levels(sensRes$rscale)
     if (base::any(base::levels(sensRes$rscale) %in% c("medium"))){
       base::levels(sensRes$rscale) <- c(levels(sensRes$rscale),
@@ -61,14 +63,14 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
 
     bfNum <- as.numeric(as.character(sensRes[[bf]]))
 
-    #' Set graphic parameters
+    # Set graphic parameters
     op <- graphics::par(no.readonly = TRUE)
     base::on.exit(graphics::par(op))
     graphics::par(mar=c(6, 7, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
                   mgp = c(2, 1, .5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
                   pch = 19)
 
-    #' Limits of y axis is adjusted in case of BF values above 10
+    # Limits of y axis is adjusted in case of BF values above 10
     if(exists(as.character(ylimz))){
       atYaxis = ylimz
 
@@ -84,7 +86,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
      }
      }
 
-    #' Main plot
+    # Main plot
     graphics::plot(x = as.numeric(sensRes$rscale), y = bfNum,
                    type = "b", xlab = "", ylab = "", ylim = ylimz,
                    axes = FALSE, lwd = 2)

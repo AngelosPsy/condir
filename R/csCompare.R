@@ -30,7 +30,9 @@
 #' a Welch's t-test.
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
-
+#' @examples
+#' csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
+#' @export
 csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                       alternative = "two.sided", conf.level = 0.95,
                       mu = 0, rscale = .707, descriptives = TRUE){
@@ -98,7 +100,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       sTp2 <- sT[[2]]$p.value
     }
 
-    #' Run descriptives
+    # Run descriptives
     if (descriptives){
       if(paired){
        desc <- psych::describe(data.frame(cs1, cs2), skew = FALSE,
@@ -109,7 +111,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       }
     }
 
-    #' Perform t-test
+    # Perform t-test
     if (paired){
       n1 <- base::nrow(stats::na.omit(base::cbind(cs1, cs2)))
       n2 <- 0
@@ -117,7 +119,6 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = alternative, mu = mu, paired = paired,
                           var.equal = FALSE, conf.level = conf.level)
     } else {
-     #cs3 = cs1 - cs2
      groupLevels <- base::attr(base::table(group), "dimnames")[[1]]
      n1 <- length(group[group == groupLevels[1]])
      n2 <- length(group[group == groupLevels[2]])

@@ -7,7 +7,7 @@
 #'
 #' @details \code{csCompare} generates tables of different languages.
 #'  The options are \code{latex}, and \code{markdown}.
-
+#' @export
 csTable <- function(csCompareObje, typeOfTable = c("latex")) {
   if (length(typeOfTable) > 1){
       base::warning("You can produce one type of table at a time. The first

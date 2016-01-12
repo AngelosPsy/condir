@@ -5,11 +5,12 @@
 #' to either the column index or the column name of the data object.
 #' @param group column index or name that contain the group data. See details.
 #' @param data numeric matrix or data frame that contains all data.
-#' @param col The color of the error bars to be used (either given as a numeric vector or
-#' a character string). The length of the chosen colors
-#' should be equal to the length of the legend names otherwise a warning is returned.
-#' @param legend The legend names to be used. The length of the legend labels should be
-#' the same as the length of the color string, otherwise a warning is returned.
+#' @param col The color of the error bars to be used (either given as a numeric
+#'  vector or a character string). The length of the chosen colors should
+#'  be equal to the length of the legend names otherwise a warning is returned.
+#' @param legend The legend names to be used. The length of the legend labels
+#' should be the same as the length of the color string, otherwise
+#' a warning is returned.
 #' @details
 #' \code{csCompare} performs both a student t-test (using the
 #' \code{stats::t.test} function) and a Bayesian t-test (using the
@@ -24,7 +25,9 @@
 #' @param ... Additional arguments.
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
-
+#' @examples
+#' csPlot(cs1 = rnorm(10, 10, 2), cs2 = rnorm(10, 9, 3))
+#' @export
 csPlot <- function(cs1, cs2, group = NULL, data = NULL,
                    col = c("black", "grey"), legend = c("cs1", "cs2"), ...){
   # Since no more groups may be defined, the function terminates if that is
@@ -62,24 +65,29 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL,
   op <- graphics::par(no.readonly = TRUE)
   base::on.exit(graphics::par(op))
   graphics::par(mar=c(5.1, 4.1, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
-                mgp = c(2,1,.5), cex.axis = 1, bty = "n", lwd = 1, xpd = T, pch = 19)
+                mgp = c(2,1,.5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
+                pch = 19)
 
   if (base::length(col) != base::length(legend)){
-    base::warning("The length of the color argument, (i.e., ", base::length(col), "),
-            is different than the length of the legend argument, (i.e.,", base::length(legend), ").
+    base::warning("The length of the color argument,
+                 (i.e., ", base::length(col), "), is different than the length
+                  of the legend argument, (i.e.,", base::length(legend), ").
             The plotted legends may not correspond to the right bars.")
   }
 
   if(!base::is.null(group)){
     meanz <- c(desc[[1]]["mean"], desc[[2]]["mean"])
     sdz <- c(desc[[1]]["se"], desc[[2]]["se"])
-    graphics::barplot(base::matrix(base::unlist(meanz), 2, 2), col = col, beside = T, ...)
+    print(meanz)
+    print(sdz)
+    graphics::barplot(base::matrix(base::unlist(meanz), 2, 2), col = col,
+                      beside = T, ...)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)
   } else {
-    meanz <- desc[[1]]["mean"]
-    sdz <- desc[[1]]["se"]
+    meanz <- desc["mean"]
+    sdz <- desc["se"]
     graphics::barplot(base::unlist(meanz), col = col, beside = T, ...)
     graphics::legend(x = "topright",  legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
