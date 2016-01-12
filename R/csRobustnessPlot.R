@@ -102,5 +102,4 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
     graphics::mtext(text = base::substitute("BF"[subscript,
                     base::list(subscript = subscript)]),
                     side = 2, line = 3, cex = 2)
-
 }

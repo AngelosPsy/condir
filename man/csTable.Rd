@@ -4,10 +4,11 @@
 \alias{csTable}
 \title{Produce tables of \code{csCompare} results}
 \usage{
-csTable(csCompareObje, typeOfTable = c("latex"))
+csTable(csCompareObj, typeOfTable = c("latex"))
 }
 \arguments{
-\item{csCompareObje}{a data frame returned from the \code{csCompare} object}
+\item{csCompareObj}{a list or data frame returned from
+the \code{csCompare} function}
 
 \item{typeOfTable}{The type of table to be generated. See details}
 }
