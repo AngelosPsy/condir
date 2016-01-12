@@ -21,6 +21,8 @@
 #' BF10 (if \code{BF01} is set to FALSE).
 #' @seealso
 #' \code{\link[condir]{csCompare}}, #' \code{\link[condir]{csSensitivity}}
+#' @example
+#' csRobustnessPlot(rnorm(10, 0, 2), rnorm(10))
 
 csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,
@@ -97,7 +99,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                    cex.axis = 1.5)
     graphics::mtext(text = "Cauchy's Scale", side = 1, line = 3,
                     cex = 2)
-    graphics::mtext(text = base::substitute(BF[subscript,
+    graphics::mtext(text = base::substitute("BF"[subscript,
                     base::list(subscript = subscript)]),
                     side = 2, line = 3, cex = 2)
 

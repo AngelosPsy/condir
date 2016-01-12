@@ -23,10 +23,14 @@
 #' is defined, a paired samples t-test is run.
 #' @param method: in case of independent samples t-test, the function runs
 #' a Welch's t-test.
+#' @param ... Additional arguments.
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
+#' @example
+#' csPlot(rnorm(10, 0, 2), rnorm(10))
 
-csPlot <- function(cs1, cs2, group = NULL, data = NULL, col = c("black", "grey"), legend = c("cs1", "cs2"), ...){
+csPlot <- function(cs1, cs2, group = NULL, data = NULL,
+                   col = c("black", "grey"), legend = c("cs1", "cs2"), ...){
   # Since no more groups may be defined, the function terminates if that is
   # the case. Also, if 1 group is selected, then it runs a paired samples
   # t-test.

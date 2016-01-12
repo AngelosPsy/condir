@@ -28,6 +28,8 @@
 #' @seealso
 #' \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
 #' \code{\link[BayesFactor]{ttest.tstat}}
+#' @example
+#' csCompare(rnorm(10, 0, 2), rnorm(10))
 
 csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,
