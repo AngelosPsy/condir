@@ -7,6 +7,9 @@
 #'
 #' @details \code{csCompare} generates tables of different languages.
 #'  The options are \code{latex}, and \code{markdown}.
+#' @examples
+#' tmp <- csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
+#' csTable(tmp)
 #' @export
 csTable <- function(csCompareObje, typeOfTable = c("latex")) {
   if (length(typeOfTable) > 1){
@@ -16,10 +19,16 @@ csTable <- function(csCompareObje, typeOfTable = c("latex")) {
   }
   # Print type of selected table
   if (typeOfTable == "latex"){
-    xtable::xtable(csCompareObje)
+    for (i in 1:length(csCompareObje)){
+     print(xtable::xtable(as.data.frame(csCompareObje)))
+     cat("\n\n")
+    }
   } else{
     if (typeOfTable == "markdown"){
-      knitr::kable(csCompareObje)
+      for (i in 1:length(csCompareObje)){
+        print(knitr::kable(as.data.frame(csCompareObje)))
+        cat("\n\n")
+      }
   }
   }
 }
