@@ -47,14 +47,22 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
     # Set graphic parameters
     op <- graphics::par(no.readonly = TRUE)
     base::on.exit(graphics::par(op))
-    graphics::par(mar=c(5.1, 4.1, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
-                  mgp = c(2,1,.5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
+    graphics::par(mar=c(6, 7, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
+                  mgp = c(2, 1, .5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
                   pch = 19)
     graphics::plot(x = as.numeric(sensRes$rscale), y = as.numeric(sensRes$bf10),
                    type = "b", xlab = "", ylab = "", ylim = c(-10, 10),
-                   yaxt = "n")
-    graphics::axis(side = 2, at = c(-10, -3, 1, 3, 10), labels = c("1/10", "1/3",
-                   1, "3", "10"))
-    graphics::mtext(text = "Scale factor of Cauchy", side = 1, line = 3, cex = 2)
+                   xaxt = "n", yaxt = "n", lwd = 2)
+    graphics::axis(side = 1, at = sensRes$rscale,
+                   labels = base::round(base::as.numeric(
+                     base::as.character(sensRes$rscale)), 3),
+                   lwd = 3, cex.axis = 2)
+    graphics::axis(side = 2, at = c(-10, -3, 1, 3, 10),
+                   labels = c("1/10", "1/3", 1, "3", "10"), lwd = 3, cex.axis = 2)
+    graphics::mtext(text = "Cauchy Scale factor", side = 1, line = 3,
+                    cex = 2)
+    graphics::mtext(text = expression(BF["01"]), side = 2, line = 3,
+                    cex = 2)
+
 
 }
