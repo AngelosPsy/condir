@@ -21,13 +21,9 @@
 #' In case the group argument is defined
 #' but, after removal of NA's (\code{stats::na.omit}), only one group
 #' is defined, a paired samples t-test is run.
-#' @param method: in case of independent samples t-test, the function runs
-#' a Welch's t-test.
 #' @param ... Additional arguments.
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
-#' @examples
-#' csPlot(rnorm(10, 0, 2), rnorm(10))
 
 csPlot <- function(cs1, cs2, group = NULL, data = NULL,
                    col = c("black", "grey"), legend = c("cs1", "cs2"), ...){

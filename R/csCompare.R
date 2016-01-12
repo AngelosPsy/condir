@@ -26,12 +26,10 @@
 #' In case the group argument is defined
 #' but, after removal of NA's (\code{stats::na.omit}), only one group
 #' is defined, a paired samples t-test is run.
-#' @param method: in case of independent samples t-test, the function runs
+#' In case of independent samples t-test, the function runs
 #' a Welch's t-test.
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
-#' @examples
-#' csCompare(rnorm(10, 0, 2), rnorm(10))
 
 csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                       alternative = "two.sided", conf.level = 0.95,

@@ -27,9 +27,6 @@ the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 
 \item{descriptives}{Returns basic descriptive statistics for the dependent
 variable(s).}
-
-\item{method:}{in case of independent samples t-test, the function runs
-a Welch's t-test.}
 }
 \description{
 Compare two CSs within a frequentist and a Bayesian framework.
@@ -47,13 +44,12 @@ than \code{NULL}, then the csCompare first computes difference scores between
 In case the group argument is defined
 but, after removal of NA's (\code{stats::na.omit}), only one group
 is defined, a paired samples t-test is run.
-}
-\examples{
-csCompare(rnorm(10, 0, 2), rnorm(10))
-Run descriptives
-Perform t-test
+In case of independent samples t-test, the function runs
+a Welch's t-test.
 }
 \seealso{
 \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
+Run descriptives
+Perform t-test
 }
 

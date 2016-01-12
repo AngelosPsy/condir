@@ -21,8 +21,6 @@
 #' BF10 (if \code{BF01} is set to FALSE).
 #' @seealso
 #' \code{\link[condir]{csCompare}}, #' \code{\link[condir]{csSensitivity}}
-#' @examples
-#' csRobustnessPlot(rnorm(10, 0, 2), rnorm(10))
 
 csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,

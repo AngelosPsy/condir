@@ -41,14 +41,11 @@ x-axis or the width of the Cauchy's Scale is plotted. On the y-axis either
 BF01 is plotted (if \code{BF01} is set to TRUE) or
 BF10 (if \code{BF01} is set to FALSE).
 }
-\examples{
-csRobustnessPlot(rnorm(10, 0, 2), rnorm(10))
+\seealso{
+\code{\link[condir]{csCompare}}, #' \code{\link[condir]{csSensitivity}}
 Redifine rscale factors if they have been given with their string names
 Set graphic parameters
 Limits of y axis is adjusted in case of BF values above 10
 Main plot
-}
-\seealso{
-\code{\link[condir]{csCompare}}, #' \code{\link[condir]{csSensitivity}}
 }
 

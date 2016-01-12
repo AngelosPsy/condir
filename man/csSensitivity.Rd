@@ -46,13 +46,10 @@ In case the group argument is defined
 but, after removal of NA's (\code{stats::na.omit}), only one group
 is defined, a paired samples t-test is run.
 }
-\examples{
-csCompare(rnorm(10, 0, 2), rnorm(10))
-Extract t statistic
-Need to define the number of participants for each group
-}
 \seealso{
 \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
 \code{\link[BayesFactor]{ttest.tstat}}
+Extract t statistic
+Need to define the number of participants for each group
 }
 
