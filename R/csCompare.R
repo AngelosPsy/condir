@@ -154,13 +154,5 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       res <- base::list(results = res)
     }
 
-    #attr(res, "class") <- "condir"
-    #structure (csCompare, class = "condir")
-
-    #class(res) <- "cname"
-
-    #your.class.object <- structure(res, class = "cname")
-    #environment: namespace:condir
-
     return(res)
 }
