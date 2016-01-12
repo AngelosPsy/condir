@@ -59,14 +59,14 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL, BF01 = TRUE,
                   mgp = c(2, 1, .5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
                   pch = 19)
     graphics::plot(x = as.numeric(sensRes$rscale), y = as.numeric(sensRes[[bf]]),
-                   type = "b", xlab = "", ylab = "", ylim = c(-10, 10),
+                   type = "b", xlab = "", ylab = "", ylim = c(0, 10),
                    xaxt = "n", yaxt = "n", lwd = 2)
     graphics::axis(side = 1, at = sensRes$rscale,
                    labels = base::round(base::as.numeric(
                      base::as.character(sensRes$rscale)), 3),
                    lwd = 3, cex.axis = 2)
-    graphics::axis(side = 2, at = c(-10, -3, 1, 3, 10),
-                   labels = c("1/10", "1/3", 1, "3", "10"), lwd = 3,
+    graphics::axis(side = 2, at = c(0, 1, 3, 10),
+                   labels = c(0, 1, 3, 10), lwd = 3,
                    cex.axis = 2)
     graphics::mtext(text = "Cauchy Scale factor", side = 1, line = 3,
                     cex = 2)
