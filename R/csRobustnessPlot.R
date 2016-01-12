@@ -45,28 +45,43 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL, BF01 = TRUE,
     }
 
     if (BF01){
-      bf = "bf01"
+      bf <- "bf01"
       subscript = "01"
     } else {
-      bf = "bf10"
+      bf <- "bf10"
       subscript = "10"
     }
 
-    # Set graphic parameters
+    bfNum <- as.numeric(as.character(sensRes[[bf]]))
+
+    #' Set graphic parameters
     op <- graphics::par(no.readonly = TRUE)
     base::on.exit(graphics::par(op))
     graphics::par(mar=c(6, 7, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
                   mgp = c(2, 1, .5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
                   pch = 19)
-    graphics::plot(x = as.numeric(sensRes$rscale), y = as.numeric(sensRes[[bf]]),
-                   type = "b", xlab = "", ylab = "", ylim = c(0, 10),
-                   xaxt = "n", yaxt = "n", lwd = 2)
+
+    #' Limits of y axis is adjusted in case of BF values above 10
+    if(max(bfNum) > 10 || min(bfNum) < 0){
+      ylimz = c(min(bfNum), max(bfNum))
+      if (min(bfNum) < 0) ylimz[1] = min(bfNum)
+      if (max(bfNum) > 10) ylimz[2] = max(bfNum)
+      atYAxis = labYAxis = round(ylimz, 2)
+    } else {
+      ylimz = c(0, 10)
+      atYAxis = labYAxis = c(0, 1, 3, 10)
+    }
+
+    #' Main plot
+    graphics::plot(x = as.numeric(sensRes$rscale), y = bfNum,
+                   type = "b", xlab = "", ylab = "", ylim = ylimz,
+                   axes = FALSE, lwd = 2)
     graphics::axis(side = 1, at = sensRes$rscale,
                    labels = base::round(base::as.numeric(
-                     base::as.character(sensRes$rscale)), 3),
-                   lwd = 3, cex.axis = 2)
-    graphics::axis(side = 2, at = c(0, 1, 3, 10),
-                   labels = c(0, 1, 3, 10), lwd = 3,
+                     base::as.character(sensRes$rscale)), 2),
+                   lwd = 2, cex.axis = 2)
+    graphics::axis(side = 2, at = atYAxis,
+                   labels = labYAxis, lwd = 2,
                    cex.axis = 2)
     graphics::mtext(text = "Cauchy Scale factor", side = 1, line = 3,
                     cex = 2)
