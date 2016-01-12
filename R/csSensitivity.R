@@ -36,7 +36,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                           rscaleSens = c("medium", "wide", "ultrawide")){
 
   # Extract t statistic
-  ftt <- csCompare(cs1 = cs1, cs2 = cs2, group = group, data = data,
+  ftt <- condir::csCompare(cs1 = cs1, cs2 = cs2, group = group, data = data,
                   alternative = alternative, conf.level = conf.level, mu = mu,
                   descriptives = TRUE)
 
@@ -47,8 +47,8 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
     n2 <- 0
    } else {
     groupLevels <- base::attr(base::table(group), "dimnames")[[1]]
-    n1 <- length(group[group == groupLevels[1]])
-    n2 <- length(group[group == groupLevels[2]])
+    n1 <- base::length(group[group == groupLevels[1]])
+    n2 <- base::length(group[group == groupLevels[2]])
   }
 
   # Need to compute Bayes factor
@@ -62,18 +62,18 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                                                          simple = FALSE))
   base::colnames(btt) <- rscaleSens
   # Structure results to a data frame so as to be easier to read
-  res <- matrix(-999, nrow = length(rscaleSens), ncol = 8)
-  colnames(res) <- c("nG1", "nG2", "LNI", "HNI", "rscale", "bf10", "bf01",
-                    "propError")
+  res <- base::matrix(-999, nrow = length(rscaleSens), ncol = 8)
+  base::colnames(res) <- c("nG1", "nG2", "LNI", "HNI", "rscale", "bf10",
+                           "bf01", "propError")
 
-  for (i in 1:length(rscaleSens)){
+  for (i in 1:base::length(rscaleSens)){
     res[i, ] <- c(nG1 = n1, nG2 = n2, LNI = as.character(ftt$bayes.res$LNI),
-    HNI = as.character(ftt$bayes.res$HNI), rscale = rscaleSens[i],
+    HNI = base::as.character(ftt$bayes.res$HNI), rscale = rscaleSens[i],
     bf10 = base::exp(btt[, i][["bf"]]),
     bf01 = 1/base::exp(btt[, i][["bf"]]), propError = btt[, i]$properror)
   }
 
-  res = data.frame(res)
+  res = base::data.frame(res)
 
   return(res)
 }
