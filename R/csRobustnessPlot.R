@@ -29,14 +29,15 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                           rscaleSens = c("medium", "wide", "ultrawide"),
                           BF01 = TRUE, ylimz = c(0, 10)){
 
-  sensRes <- csSensitivity(cs1 = cs1, cs2 = cs2, group = group, data = data,
-                alternative = alternative, conf.level = conf.level, mu = mu,
-                rscaleSens)
+  sensRes <- condir::csSensitivity(cs1 = cs1, cs2 = cs2, group = group,
+                                   data = data, alternative = alternative,
+                                   conf.level = conf.level, mu = mu,
+                                   rscaleSens = rscaleSens)
 
     # Redifine rscale factors if they have been given with their string names
     base::levels(sensRes$rscale)
     if (base::any(base::levels(sensRes$rscale) %in% c("medium"))){
-      base::levels(sensRes$rscale) <- c(levels(sensRes$rscale),
+      base::levels(sensRes$rscale) <- c(base::levels(sensRes$rscale),
                                         base::sqrt(2)/2)
       sensRes$rscale[base::which(sensRes$rscale %in% "medium")] <-
         base::sqrt(2)/2
@@ -55,10 +56,10 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
 
     if (BF01){
       bf <- "bf01"
-      subscript = "01"
+      subscript <- "01"
     } else {
       bf <- "bf10"
-      subscript = "10"
+      subscript <- "10"
     }
 
     bfNum <- as.numeric(as.character(sensRes[[bf]]))
@@ -66,23 +67,22 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
     # Set graphic parameters
     op <- graphics::par(no.readonly = TRUE)
     base::on.exit(graphics::par(op))
-    graphics::par(mar=c(6, 7, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
+    graphics::par(mar = c(6, 7, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
                   mgp = c(2, 1, .5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
                   pch = 19)
 
     # Limits of y axis is adjusted in case of BF values above 10
-    if(exists(as.character(ylimz))){
-      atYaxis = ylimz
-
+    if(base::exists(as.character(ylimz))){
+      atYaxis <- ylimz
     } else {
      if(max(bfNum) > 10 || min(bfNum) < 0){
        ylimz = c(min(bfNum), max(bfNum))
-       if (min(bfNum) < 0) ylimz[1] = round(min(bfNum), 0)
-       if (max(bfNum) > 10) ylimz[2] = round(max(bfNum), 0)
-       atYAxis = labYAxis = round(ylimz, 0)
+       if (min(bfNum) < 0) ylimz[1] <- round(min(bfNum), 0)
+       if (max(bfNum) > 10) ylimz[2] <- round(max(bfNum), 0)
+       atYAxis <- labYAxis <- round(ylimz, 0)
      } else {
-       ylimz = c(0, 10)
-       atYAxis = labYAxis = c(0, 1, 3, 10)
+       ylimz <- c(0, 10)
+       atYAxis <- labYAxis <- c(0, 1, 3, 10)
      }
      }
 
