@@ -20,6 +20,8 @@ to either the column index or the column name of the data object.}
 the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 \code{"greater"} or \code{"less"}.}
 
+\item{conf.level}{confidence level of the interval.}
+
 \item{mu}{a numeric value for the mean value or mean difference}
 
 \item{rscaleSens}{the scale factor for the prior used in the Bayesian t.test}

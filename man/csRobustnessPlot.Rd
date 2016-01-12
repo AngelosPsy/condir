@@ -4,9 +4,10 @@
 \alias{csRobustnessPlot}
 \title{Plot robusteness results}
 \usage{
-csRobustnessPlot(cs1, cs2, group = NULL, data = NULL, BF01 = TRUE,
+csRobustnessPlot(cs1, cs2, group = NULL, data = NULL,
   alternative = "two.sided", conf.level = 0.95, mu = 0,
-  rscaleSens = c("medium", "wide", "ultrawide"))
+  rscaleSens = c("medium", "wide", "ultrawide"), BF01 = TRUE, ylimz = c(0,
+  10))
 }
 \arguments{
 \item{cs1, cs2}{a numeric vector of values. If data is defined, it can refer
@@ -20,20 +21,31 @@ to either the column index or the column name of the data object.}
 the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 \code{"greater"} or \code{"less"}.}
 
-\item{mu}{a numeric value for the mean value or mean difference}
+\item{conf.level}{confidence level of the interval.}
+
+\item{mu}{a numeric value for the mean value or mean difference.}
 
 \item{rscaleSens}{the scale factor for the prior used in the Bayesian t.test}
+
+\item{BF01}{Should the BF01 be plotted (Default is set to TRUE). If FALSE,
+the BF10 is plotted.}
+
+\item{ylimz}{the limits of the y-axis.}
 }
 \description{
-Perform a sensitivity analysis for the Bayes factors computed
-with the \code{csCompare} results
+Plots the results of robustness test
 }
 \details{
-This plot is influenced by the JASP way to plot robustness results.
+This plot is influenced by the JASP way to plot robustness results. On the
+x-axis or the width of the Cauchy's Scale is plotted. On the y-axis either
+BF01 is plotted (if \code{BF01} is set to TRUE) or
+BF10 (if \code{BF01} is set to FALSE).
 }
 \seealso{
-\code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
-\code{\link[BayesFactor]{ttest.tstat}}
+\code{\link[condir]{csCompare}}, #' \code{\link[condir]{csSensitivity}}
 Redifine rscale factors if they have been given with their string names
+Set graphic parameters
+Limits of y axis is adjusted in case of BF values above 10
+Main plot
 }
 

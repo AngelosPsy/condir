@@ -1,7 +1,6 @@
 #' Plot robusteness results
 #'
-#' @description Perform a sensitivity analysis for the Bayes factors computed
-#' with the \code{csCompare} results
+#' @description Plots the results of robustness test
 #' @param cs1,cs2 a numeric vector of values. If data is defined, it can refer
 #' to either the column index or the column name of the data object.
 #' @param group column index or name that contain the group data. See details.
@@ -9,18 +8,24 @@
 #' @param alternative a character string for the speficication of
 #'  the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 #'  \code{"greater"} or \code{"less"}.
-#' @param mu a numeric value for the mean value or mean difference
+#' @param mu a numeric value for the mean value or mean difference.
+#' @param conf.level confidence level of the interval.
 #' @param rscaleSens the scale factor for the prior used in the Bayesian t.test
+#' @param BF01 Should the BF01 be plotted (Default is set to TRUE). If FALSE,
+#' the BF10 is plotted.
+#' @param ylimz the limits of the y-axis.
 #' @details
-#' This plot is influenced by the JASP way to plot robustness results.
+#' This plot is influenced by the JASP way to plot robustness results. On the
+#' x-axis or the width of the Cauchy's Scale is plotted. On the y-axis either
+#' BF01 is plotted (if \code{BF01} is set to TRUE) or
+#' BF10 (if \code{BF01} is set to FALSE).
 #' @seealso
-#' \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
-#' \code{\link[BayesFactor]{ttest.tstat}}
+#' \code{\link[condir]{csCompare}}, #' \code{\link[condir]{csSensitivity}}
 
-csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL, BF01 = TRUE,
+csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,
-                          rscaleSens = c("medium", "wide", "ultrawide"), ylimz
-                          = c(0, 10)){
+                          rscaleSens = c("medium", "wide", "ultrawide"),
+                          BF01 = TRUE, ylimz = c(0, 10)){
 
   sensRes <- csSensitivity(cs1 = cs1, cs2 = cs2, group = group, data = data,
                 alternative = alternative, conf.level = conf.level, mu = mu,

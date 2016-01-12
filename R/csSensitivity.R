@@ -9,6 +9,7 @@
 #' @param alternative a character string for the speficication of
 #'  the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 #'  \code{"greater"} or \code{"less"}.
+#' @param conf.level confidence level of the interval.
 #' @param mu a numeric value for the mean value or mean difference
 #' @param rscaleSens the scale factor for the prior used in the Bayesian t.test
 #' @details
