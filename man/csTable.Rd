@@ -19,4 +19,8 @@ types of computer languages.
 \code{csCompare} generates tables of different languages.
  The options are \code{latex}, and \code{markdown}.
 }
+\examples{
+tmp <- csCompare(rnorm(10, 0, 2), rnorm(10))
+csTable(tmp)
+}
 

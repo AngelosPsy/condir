@@ -22,6 +22,8 @@ should be equal to the length of the legend names otherwise a warning is returne
 \item{legend}{The legend names to be used. The length of the legend labels should be
 the same as the length of the color string, otherwise a warning is returned.}
 
+\item{...}{Additional arguments.}
+
 \item{method:}{in case of independent samples t-test, the function runs
 a Welch's t-test.}
 }
@@ -39,6 +41,9 @@ and the cs2
 In case the group argument is defined
 but, after removal of NA's (\code{stats::na.omit}), only one group
 is defined, a paired samples t-test is run.
+}
+\examples{
+csPlot(rnorm(10, 0, 2), rnorm(10))
 }
 \seealso{
 \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}

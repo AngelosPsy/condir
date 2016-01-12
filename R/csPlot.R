@@ -26,7 +26,7 @@
 #' @param ... Additional arguments.
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
-#' @example
+#' @examples
 #' csPlot(rnorm(10, 0, 2), rnorm(10))
 
 csPlot <- function(cs1, cs2, group = NULL, data = NULL,

@@ -48,9 +48,12 @@ In case the group argument is defined
 but, after removal of NA's (\code{stats::na.omit}), only one group
 is defined, a paired samples t-test is run.
 }
-\seealso{
-\code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
+\examples{
+csCompare(rnorm(10, 0, 2), rnorm(10))
 Run descriptives
 Perform t-test
+}
+\seealso{
+\code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 }
 
