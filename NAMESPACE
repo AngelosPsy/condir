@@ -2,6 +2,7 @@
 
 export(csCompare)
 export(csPlot)
+export(csReport)
 export(csRobustnessPlot)
 export(csSensitivity)
 export(csTable)
