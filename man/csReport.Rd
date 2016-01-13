@@ -5,7 +5,7 @@
 \title{Report results of conditioning data}
 \usage{
 csReport(csCompareObj = NULL, csSensitivityObj = NULL, save = TRUE,
-  fileName = " ")
+  fileName = "report")
 }
 \arguments{
 \item{csCompareObj}{a list or data frame returned from
