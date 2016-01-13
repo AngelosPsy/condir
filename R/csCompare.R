@@ -150,7 +150,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
 
     if(descriptives){
       res <- base::list(freq.results = freq.res,
-                        bayes.res = bayes.res, descriptives = desc)
+                        bayes.results = bayes.res, descriptives = desc)
     } else {
       res <- base::list(results = res)
     }

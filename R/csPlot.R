@@ -22,7 +22,7 @@
 #' In case the group argument is defined
 #' but, after removal of NA's (\code{stats::na.omit}), only one group
 #' is defined, a paired samples t-test is run.
-#' @param ... Additional arguments.
+#' @param ... Additional plot arguments.
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 #' @examples

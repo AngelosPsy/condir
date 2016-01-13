@@ -4,22 +4,28 @@
 \alias{csReport}
 \title{Report results of conditioning data}
 \usage{
-csReport(csCompareObj = NULL, csSensitivity = NULL, dir = NULL,
-  fileName = "report")
+csReport(csCompareObj = NULL, csSensitivityObj = NULL, save = TRUE,
+  fileName = " ")
 }
 \arguments{
 \item{csCompareObj}{a list or data frame returned from
-the \code{csCompare} function}
-
-\item{dir}{The directory that the results will be saved. If set to NULL
-(default), the results are saved in the current working directory.}
-
-\item{fileName}{The file name of the produced report.}
+the \code{csCompare} function.}
 
 \item{csSensitivityObj}{Sensitivity analysis results returned from the
 \code{csSensitivity} function}
+
+\item{save}{If argument is set to \code{TRUE} (default), the results are
+saved as a .txt file. If set to \code{FALSE} the results are printed on
+screen.}
+
+\item{fileName}{The file name of the produced report. The argument is
+ignored if \code{save} is set to \code{FALSE}.}
 }
 \description{
 Report results of data analyses run with the \code{csCompare}.
+}
+\examples{
+tmp <- csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
+csReport(tmp)
 }
 

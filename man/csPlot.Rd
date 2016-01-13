@@ -23,7 +23,7 @@ be equal to the length of the legend names otherwise a warning is returned.}
 should be the same as the length of the color string, otherwise
 a warning is returned.}
 
-\item{...}{Additional arguments.}
+\item{...}{Additional plot arguments.}
 }
 \description{
 Plot the mean of median of each CRs, for each CS
