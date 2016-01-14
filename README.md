@@ -1,4 +1,4 @@
-# EPPR
+# condir
 
 R package for the analysis of conditioning data.
 
