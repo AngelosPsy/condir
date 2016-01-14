@@ -36,9 +36,11 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = TRUE,
                     ". The results of the t-test are t (",
                     csCompareObj$freq.results[["df"]],
                     ") = ",
-                    base::round(as.numeric(as.character(csCompareObj$freq.results[["t.statistic"]])), 3),
+                    base::round(as.numeric(as.character(
+                      csCompareObj$freq.results[["t.statistic"]])), 3),
                     ", p = ",
-                    base::round(as.numeric(as.character(csCompareObj$freq.results[["p.value"]])), 3),
+                    base::round(as.numeric(as.character(
+                      csCompareObj$freq.results[["p.value"]])), 3),
                     ".")
 
       # Report Bayesian results
@@ -47,9 +49,13 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = TRUE,
                     "Bayesian t-test, with a Catchy prior, with its width set to ",
                     csCompareObj$bayes.results[["rscale"]],
                     ". The BF10 was equal to BF10 = ",
-                    csCompareObj$bayes.results[["bf10"]],
+                    base::round(base::as.numeric(
+                      base::as.character(
+                        csCompareObj$bayes.results[["bf10"]])), 2),
                     ". The BF01 was equal to BF01 = ",
-                    csCompareObj$bayes.results[["bf01"]],
+                    base::round(base::as.numeric(
+                      base::as.character(
+                        csCompareObj$bayes.results[["bf01"]])), 2),
                     ".")
       }
       rep <- paste(repF, repB, collapse = " ")
