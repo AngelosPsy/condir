@@ -84,5 +84,3 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = TRUE,
       base::cat(rep)
     }
 }
-
-
