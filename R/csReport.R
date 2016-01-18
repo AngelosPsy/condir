@@ -5,16 +5,16 @@
 #' the \code{csCompare} function.
 #' @param csSensitivityObj Sensitivity analysis results returned from the
 #' \code{csSensitivity} function
-#' @param save If argument is set to \code{TRUE} (default), the results are
-#' saved as a .txt file. If set to \code{FALSE} the results are printed on
-#' screen.
+#' @param save If \code{code} argument is set to \code{FALSE} (default), the
+#' results are printed on the sceen. Otherwise, a '.txt' file with the
+#' report is generated.
 #' @param fileName The file name of the produced report. The argument is
 #' ignored if \code{save} is set to \code{FALSE}.
 #' @examples
 #' tmp <- csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
 #' csReport(tmp)
 #' @export
-csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = TRUE,
+csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FAKSE,
                       fileName = "report"){
 
     if (base::is.null(csCompareObj) && base::is.null(csSensitivityObj)){
@@ -31,7 +31,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = TRUE,
 
       # Report frequentist results
       repF <- paste0("We perfromed a ",
-                    csCompareObj$freq.results[["alternative"]],
+                    csCompareObj$freq.results[["alternative"]], " ",
                     csCompareObj$freq.results[["method"]],
                     ". The results of the t-test are t (",
                     csCompareObj$freq.results[["df"]],
