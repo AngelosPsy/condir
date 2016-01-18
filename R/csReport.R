@@ -74,11 +74,12 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                      ". The results for BF01 were: ",
                      paste(round(as.numeric(
                        as.character(csSensitivityObj$bf01)), 2),
-                       collapse = ", "), "respectively.",
+                       collapse = ", "), " respectively.",
                      ". The results for BF10 were: ",
                      paste(round(as.numeric
                                  (as.character(csSensitivityObj$bf10)), 2),
-                           collapse = ", "), "respectively.")
+                           collapse = ", "), " respectively."
+      )
     }
     rep <- paste(repB, collapse = " ")
   }
