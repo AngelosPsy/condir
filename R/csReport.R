@@ -14,7 +14,7 @@
 #' tmp <- csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
 #' csReport(tmp)
 #' @export
-csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FAKSE,
+csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                       fileName = "report"){
 
     if (base::is.null(csCompareObj) && base::is.null(csSensitivityObj)){

@@ -4,7 +4,7 @@
 \alias{csReport}
 \title{Report results of conditioning data}
 \usage{
-csReport(csCompareObj = NULL, csSensitivityObj = NULL, save = FAKSE,
+csReport(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
   fileName = "report")
 }
 \arguments{
