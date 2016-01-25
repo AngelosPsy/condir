@@ -3,12 +3,13 @@ Title: What the Package Does (one line, title case)
 Version: 0.0.0.9000
 Authors@R: "Angelos-Miltiadis Krypotos <amkrypotos@gmail.com> [aut,cre]"
 Description: What the package does (one paragraph).
-Depends: 
+Depends:
     R (>= 3.2.2)
 License: GPL-3
 LazyData: true
-RoxygenNote: 5.0.0
-Imports: BayesFactor,
+RoxygenNote: 5.0.1
+Imports:
+    BayesFactor,
     stats,
     base,
     knitr,
