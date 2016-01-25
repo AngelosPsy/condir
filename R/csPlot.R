@@ -89,7 +89,7 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL,
     meanz <- desc["mean"]
     sdz <- desc["se"]
     graphics::barplot(base::unlist(meanz), col = col, beside = T,
-                      names.arg = "", ...)
+                      names.arg = NULL, ...)
     graphics::legend(x = "topright",  legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)
