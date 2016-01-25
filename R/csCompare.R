@@ -50,6 +50,13 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     }
     }
     }
+
+    # Save object names
+    cs1Name <- base::ifelse(!base::is.numeric(cs1),
+                      base::deparse(base::substitute(cs1)), "cs1")
+    cs2Name <- base::ifelse(!base::is.numeric(cs2),
+                      base::deparse(base::substitute(cs2)), "cs2")
+
     # Compute row means in case cs1 or cs2 refers to more than 1 column.
     if (base::dim(base::as.data.frame(cs1))[2] > 1){
         cs1 <- base::rowMeans(cs1)
@@ -105,9 +112,12 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       if(paired){
        desc <- psych::describe(data.frame(cs1, cs2), skew = FALSE,
                               ranges = FALSE)
+       # Change row names, according to the names that the user provided
+       base::row.names(desc) <- c(cs1Name, cs2Name)
       } else {
       desc <- base::by(data.frame(cs1, cs2, cs3), group, psych::describe,
                       skew = FALSE, ranges = FALSE)
+      # Change row names, according to the names that the user provided
       }
     }
 
