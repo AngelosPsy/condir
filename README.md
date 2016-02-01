@@ -8,46 +8,8 @@ R package for the analysis of conditioning data.
 
 ```r
 install.packages ("devtools") # If not already installed
-```
-
-```
-## also installing the dependency 'withr'
-```
-
-```
-## package 'withr' successfully unpacked and MD5 sums checked
-## package 'devtools' successfully unpacked and MD5 sums checked
-## 
-## The downloaded binary packages are in
-## 	C:\Users\Krypo001\AppData\Local\Temp\Rtmp4CQamP\downloaded_packages
-```
-
-```r
 library(devtools)
 install_github(repo = "AngelosPsy/condir")
-```
-
-```
-## Downloading GitHub repo AngelosPsy/condir@master
-## from URL https://api.github.com/repos/AngelosPsy/condir/zipball/master
-```
-
-```
-## Installing condir
-```
-
-```
-## "C:/PROGRA~1/R/R-32~1.3/bin/x64/R" --no-site-file --no-environ --no-save  \
-##   --no-restore CMD INSTALL  \
-##   "C:/Users/Krypo001/AppData/Local/Temp/Rtmp4CQamP/devtools1448ee3911/AngelosPsy-condir-57e6f19"  \
-##   --library="C:/Program Files/R/R-3.2.3/library" --install-tests
-```
-
-```
-## 
-```
-
-```r
 library(condir)
 ```
 
@@ -60,8 +22,8 @@ library(condir)
 ### One group example
 
 ```r
-cs1 = rnorm(50, 5, 5)
-cs2 = rnorm(50, 1, 5)
+cs1 <- rnorm(50, 5, 5)
+cs2 <- rnorm(50, 1, 5)
 tmp <- csCompare(cs1, cs2)
 tmp
 ```
@@ -69,18 +31,18 @@ tmp
 ```
 ## $freq.results
 ##          method alternative       WG1      WpG1 WG2 WpG2 null.value
-## 1 Paired t-test   two.sided 0.9826189 0.6663795   0    0          0
+## 1 Paired t-test   two.sided 0.9759461 0.3962825   0    0          0
 ##        LCI      HCI t.statistic df      p.value
-## 1 3.743934 7.691389    5.821508 49 4.403303e-07
+## 1 3.321165 7.206703    5.444946 49 1.655344e-06
 ## 
 ## $bayes.results
 ##    LNI HNI rscale     bf10         bf01    propError
-## 1 -Inf Inf  0.707 35334.47 2.830097e-05 2.204976e-09
+## 1 -Inf Inf  0.707 10220.02 9.784721e-05 3.155232e-13
 ## 
 ## $descriptives
-##     vars  n  mean   sd  se
-## cs1    1 50  5.39 4.97 0.7
-## cs2    2 50 -0.33 4.28 0.6
+##     vars  n mean   sd   se
+## cs1    1 50 6.11 4.63 0.65
+## cs2    2 50 0.84 4.99 0.71
 ```
 
 ```r
@@ -94,7 +56,7 @@ csReport(tmp)
 ```
 
 ```
-## We perfromed a two.sided Paired t-test. The results of the t-test are t (49) = 5.822, p = 0. We perfromed a two.sidedBayesian t-test, with a Catchy prior, with its width set to 0.707. The BF10 was equal to BF10 = 35334.47. The BF01 was equal to BF01 = 0.
+## We perfromed a two.sided Paired t-test. The results of the t-test are t (49) = 5.445, p = 0. We perfromed a two.sidedBayesian t-test, with a Catchy prior, with its width set to 0.707. The BF10 was equal to BF10 = 10220.02. The BF01 was equal to BF01 = 0.
 ```
 
 ```r
@@ -109,33 +71,40 @@ csReport(csSensitivityObj = tmp)
 ```
 
 ```
-## We perfromed a Sensitivity Analysis using the scaling factors: medium, wide, ultrawide. The results for BF01 were: 0, 0, 0 respectively. The results for BF10 were: 35334.93, 34473.14, 30316.46 respectively.
+## We perfromed a Sensitivity Analysis using the scaling factors: medium, wide, ultrawide. The results for BF01 were: 0, 0, 0 respectively. The results for BF10 were: 10220.05, 9747.77, 8412.46 respectively.
 ```
 
 ### Two groups example
 
 ```r
-group = rep(1:2, 50)
+group <- rep(1:2, 25)
 tmp <- csCompare(cs1, cs2, group)
-```
-
-```
-## Error in tapply(seq_len(50L), structure(list(group = c(1L, 2L, 1L, 2L, : arguments must have same length
-```
-
-```r
 tmp
 ```
 
 ```
-##   nG1 nG2  LNI HNI    rscale             bf10                 bf01
-## 1  50   0 -Inf Inf    medium 35334.9342280307 2.83006045390262e-05
-## 2  50   0 -Inf Inf      wide 34473.1368647305 2.90080941552812e-05
-## 3  50   0 -Inf Inf ultrawide 30316.4633660206 3.29853778762606e-05
-##              propError
-## 1 2.20662620707926e-09
-## 2  7.1477571715222e-14
-## 3 3.15246984132043e-14
+## $freq.results
+##                    method alternative       WG1      WpG1       WG2
+## 1 Welch Two Sample t-test   two.sided 0.9758862 0.7934724 0.9230818
+##         WpG2 null.value       LCI      HCI t.statistic       df   p.value
+## 1 0.06024697          0 -3.887943 3.970757   0.0211958 47.30325 0.9831786
+## 
+## $bayes.results
+##    LNI HNI rscale      bf10     bf01    propError
+## 1 -Inf Inf  0.707 0.2827494 3.536701 0.0001939461
+## 
+## $descriptives
+## group: 1
+##     vars  n mean   sd   se
+## cs1    1 25 5.74 4.00 0.80
+## cs2    2 25 0.46 5.77 1.15
+## cs3    3 25 5.28 7.31 1.46
+## -------------------------------------------------------- 
+## group: 2
+##     vars  n mean   sd   se
+## cs1    1 25 6.48 5.24 1.05
+## cs2    2 25 1.23 4.15 0.83
+## cs3    3 25 5.24 6.47 1.29
 ```
 
 ```r
@@ -143,15 +112,27 @@ csPlot(cs1, cs2, group = group)
 ```
 
 ```
-## Error in tapply(seq_len(50L), structure(list(group = c(1L, 2L, 1L, 2L, : arguments must have same length
+## $mean
+## [1] 5.7396482 0.4550111
+## 
+## $mean
+## [1] 6.477328 1.234098
+## 
+## $se
+## [1] 0.8006104 1.1548124
+## 
+## $se
+## [1] 1.0472457 0.8294176
 ```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
 ```r
 csReport(csCompareObj = tmp)
 ```
 
 ```
-## We perfromed a  . The results of the t-test are t () = , p = . We perfromed a Bayesian t-test, with a Catchy prior, with its width set to . The BF10 was equal to BF10 = . The BF01 was equal to BF01 = .
+## We perfromed a two.sided Welch Two Sample t-test. The results of the t-test are t (47.3032504092779) = 0.021, p = 0.983. We perfromed a two.sidedBayesian t-test, with a Catchy prior, with its width set to 0.707. The BF10 was equal to BF10 = 0.28. The BF01 was equal to BF01 = 3.54.
 ```
 
 ```r
@@ -159,14 +140,12 @@ tmp <- csSensitivity(cs1, cs2)
 csRobustnessPlot(cs1, cs2, group, BF01 = FALSE)
 ```
 
-```
-## Error in tapply(seq_len(50L), structure(list(group = c(1L, 2L, 1L, 2L, : arguments must have same length
-```
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png)
 
 ```r
 csReport(csSensitivityObj = tmp)
 ```
 
 ```
-## We perfromed a Sensitivity Analysis using the scaling factors: medium, wide, ultrawide. The results for BF01 were: 0, 0, 0 respectively. The results for BF10 were: 35334.93, 34473.14, 30316.46 respectively.
+## We perfromed a Sensitivity Analysis using the scaling factors: medium, wide, ultrawide. The results for BF01 were: 0, 0, 0 respectively. The results for BF10 were: 10220.05, 9747.77, 8412.46 respectively.
 ```
