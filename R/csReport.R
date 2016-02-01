@@ -36,7 +36,8 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                     csCompareObj$freq.results[["alternative"]], " ",
                     csCompareObj$freq.results[["method"]],
                     ". The results of the t-test are t (",
-                    csCompareObj$freq.results[["df"]],
+                    base::round(as.numeric(as.character(
+                      csCompareObj$freq.results[["df"]])), 3),
                     ") = ",
                     base::round(as.numeric(as.character(
                       csCompareObj$freq.results[["t.statistic"]])), 3),
