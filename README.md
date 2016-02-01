@@ -30,19 +30,19 @@ tmp
 
 ```
 ## $freq.results
-##          method alternative       WG1      WpG1 WG2 WpG2 null.value
-## 1 Paired t-test   two.sided 0.9896696 0.9381634   0    0          0
-##        LCI      HCI t.statistic df      p.value
-## 1 2.132716 5.710508    4.405385 49 5.735482e-05
+##          method alternative       WG1       WpG1 WG2 WpG2 null.value
+## 1 Paired t-test   two.sided 0.9587071 0.07846915   0    0          0
+##        LCI     HCI t.statistic df      p.value
+## 1 1.743274 5.78707    3.742225 49 0.0004791011
 ## 
 ## $bayes.results
-##    LNI HNI rscale     bf10        bf01    propError
-## 1 -Inf Inf  0.707 381.8028 0.002619153 4.578698e-11
+##    LNI HNI rscale    bf10       bf01    propError
+## 1 -Inf Inf  0.707 55.1932 0.01811817 7.021348e-10
 ## 
 ## $descriptives
 ##     vars  n mean   sd   se
-## cs1    1 50 4.57 4.62 0.65
-## cs2    2 50 0.65 5.51 0.78
+## cs1    1 50 5.03 4.68 0.66
+## cs2    2 50 1.26 4.88 0.69
 ```
 
 ```r
@@ -56,13 +56,13 @@ csReport(tmp)
 ```
 
 ```
-## We perfromed a two.sided Paired t-test. The results of the t-test are t (49) = 4.405, p = 0.
+## We perfromed a two.sided Paired t-test. The results of the t-test are t (49) = 3.742, p = 0.
 ## 
 ## Those results suggest that there are statistically significant differences between cs1 and cs2. 
 ## 
-## We perfromed a two.sided Bayesian t-test, with a Catchy prior, with its width set to 0.707. The BF10 was equal to BF10 = 381.8. The BF01 was equal to BF01 = 0.
+## We perfromed a two.sided Bayesian t-test, with a Catchy prior, with its width set to 0.707. The BF10 was equal to BF10 = 55.19. The BF01 was equal to BF01 = 0.02.
 ## 
-## The results suggest that there is decisive evidence for H1, relative to H0.
+## The results suggest that there is very strong evidence for H1, relative to H0.
 ## 
 ## The results suggest that there is no evidence for H0, relative to H1.
 ```
@@ -79,7 +79,7 @@ csReport(csSensitivityObj = tmp)
 ```
 
 ```
-## We perfromed a Sensitivity Analysis using the scaling factors: medium, wide, ultrawide. The results for BF01 were: 0, 0, 0 respectively. The results for BF10 were: 381.79, 340.41, 278.81 respectively.
+## We perfromed a Sensitivity Analysis using the scaling factors: medium, wide, ultrawide. The results for BF01 were: 0.02, 0.02, 0.03 respectively. The results for BF10 were: 55.19, 47.03, 37.29 respectively.
 ```
 
 ### Two groups example
@@ -92,29 +92,27 @@ tmp
 
 ```
 ## $freq.results
-##                    method alternative      WG1      WpG1       WG2
-## 1 Welch Two Sample t-test   two.sided 0.982407 0.9282729 0.9799842
-##        WpG2 null.value       LCI       HCI t.statistic       df
-## 1 0.8847949          0 -8.222973 -1.568675   -2.959618 47.37099
-##       p.value
-## 1 0.004797914
+##                    method alternative       WG1     WpG1       WG2
+## 1 Welch Two Sample t-test   two.sided 0.9531244 0.294494 0.9555284
+##        WpG2 null.value       LCI      HCI t.statistic       df   p.value
+## 1 0.3326235          0 -4.035712 4.142682  0.02630703 47.38485 0.9791229
 ## 
 ## $bayes.results
-##    LNI HNI rscale    bf10      bf01    propError
-## 1 -Inf Inf  0.707 8.68352 0.1151607 2.438781e-06
+##    LNI HNI rscale      bf10     bf01    propError
+## 1 -Inf Inf  0.707 0.2827777 3.536347 0.0001939419
 ## 
 ## $descriptives
 ## group: 1
 ##     vars  n mean   sd   se
-## cs1    1 25 3.22 5.30 1.06
-## cs2    2 25 1.75 5.45 1.09
-## cs3    3 25 1.47 5.50 1.10
+## cs1    1 25 5.84 4.11 0.82
+## cs2    2 25 2.05 4.76 0.95
+## cs3    3 25 3.79 6.77 1.35
 ## -------------------------------------------------------- 
 ## group: 2
-##     vars  n  mean   sd   se
-## cs1    1 25  5.92 3.43 0.69
-## cs2    2 25 -0.45 5.45 1.09
-## cs3    3 25  6.37 6.18 1.24
+##     vars  n mean   sd   se
+## cs1    1 25 4.21 5.14 1.03
+## cs2    2 25 0.47 4.98 1.00
+## cs3    3 25 3.74 7.59 1.52
 ```
 
 ```r
@@ -123,16 +121,16 @@ csPlot(cs1, cs2, group = group)
 
 ```
 ## $mean
-## [1] 3.219989 1.746289
+## [1] 5.844099 2.052185
 ## 
 ## $mean
-## [1]  5.915800 -0.453724
+## [1] 4.2081441 0.4697145
 ## 
 ## $se
-## [1] 1.059670 1.089827
+## [1] 0.8216307 0.9512185
 ## 
 ## $se
-## [1] 0.6858462 1.0902018
+## [1] 1.0276958 0.9959088
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
@@ -142,15 +140,15 @@ csReport(csCompareObj = tmp)
 ```
 
 ```
-## We perfromed a two.sided Welch Two Sample t-test. The results of the t-test are t (47.3709854349633) = -2.96, p = 0.005.
+## We perfromed a two.sided Welch Two Sample t-test. The results of the t-test are t (47.3848508399421) = 0.026, p = 0.979.
 ## 
-## Those results suggest that there are statistically significant between group differences. 
+## Those results suggest that there are no statistically significant between group differences. 
 ## 
-## We perfromed a two.sided Bayesian t-test, with a Catchy prior, with its width set to 0.707. The BF10 was equal to BF10 = 8.68. The BF01 was equal to BF01 = 0.12.
+## We perfromed a two.sided Bayesian t-test, with a Catchy prior, with its width set to 0.707. The BF10 was equal to BF10 = 0.28. The BF01 was equal to BF01 = 3.54.
 ## 
-## The results suggest that there is substantial evidence for H1, relative to H0.
+## The results suggest that there is no evidence for H1, relative to H0.
 ## 
-## The results suggest that there is no evidence for H0, relative to H1.
+## The results suggest that there is anecdotal evidence for H0, relative to H1.
 ```
 
 ```r
@@ -165,5 +163,5 @@ csReport(csSensitivityObj = tmp)
 ```
 
 ```
-## We perfromed a Sensitivity Analysis using the scaling factors: medium, wide, ultrawide. The results for BF01 were: 0, 0, 0 respectively. The results for BF10 were: 381.79, 340.41, 278.81 respectively.
+## We perfromed a Sensitivity Analysis using the scaling factors: medium, wide, ultrawide. The results for BF01 were: 0.02, 0.02, 0.03 respectively. The results for BF10 were: 55.19, 47.03, 37.29 respectively.
 ```
