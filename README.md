@@ -3,3 +3,35 @@
 R package for the analysis of conditioning data.
 
 ## Warning: This is work in progress so many analyses are not complete.
+
+### Installation
+
+install.packages ("devtools") # If not already installed
+library(devtools)
+install_github(repo = "AngelosPsy/condir")
+library(condir)
+
+### Load package
+library(condir)
+
+### One group example
+cs1 = rnorm(50, 5, 5)
+cs2 = rnorm(50, 1, 5)
+tmp <- csCompare(cs1, cs2)
+tmp
+csPlot(cs1, cs2, ylab = "CRs")
+csReport(tmp)
+tmp <- csSensitivity(cs1, cs2)
+csRobustnessPlot(cs1, cs2, BF01 = FALSE)
+csReport(csSensitivityObj = tmp)
+
+### Two groups example
+group = rep(1:2, 50)
+tmp <- csCompare(cs1, cs2, group)
+tmp
+csPlot(cs1, cs2, group = group)
+csReport(csCompareObj = tmp)
+tmp <- csSensitivity(cs1, cs2)
+csRobustnessPlot(cs1, cs2, group, BF01 = FALSE)
+csReport(csSensitivityObj = tmp)
+
