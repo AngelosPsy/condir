@@ -5,16 +5,20 @@ R package for the analysis of conditioning data.
 ## Warning: This is work in progress so many analyses are not complete.
 
 ### Installation
-
+```{r}
 install.packages ("devtools") # If not already installed
 library(devtools)
 install_github(repo = "AngelosPsy/condir")
 library(condir)
+```
 
 ### Load package
+```{r}
 library(condir)
+```
 
 ### One group example
+```{r}
 cs1 = rnorm(50, 5, 5)
 cs2 = rnorm(50, 1, 5)
 tmp <- csCompare(cs1, cs2)
@@ -24,8 +28,10 @@ csReport(tmp)
 tmp <- csSensitivity(cs1, cs2)
 csRobustnessPlot(cs1, cs2, BF01 = FALSE)
 csReport(csSensitivityObj = tmp)
+```
 
 ### Two groups example
+```{r}
 group = rep(1:2, 50)
 tmp <- csCompare(cs1, cs2, group)
 tmp
@@ -34,4 +40,4 @@ csReport(csCompareObj = tmp)
 tmp <- csSensitivity(cs1, cs2)
 csRobustnessPlot(cs1, cs2, group, BF01 = FALSE)
 csReport(csSensitivityObj = tmp)
-
+```
