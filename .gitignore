@@ -10,4 +10,5 @@ obsolete
 vignettes
 plotBF.robustnessCheck.R
 report.txt
- .txt
+.txt
+README.rmd
