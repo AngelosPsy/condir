@@ -80,33 +80,39 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
 
       # Determine level of evidence for bf10
       if (bf10 > 0 && bf10 < 1){
-        interbf10 <- "The results suggest that there is no evidence for H1, relative to H0."
+        interbf10 <- "no"
       } else if (bf10 >= 1 && bf10 < 3){
-        interbf10 <- "The results suggest that there is anecdotal evidence for H1, relative to H0."
+        interbf10 <- "anecdotal"
       } else if (bf10 >= 3 && bf10 < 10){
-        interbf10 <- "The results suggest that there is substantial evidence for H1, relative to H0."
+        interbf10 <- "substantial"
       } else if (bf10 >= 10 && bf10 < 30){
-        interbf10 <- "The results suggest that there is strong evidence for H1, relative to H0."
+        interbf10 <- "strong"
       }  else if (bf10 >= 30 && bf10 < 100){
-        interbf10 <- "The results suggest that there is very strong evidence for H1, relative to H0."
+        interbf10 <- "very strong"
       }  else if (bf10 > 100){
-        interbf10 <- "The results suggest that there is decisive evidence for H1, relative to H0."
+        interbf10 <- "decisive"
       }
+
+      interbf10 <- paste("The results suggest that there is", interbf10,
+                         "evidence for H1, relative to H0.")
 
       # Determine level of evidence for bf01
       if (bf01 > 0 && bf01 < 1){
-        interbf01 <- "The results suggest that there is no evidence for H0, relative to H1."
+        interbf01 <- "no"
       } else if (bf01 >= 1 && bf10 < 3){
-        interbf01 <- "The results suggest that there is anecdotal evidence for H0, relative to H1."
+        interbf01 <- "anecdotal"
       } else if (bf01 >= 3 && bf01 < 10){
-        interbf01 <- "The results suggest that there is substantial evidence for H0, relative to H1."
+        interbf01 <- "substantial"
       } else if (bf01 >= 10 && bf01 < 30){
-        interbf01 <- "The results suggest that there is strong evidence for H0, relative to H1."
+        interbf01 <- "strong"
       }  else if (bf01 >= 30 && bf01 < 100){
-        interbf01 <- "The results suggest that there is very strong evidence for H0, relative to H1."
+        interbf01 <- "very strong"
       }  else if (bf01 > 100){
-        interbf01 <- "The results suggest that there is decisive evidence for H0, relative to H1."
+        interbf01 <- "decisive"
       }
+
+      interbf01 <- paste("The results suggest that there is", interbf01,
+                         "evidence for H0, relative to H1.")
 
       repB <- paste(repB, interbf10, interbf01, sep = "\n\n")
       rep <- paste(repF, repB, collapse = " ")
