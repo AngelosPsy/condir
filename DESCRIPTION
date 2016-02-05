@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: "Angelos-Miltiadis Krypotos <amkrypotos@gmail.com> [aut,cre]"
 Description: Set of functions for the easy analysis and plotting of conditioning data. 
 Depends:
-    R (>= 3.2.3),
+    R (>= 3.2.2),
 License: GPL-3
 LazyData: true
 RoxygenNote: 5.0.1
