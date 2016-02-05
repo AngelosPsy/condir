@@ -144,6 +144,6 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
   if (save){
     base::cat(rep, file = base::paste0(fileName, ".txt"))
   } else{
-    base::cat(rep)
+    base::return(rep)
   }
 }
