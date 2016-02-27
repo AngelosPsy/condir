@@ -30,31 +30,33 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
            with the csCompare function.")
     } else {
 
+      # Create objects based on the results
+      for (i in 1:ncol(tmp$freq.results)){
+        assign(names(tmp$freq.results)[i], tmp$freq.results[[i]])
+      }
+
+      for (i in 1:ncol(tmp$bayes.results)){
+        assign(names(tmp$bayes.results)[i], tmp$bayes.results[[i]])
+      }
+
+      # Define symbol for reporting p value
+      r.p.value <- ifelse (p.value < 0.01, "< 0.01", paste(" = ", round(p.value, 3)))
+
       # Report frequentist results
-      repF <- paste0("We perfromed a ",
-                     csCompareObj$freq.results[["alternative"]], " ",
-                     csCompareObj$freq.results[["method"]],
-                     ". The results of the t-test are t (",
-                     base::round(as.numeric(as.character(
-                       csCompareObj$freq.results[["df"]])), 3),
-                     ") = ",
-                     base::round(as.numeric(as.character(
-                       csCompareObj$freq.results[["t.statistic"]])), 3),
-                     ", p = ",
-                     base::round(as.numeric(as.character(
-                       csCompareObj$freq.results[["p.value"]])), 3),
-                     ".")
+      repF <- paste0("We perfromed a ", alternative, " ", method,
+                     ". The results are t (", round(df, 3), ") ", " ",
+                     round(t.statistic, 3), ", p ", r.p.value, ".")
       # Report whethere there are significant or non-significant results
       paired <- base::ifelse(base::as.character(csCompareObj$freq.results[["method"]]) == "Paired t-test", TRUE, FALSE)
       p.val <- as.numeric(as.character(csCompareObj$freq.results[["p.value"]]))
       if (paired && p.val < alphalevel){
-        inter <- base::paste0("Those results suggest that there are statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
+        inter <- base::paste0("These results suggest that there are statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
       } else if (paired && p.val >= alphalevel){
-        inter <- base::paste0("Those results suggest that there are no statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
+        inter <- base::paste0("These results suggest that there are no statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
       } else if (!paired && p.val < alphalevel){
-        inter <- base::paste0("Those results suggest that there are statistically significant between group differences, for an alpha level of ", alphalevel, ".")
+        inter <- base::paste0("These results suggest that there are statistically significant between group differences, for an alpha level of ", alphalevel, ".")
       } else if (!paired && p.val >= alphalevel){
-        inter <- base::paste0("Those results suggest that there are no statistically significant between group differences, for an alpha level of ", alphalevel, ".")
+        inter <- base::paste0("These results suggest that there are no statistically significant between group differences, for an alpha level of ", alphalevel, ".")
       }
 
       repF <- paste(repF, inter, sep = "\n\n")
