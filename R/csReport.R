@@ -12,11 +12,15 @@
 #' ignored if \code{save} is set to \code{FALSE}.
 #' @param alphalevel The alpha level to be used for determining significant
 #' or non-significant results.
+#' @param Should an interpretation of the results be included? (Default TRUE).
+#' In case of the Bayesian results, the results are interpreted according to
+#' Lee and Wagenmakers (2013).
 #' @examples
 #' tmp <- csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
 #' csReport(tmp)
 #' @export
-csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE, fileName = "report", alphalevel = 0.05) {
+csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
+                     fileName = "report", alphalevel = 0.05, interpretation = TRUE) {
 
   if (is.null(csCompareObj) && is.null(csSensitivityObj)){
     rep <- "[No report was produced.]"
@@ -54,21 +58,23 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       repF <- paste0("We performed a ", alternative, " ", method,
                      ". The results are t (", round(df, 3), ") ", "= ",
                      round(t.statistic, 3), ", p ", r.p.value, ".")
-      # Report whethere there are significant or non-significant results
-      paired <- ifelse(as.character(csCompareObj$freq.results[["method"]]) == "Paired t-test", TRUE, FALSE)
-      p.val <- as.numeric(as.character(csCompareObj$freq.results[["p.value"]]))
-      if (paired && p.val < alphalevel){
-        inter <- paste0("These results suggest that there are statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
-      } else if (paired && p.val >= alphalevel){
-        inter <- paste0("These results suggest that there are no statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
-      } else if (!paired && p.val < alphalevel){
-        inter <- paste0("These results suggest that there are statistically significant between group differences, for an alpha level of ", alphalevel, ".")
-      } else if (!paired && p.val >= alphalevel){
-        inter <- paste0("These results suggest that there are no statistically significant between group differences, for an alpha level of ", alphalevel, ".")
+
+      if (interpretation){
+        # Report whether there are significant or non-significant results
+        paired <- ifelse(as.character(method) == "Paired t-test", TRUE, FALSE)
+        p.val <- as.numeric(as.character(p.value))
+        if (paired && p.val < alphalevel){
+          inter <- paste0("These results suggest that there are statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
+        } else if (paired && p.val >= alphalevel){
+          inter <- paste0("These results suggest that there are no statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
+        } else if (!paired && p.val < alphalevel){
+          inter <- paste0("These results suggest that there are statistically significant between group differences, for an alpha level of ", alphalevel, ".")
+        } else if (!paired && p.val >= alphalevel){
+          inter <- paste0("These results suggest that there are no statistically significant between group differences, for an alpha level of ", alphalevel, ".")
+        }
+
+        repF <- paste(repF, inter, sep = "\n\n")
       }
-
-      repF <- paste(repF, inter, sep = "\n\n")
-
       # Report Bayesian results
       repB <- paste0("\n\nWe perfromed a ", alternative,
                      " Bayesian t-test, with a Catchy prior, with its width set to ",
@@ -78,49 +84,50 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                      ". The BF01 was equal to BF01 = ",
                      round(as.numeric(as.character(bf01)), 2), ".")
 
-      bf10 <- csCompareObj$bayes.results[["bf10"]]
-      bf01 <- csCompareObj$bayes.results[["bf01"]]
+      if (interpretation){
+        # Determine level of evidence for bf10
+        if (bf10 > 0 && bf10 < 1){
+          interbf10 <- "no"
+        } else if (bf10 >= 1 && bf10 < 3){
+          interbf10 <- "anecdotal"
+        } else if (bf10 >= 3 && bf10 < 10){
+          interbf10 <- "substantial"
+        } else if (bf10 >= 10 && bf10 < 30){
+          interbf10 <- "strong"
+        }  else if (bf10 >= 30 && bf10 < 100){
+          interbf10 <- "very strong"
+        }  else if (bf10 > 100){
+          interbf10 <- "decisive"
+        }
 
-      # Determine level of evidence for bf10
-      if (bf10 > 0 && bf10 < 1){
-        interbf10 <- "no"
-      } else if (bf10 >= 1 && bf10 < 3){
-        interbf10 <- "anecdotal"
-      } else if (bf10 >= 3 && bf10 < 10){
-        interbf10 <- "substantial"
-      } else if (bf10 >= 10 && bf10 < 30){
-        interbf10 <- "strong"
-      }  else if (bf10 >= 30 && bf10 < 100){
-        interbf10 <- "very strong"
-      }  else if (bf10 > 100){
-        interbf10 <- "decisive"
+        interbf10 <- paste("The results suggest that there is", interbf10,
+                           "evidence for H1, relative to H0.")
+
+        # Determine level of evidence for bf01
+        if (bf01 > 0 && bf01 < 1){
+          interbf01 <- "no"
+        } else if (bf01 >= 1 && bf10 < 3){
+          interbf01 <- "anecdotal"
+        } else if (bf01 >= 3 && bf01 < 10){
+          interbf01 <- "substantial"
+        } else if (bf01 >= 10 && bf01 < 30){
+          interbf01 <- "strong"
+        }  else if (bf01 >= 30 && bf01 < 100){
+          interbf01 <- "very strong"
+        }  else if (bf01 > 100){
+          interbf01 <- "decisive"
+        }
+
+        interbf01 <- paste("The results suggest that there is", interbf01,
+                           "evidence for H0, relative to H1.")
+
+        repB <- paste(repB, interbf10, interbf01, sep = "\n\n")
       }
 
-      interbf10 <- paste("The results suggest that there is", interbf10,
-                         "evidence for H1, relative to H0.")
+     repCompare <- paste(repF, repB, collapse = " ")
+    }
 
-      # Determine level of evidence for bf01
-      if (bf01 > 0 && bf01 < 1){
-        interbf01 <- "no"
-      } else if (bf01 >= 1 && bf10 < 3){
-        interbf01 <- "anecdotal"
-      } else if (bf01 >= 3 && bf01 < 10){
-        interbf01 <- "substantial"
-      } else if (bf01 >= 10 && bf01 < 30){
-        interbf01 <- "strong"
-      }  else if (bf01 >= 30 && bf01 < 100){
-        interbf01 <- "very strong"
-      }  else if (bf01 > 100){
-        interbf01 <- "decisive"
-      }
 
-      interbf01 <- paste("The results suggest that there is", interbf01,
-                         "evidence for H0, relative to H1.")
-
-      repB <- paste(repB, interbf10, interbf01, sep = "\n\n")
-      repCompare <- paste(repF, repB, collapse = " ")
-
-      }
   }
   if (!is.null(csSensitivityObj)){
     # Check whether the csSensitivityObj has been generated by
