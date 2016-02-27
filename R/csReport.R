@@ -43,8 +43,8 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       r.p.value <- ifelse (p.value < 0.01, "< 0.01", paste(" = ", round(p.value, 3)))
 
       # Report frequentist results
-      repF <- paste0("We perfromed a ", alternative, " ", method,
-                     ". The results are t (", round(df, 3), ") ", " ",
+      repF <- paste0("We performed a ", alternative, " ", method,
+                     ". The results are t (", round(df, 3), ") ", "= ",
                      round(t.statistic, 3), ", p ", r.p.value, ".")
       # Report whethere there are significant or non-significant results
       paired <- base::ifelse(base::as.character(csCompareObj$freq.results[["method"]]) == "Paired t-test", TRUE, FALSE)
@@ -62,20 +62,13 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       repF <- paste(repF, inter, sep = "\n\n")
 
       # Report Bayesian results
-      repB <- paste0("\n\nWe perfromed a ",
-                     csCompareObj$freq.results[["alternative"]],
+      repB <- paste0("\n\nWe perfromed a ", alternative,
                      " Bayesian t-test, with a Catchy prior, with its width set to ",
-                     csCompareObj$bayes.results[["rscale"]],
+                     rscale,
                      ". The BF10 was equal to BF10 = ",
-                     base::round(base::as.numeric(
-                       base::as.character(
-                         csCompareObj$bayes.results[["bf10"]])), 2),
+                     round(as.numeric(as.character(bf10)), 2),
                      ". The BF01 was equal to BF01 = ",
-                     base::round(base::as.numeric(
-                       base::as.character(
-                         csCompareObj$bayes.results[["bf01"]])), 2),
-                     ".")
-
+                     round(as.numeric(as.character(bf01)), 2), ".")
 
       bf10 <- csCompareObj$bayes.results[["bf10"]]
       bf01 <- csCompareObj$bayes.results[["bf01"]]
@@ -130,14 +123,12 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
     } else {
       # Report Sensitivity analysis results
       repB <- paste0("We perfromed a Sensitivity Analysis using the scaling factors: ",
-                     paste(csSensitivityObj$rscale, collapse = ", "),
+                     paste(rscale, collapse = ", "),
                      ". The results for BF01 were: ",
-                     paste(round(as.numeric(
-                       as.character(csSensitivityObj$bf01)), 2),
+                     paste(round(as.numeric(bf01), 2),
                        collapse = ", "), " respectively.",
                      " The results for BF10 were: ",
-                     paste(round(as.numeric
-                                 (as.character(csSensitivityObj$bf10)), 2),
+                     paste(round(as.numeric(as.character(bf10)), 2),
                            collapse = ", "), " respectively.")
     }
     rep <- paste(repB, collapse = " ")
