@@ -12,9 +12,9 @@
 #' ignored if \code{save} is set to \code{FALSE}.
 #' @param alphalevel The alpha level to be used for determining significant
 #' or non-significant results.
-#' @param Should an interpretation of the results be included? (Default TRUE).
-#' In case of the Bayesian results, the results are interpreted according to
-#' Lee and Wagenmakers (2013).
+#' @param interpretation Should an interpretation of the results be included?
+#'  (Default TRUE). In case of the Bayesian results, the results
+#'  are interpreted according to Lee and Wagenmakers (2013).
 #' @examples
 #' tmp <- csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
 #' csReport(tmp)
