@@ -31,23 +31,31 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
     } else {
 
       # Create objects based on the results
-      for (i in 1:ncol(tmp$freq.results)){
-        assign(names(tmp$freq.results)[i], tmp$freq.results[[i]])
+      for (i in 1:ncol(csCompareObj$freq.results)){
+        assign(names(csCompareObj$freq.results)[i], csCompareObj$freq.results[[i]])
       }
 
-      for (i in 1:ncol(tmp$bayes.results)){
-        assign(names(tmp$bayes.results)[i], tmp$bayes.results[[i]])
+      for (i in 1:ncol(csCompareObj$bayes.results)){
+        assign(names(csCompareObj$bayes.results)[i], csCompareObj$bayes.results[[i]])
       }
 
       # Define symbol for reporting p value
       r.p.value <- ifelse (p.value < 0.01, "< 0.01", paste(" = ", round(p.value, 3)))
+
+      # Change the phrasing when an one sided t-tests was used
+      if (alternative != "two.sided") {
+        alternative <- paste0("one sided (", alternative, ")")
+      }
+
+      # Change case for method
+      method <- tolower(method)
 
       # Report frequentist results
       repF <- paste0("We performed a ", alternative, " ", method,
                      ". The results are t (", round(df, 3), ") ", "= ",
                      round(t.statistic, 3), ", p ", r.p.value, ".")
       # Report whethere there are significant or non-significant results
-      paired <- base::ifelse(base::as.character(csCompareObj$freq.results[["method"]]) == "Paired t-test", TRUE, FALSE)
+      paired <- ifelse(as.character(csCompareObj$freq.results[["method"]]) == "Paired t-test", TRUE, FALSE)
       p.val <- as.numeric(as.character(csCompareObj$freq.results[["p.value"]]))
       if (paired && p.val < alphalevel){
         inter <- base::paste0("These results suggest that there are statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
@@ -110,7 +118,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                          "evidence for H0, relative to H1.")
 
       repB <- paste(repB, interbf10, interbf01, sep = "\n\n")
-      rep <- paste(repF, repB, collapse = " ")
+      repCompare <- paste(repF, repB, collapse = " ")
 
       }
   }
@@ -121,18 +129,33 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       stop("The csSensitivityObj has not been generated
            with the csSensitivity function.")
     } else {
+      # Create objects based on the results
+      for (i in 1:ncol(csSensitivityObj)){
+        assign(names(csSensitivityObj)[i], csSensitivityObj[, i])
+      }
+
       # Report Sensitivity analysis results
       repB <- paste0("We perfromed a Sensitivity Analysis using the scaling factors: ",
                      paste(rscale, collapse = ", "),
                      ". The results for BF01 were: ",
-                     paste(round(as.numeric(bf01), 2),
+                     paste(round(as.numeric(as.character(bf01)), 2),
                        collapse = ", "), " respectively.",
                      " The results for BF10 were: ",
                      paste(round(as.numeric(as.character(bf10)), 2),
                            collapse = ", "), " respectively.")
     }
-    rep <- paste(repB, collapse = " ")
+    repSensitivity <- paste(repB, collapse = " ")
   }
+
+  # Check which reports should be exported
+  if (!is.null(csCompareObj) && !is.null(csSensitivityObj)){
+    rep <- paste(repCompare, repSensitivity)
+  } else if (!is.null(csCompareObj) && is.null(csSensitivityObj)){
+    rep <- repCompare
+  } else if (is.null(csCompareObj) && !is.null(csSensitivityObj)){
+    rep <- csSensitivityObj
+  }
+
   # Save file if that is asked, otherwise print the results on screen.
   if (save){
     base::cat(rep, file = base::paste0(fileName, ".txt"))
