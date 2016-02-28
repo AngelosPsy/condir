@@ -38,7 +38,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
   # Extract t statistic
   ftt <- condir::csCompare(cs1 = cs1, cs2 = cs2, group = group, data = data,
                   alternative = alternative, conf.level = conf.level, mu = mu,
-                  descriptives = TRUE)
+                  descriptives = TRUE, boxplot = FALSE)
 
   # Need to define the number of participants for each group
   paired <- ifelse(is.null(group), TRUE, FALSE)
