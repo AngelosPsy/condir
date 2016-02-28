@@ -13,6 +13,8 @@
 #' @param rscale the scale factor for the prior used in the Bayesian t.test.
 #' @param descriptives Returns basic descriptive statistics for the dependent
 #' variable(s).
+#' @param boxplot Should a boxplot of the variables be produced
+#' (default is TRUE)?
 #' @details
 #' \code{csCompare} performs both a student t-test (using the
 #' \code{stats::t.test} function) and a Bayesian t-test (using the
@@ -35,7 +37,7 @@
 #' @export
 csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                       alternative = "two.sided", conf.level = 0.95,
-                      mu = 0, rscale = .707, descriptives = TRUE){
+                      mu = 0, rscale = .707, descriptives = TRUE, boxplot = TRUE){
     # Since no more that 2 groups may be defined, the function terminates if
     # that is the case. Also, if 1 group is selected, then it runs a paired
     #  samples t-test.
@@ -162,13 +164,14 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     graphics::par(mar=c(5.1, 4.1, 4.1, 4.1), cex.main = 1.5, las=1, cex.lab = 2,
                   mgp = c(2,1,.5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
                   pch = 19)
-    if (paired){
-        graphics::boxplot(data.frame(cs1, cs2))
-    } else{
-      graphics::boxplot(data.frame(cs1, cs2, cs3))
+
+    if (boxplot){
+      if (paired){
+          graphics::boxplot(data.frame(cs1, cs2))
+      } else{
+        graphics::boxplot(data.frame(cs1, cs2, cs3))
+      }
     }
-
-
 
     return(res)
 }
