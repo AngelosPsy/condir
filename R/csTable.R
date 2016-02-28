@@ -13,8 +13,8 @@
 #' csTable(tmp)
 #' @export
 csTable <- function(csCompareObj, typeOfTable = c("latex")) {
-  if (base::length(typeOfTable) > 1){
-      base::warning("You can produce one type of table at a time. The first
+  if (length(typeOfTable) > 1){
+      warning("You can produce one type of table at a time. The first
                     type of table of the typeOfTable argument was selected.
                     This is ", typeOfTable[1])
   }
