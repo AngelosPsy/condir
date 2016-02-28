@@ -5,7 +5,8 @@
 \title{Statistically compare two CSs}
 \usage{
 csCompare(cs1, cs2, group = NULL, data = NULL, alternative = "two.sided",
-  conf.level = 0.95, mu = 0, rscale = 0.707, descriptives = TRUE)
+  conf.level = 0.95, mu = 0, rscale = 0.707, descriptives = TRUE,
+  boxplot = TRUE)
 }
 \arguments{
 \item{cs1,cs2}{a numeric vector of values. If data is defined, it can refer
@@ -27,6 +28,9 @@ the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 
 \item{descriptives}{Returns basic descriptive statistics for the dependent
 variable(s).}
+
+\item{boxplot}{Should a boxplot of the variables be produced
+(default is TRUE)?}
 }
 \description{
 Compare two CSs within a frequentist and a Bayesian framework.
