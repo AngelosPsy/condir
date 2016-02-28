@@ -36,23 +36,23 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                                    rscaleSens = rscaleSens)
 
     # Redifine rscale factors if they have been given with their string names
-    base::levels(sensRes$rscale)
-    if (base::any(base::levels(sensRes$rscale) %in% c("medium"))){
-      base::levels(sensRes$rscale) <- c(base::levels(sensRes$rscale),
-                                        base::sqrt(2)/2)
-      sensRes$rscale[base::which(sensRes$rscale %in% "medium")] <-
-        base::sqrt(2)/2
+    levels(sensRes$rscale)
+    if (any(levels(sensRes$rscale) %in% c("medium"))){
+      levels(sensRes$rscale) <- c(levels(sensRes$rscale),
+                                        sqrt(2)/2)
+      sensRes$rscale[which(sensRes$rscale %in% "medium")] <-
+        sqrt(2)/2
     }
 
-    if (base::any(base::levels(sensRes$rscale) %in% c("wide"))){
-      base::levels(sensRes$rscale) <- c(base::levels(sensRes$rscale), 1)
-      sensRes$rscale[base::which(sensRes$rscale %in% "wide")] <- 1
+    if (any(levels(sensRes$rscale) %in% c("wide"))){
+      levels(sensRes$rscale) <- c(levels(sensRes$rscale), 1)
+      sensRes$rscale[which(sensRes$rscale %in% "wide")] <- 1
     }
 
-    if (any(base::levels(sensRes$rscale) %in% c("ultrawide"))){
-      base::levels(sensRes$rscale) <- c(base::levels(sensRes$rscale),
-                                        base::sqrt(2))
-      sensRes$rscale[which(sensRes$rscale %in% "ultrawide")] <- base::sqrt(2)
+    if (any(levels(sensRes$rscale) %in% c("ultrawide"))){
+      levels(sensRes$rscale) <- c(levels(sensRes$rscale),
+                                        sqrt(2))
+      sensRes$rscale[which(sensRes$rscale %in% "ultrawide")] <- sqrt(2)
     }
 
     if (BF01){
@@ -67,13 +67,13 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
 
     # Set graphic parameters
     op <- graphics::par(no.readonly = TRUE)
-    base::on.exit(graphics::par(op))
+    on.exit(graphics::par(op))
     graphics::par(mar = c(6, 7, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
                   mgp = c(2, 1, .5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
                   pch = 19)
 
     # Limits of y axis is adjusted in case of BF values above 10
-    if(base::exists(as.character(ylimz))){
+    if(exists(as.character(ylimz))){
       atYaxis <- ylimz
     } else {
      if(max(bfNum) > 10 || min(bfNum) < 0){
@@ -92,15 +92,15 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                    type = "b", xlab = "", ylab = "", ylim = ylimz,
                    axes = FALSE, lwd = 2, ...)
     graphics::axis(side = 1, at = sensRes$rscale,
-                   labels = base::round(base::as.numeric(
-                     base::as.character(sensRes$rscale)), 2),
+                   labels = round(as.numeric(
+                     as.character(sensRes$rscale)), 2),
                    lwd = 2, cex.axis = 1.5)
     graphics::axis(side = 2, at = atYAxis,
                    labels = labYAxis, lwd = 2,
                    cex.axis = 1.5)
     graphics::mtext(text = "Cauchy's Scale", side = 1, line = 3,
                     cex = 2)
-    graphics::mtext(text = base::substitute("BF"[subscript,
-                    base::list(subscript = subscript)]),
+    graphics::mtext(text = substitute("BF"[subscript,
+                    list(subscript = subscript)]),
                     side = 2, line = 3, cex = 2)
 }
