@@ -41,18 +41,18 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                   descriptives = TRUE)
 
   # Need to define the number of participants for each group
-  paired <- base::ifelse(base::is.null(group), TRUE, FALSE)
+  paired <- ifelse(is.null(group), TRUE, FALSE)
   if (paired){
-    n1 <- base::nrow(stats::na.omit(base::cbind(cs1, cs2)))
+    n1 <- nrow(stats::na.omit(cbind(cs1, cs2)))
     n2 <- 0
    } else {
-    groupLevels <- base::attr(base::table(group), "dimnames")[[1]]
-    n1 <- base::length(group[group == groupLevels[1]])
-    n2 <- base::length(group[group == groupLevels[2]])
+    groupLevels <- attr(table(group), "dimnames")[[1]]
+    n1 <- length(group[group == groupLevels[1]])
+    n2 <- length(group[group == groupLevels[2]])
   }
 
   # Need to compute Bayes factor
-  btt = base::sapply(rscaleSens,
+  btt = sapply(rscaleSens,
    function(x) BayesFactor::ttest.tstat(t = ftt$freq.results$t.statistic,
                                         n1 = n1, n2 = n2,
                                         nullInterval = c(ftt$bayes.res$LN1,
@@ -60,20 +60,20 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                                                          rscale = x,
                                                          complement = FALSE,
                                                          simple = FALSE))
-  base::colnames(btt) <- rscaleSens
+  colnames(btt) <- rscaleSens
   # Structure results to a data frame so as to be easier to read
-  res <- base::matrix(-999, nrow = length(rscaleSens), ncol = 8)
-  base::colnames(res) <- c("nG1", "nG2", "LNI", "HNI", "rscale", "bf10",
+  res <- matrix(-999, nrow = length(rscaleSens), ncol = 8)
+  colnames(res) <- c("nG1", "nG2", "LNI", "HNI", "rscale", "bf10",
                            "bf01", "propError")
 
-  for (i in 1:base::length(rscaleSens)){
+  for (i in 1:length(rscaleSens)){
     res[i, ] <- c(nG1 = n1, nG2 = n2, LNI = as.character(ftt$bayes.res$LNI),
-    HNI = base::as.character(ftt$bayes.res$HNI), rscale = rscaleSens[i],
-    bf10 = base::exp(btt[, i][["bf"]]),
-    bf01 = 1/base::exp(btt[, i][["bf"]]), propError = btt[, i]$properror)
+    HNI = as.character(ftt$bayes.res$HNI), rscale = rscaleSens[i],
+    bf10 = exp(btt[, i][["bf"]]),
+    bf01 = 1/exp(btt[, i][["bf"]]), propError = btt[, i]$properror)
   }
 
-  res = base::data.frame(res)
+  res = data.frame(res)
 
   return(res)
 }
