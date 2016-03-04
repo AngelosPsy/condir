@@ -13,6 +13,7 @@
 #' @param rscale the scale factor for the prior used in the Bayesian t.test.
 #' @param descriptives Returns basic descriptive statistics for the dependent
 #' variable(s).
+#' @param outThrees The threeshold for detecting outliers (default is 3).
 #' @param boxplot Should a boxplot of the variables be produced
 #' (default is TRUE)?
 #' @details
@@ -37,7 +38,8 @@
 #' @export
 csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                       alternative = "two.sided", conf.level = 0.95,
-                      mu = 0, rscale = .707, descriptives = TRUE, boxplot = TRUE){
+                      mu = 0, rscale = .707, descriptives = TRUE, outThrees = 3,
+                      boxplot = TRUE){
     # Since no more that 2 groups may be defined, the function terminates if
     # that is the case. Also, if 1 group is selected, then it runs a paired
     #  samples t-test.
@@ -121,6 +123,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       ftt <- stats::t.test(x = cs1, y = cs2, data = data,
                           alternative = alternative, mu = mu, paired = paired,
                           var.equal = FALSE, conf.level = conf.level)
+
     } else {
      groupLevels <- attr(table(group), "dimnames")[[1]]
      n1 <- length(group[group == groupLevels[1]])
@@ -128,12 +131,15 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
      ftt <- stats::t.test(cs3~group, data = data,
                          alternative = alternative, mu = mu, paired = paired,
                          var.equal = FALSE, conf.level = conf.level)
+
     }
 
     # Compute Bayes factor
     btt <- BayesFactor::ttest.tstat(t = ftt$statistic, n1 = n1, n2 = n2,
-    nullInterval <- nullInterval, rscale = rscale,
-    complement <- FALSE, simple = FALSE)
+                                    nullInterval = nullInterval,
+                                    rscale = rscale, complement = FALSE,
+                                    simple = FALSE)
+
 
     # Structure results. Then, depending on whether descriptives have been
     # asked or not, more results are generated.
@@ -173,5 +179,5 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       }
     }
 
-    return(res)
+    return(list(res, tt))
 }
