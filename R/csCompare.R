@@ -13,7 +13,8 @@
 #' @param rscale the scale factor for the prior used in the Bayesian t.test.
 #' @param descriptives Returns basic descriptive statistics for the dependent
 #' variable(s).
-#' @param outThrees The threeshold for detecting outliers (default is 3).
+#' @param out.thres The threeshold for detecting outliers (default is 3). If set
+#' to 0, no outliers analysis is performed.
 #' @param boxplot Should a boxplot of the variables be produced
 #' (default is TRUE)?
 #' @details
@@ -38,7 +39,7 @@
 #' @export
 csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                       alternative = "two.sided", conf.level = 0.95,
-                      mu = 0, rscale = .707, descriptives = TRUE, outThrees = 3,
+                      mu = 0, rscale = .707, descriptives = TRUE, out.thres = 3,
                       boxplot = TRUE){
     # Since no more that 2 groups may be defined, the function terminates if
     # that is the case. Also, if 1 group is selected, then it runs a paired
@@ -179,5 +180,53 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       }
     }
 
-    return(list(res, tt))
+    # Outlier analysis
+    if (out.thres != 0){
+      if (paired){
+        cout <- cs1 - cs2
+        outz <- stats::rstandard(stats::lm(cout~1))
+        out.HCI <- cout[which(cout > out.thres)]
+        out.LCI <- cout[which(cout < -out.thres)]
+
+        if (length(out.HCI) & length(out.LCI)){
+          out.present <- FALSE
+        } else {
+          out.present <- TRUE
+          cs1.out <- cs1[-c(out.HCI, out.LCI)]
+          cs2.out <- cs2[-c(out.HCI, out.LCI)]
+          compare.out <- condir::csCompare(cs1 = cs1.out, cs2 = cs2.out, group = group,
+                               data = data, alternative = alternative,
+                               conf.level = conf.level, mu = mu,
+                               rscale = rscale, descriptives = descriptives,
+                               out.thres = 0, boxplot = boxplot)
+        }
+
+        } else {
+          cout <- cs3
+          outz <- stats::rstandard(stats::lm(cout~group))
+          out.HCI <- cout[which(cout > out.thres)]
+          out.LCI <- cout[which(cout < -out.thres)]
+          group.out <- group[which(count < out.thres || count < -out.thres)]
+
+          if (length(out.HCI) & length(out.LCI)){
+            out.present <- FALSE
+          } else {
+            out.present <- TRUE
+            compare.out <- condir::csCompare(cs1 = cs1.out, cs2 = cs2.out,
+                                     group = group.out, data = data,
+                                     alternative = alternative,
+                                     conf.level = conf.level, mu = mu,
+                                     rscale = rscale, descriptives = descriptives,
+                                     out.thres = 0, boxplot = boxplot)
+          }
+        }
+    } else {
+      # This is the case you do not want outliers to be detected
+      out.present = FALSE
+    }
+
+    if (out.present){
+      res$res.out = compare.out
+    }
+    return(res)
 }
