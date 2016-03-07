@@ -166,16 +166,15 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       res <- list(results = res)
     }
 
-    # Generate boxplots
-    op <- graphics::par(no.readonly = TRUE)
-    on.exit(graphics::par(op))
-    graphics::par(mar=c(5.1, 4.1, 4.1, 4.1), cex.main = 1.5, las=1, cex.lab = 2,
-                  mgp = c(2,1,.5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
-                  pch = 19)
-
     if (boxplot){
+      # Generate boxplots
+      op <- graphics::par(no.readonly = TRUE)
+      on.exit(graphics::par(op))
+      graphics::par(mar=c(5.1, 4.1, 4.1, 4.1), cex.main = 1.5, las=1, cex.lab = 2,
+                    mgp = c(2,1,.5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
+                    pch = 19)
       if (paired){
-          graphics::boxplot(data.frame(cs1, cs2))
+        graphics::boxplot(data.frame(cs1, cs2))
       } else{
         graphics::boxplot(data.frame(cs1, cs2, cs3))
       }
@@ -195,8 +194,6 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
           out.present <- TRUE
           cs1.out <- cs1[-c(out.HCI, out.LCI)]
           cs2.out <- cs2[-c(out.HCI, out.LCI)]
-          print(out.HCI)
-          print(out.LCI)
           compare.out <- condir::csCompare(cs1 = cs1.out, cs2 = cs2.out,
                                            group = NULL, data = data,
                                            alternative = alternative,
