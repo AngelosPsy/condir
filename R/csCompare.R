@@ -92,7 +92,8 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
 
     # Check normality assumption with shapiro test
     if (paired){
-      sT <- stats::shapiro.test(cs1 - cs2)
+      tmp <- cs1 - cs2
+      sT <- stats::shapiro.test(tmp)
       sTW1 <- as.numeric(sT$statistic)
       sTp1 <- sT$p.value
       sTW2 <- 0
@@ -184,40 +185,48 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     if (out.thres != 0){
       if (paired){
         cout <- cs1 - cs2
+        ### BUGG
         outz <- stats::rstandard(stats::lm(cout~1))
-        out.HCI <- cout[which(cout > out.thres)]
-        out.LCI <- cout[which(cout < -out.thres)]
-
-        if (length(out.HCI) & length(out.LCI)){
+        out.HCI <- which(outz > out.thres)
+        out.LCI <- which(outz < (-out.thres))
+        if (length(out.HCI) == 0 && length(out.LCI) == 0){
           out.present <- FALSE
         } else {
           out.present <- TRUE
           cs1.out <- cs1[-c(out.HCI, out.LCI)]
           cs2.out <- cs2[-c(out.HCI, out.LCI)]
-          compare.out <- condir::csCompare(cs1 = cs1.out, cs2 = cs2.out, group = group,
-                               data = data, alternative = alternative,
-                               conf.level = conf.level, mu = mu,
-                               rscale = rscale, descriptives = descriptives,
-                               out.thres = 0, boxplot = boxplot)
+          print(out.HCI)
+          print(out.LCI)
+          compare.out <- condir::csCompare(cs1 = cs1.out, cs2 = cs2.out,
+                                           group = NULL, data = data,
+                                           alternative = alternative,
+                                           conf.level = conf.level, mu = mu,
+                                           rscale = rscale,
+                                           descriptives = descriptives,
+                                           boxplot = boxplot, out.thres = 0)
         }
 
         } else {
           cout <- cs3
+          print ("found it")
           outz <- stats::rstandard(stats::lm(cout~group))
-          out.HCI <- cout[which(cout > out.thres)]
-          out.LCI <- cout[which(cout < -out.thres)]
-          group.out <- group[which(count < out.thres || count < -out.thres)]
+          out.HCI <- which(outz > out.thres)
+          out.LCI <- which(outz < (-out.thres))
+          cs1.out <- cs1[-c(out.HCI, out.LCI)]
+          cs2.out <- cs2[-c(out.HCI, out.LCI)]
+          group.out <- group[-c(out.HCI, out.LCI)]
 
-          if (length(out.HCI) & length(out.LCI)){
+          if (length(out.HCI) == 0 && length(out.LCI) == 0){
             out.present <- FALSE
           } else {
             out.present <- TRUE
-            compare.out <- condir::csCompare(cs1 = cs1.out, cs2 = cs2.out,
+            compare.out <- csCompare(cs1 = cs1.out, cs2 = cs2.out,
                                      group = group.out, data = data,
                                      alternative = alternative,
                                      conf.level = conf.level, mu = mu,
-                                     rscale = rscale, descriptives = descriptives,
-                                     out.thres = 0, boxplot = boxplot)
+                                     rscale = rscale,
+                                     descriptives = descriptives,
+                                     boxplot = boxplot, out.thres = 0)
           }
         }
     } else {
