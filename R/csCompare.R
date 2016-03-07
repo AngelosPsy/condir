@@ -217,7 +217,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
             out.present <- FALSE
           } else {
             out.present <- TRUE
-            compare.out <- csCompare(cs1 = cs1.out, cs2 = cs2.out,
+            compare.out <- condir::csCompare(cs1 = cs1.out, cs2 = cs2.out,
                                      group = group.out, data = data,
                                      alternative = alternative,
                                      conf.level = conf.level, mu = mu,
@@ -230,7 +230,6 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       # This is the case you do not want outliers to be detected
       out.present = FALSE
     }
-
     if (out.present){
       res$res.out = compare.out
     }
