@@ -33,7 +33,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
   sensRes <- condir::csSensitivity(cs1 = cs1, cs2 = cs2, group = group,
                                    data = data, alternative = alternative,
                                    conf.level = conf.level, mu = mu,
-                                   rscaleSens = rscaleSens)
+                                   rscaleSens = rscaleSens)[[1]]
 
     # Redifine rscale factors if they have been given with their string names
     levels(sensRes$rscale)
