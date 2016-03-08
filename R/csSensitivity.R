@@ -98,8 +98,9 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
       }
 
     } else {
-      cout <- cs3
-      outz <- stats::rstandard(stats::lm(cout~group))
+      # Solution to 'no visible binding for global variable' note
+      cs3 <- cs3
+      outz <- stats::rstandard(stats::lm(cs3~group))
       out.HCI <- which(outz > out.thres)
       out.LCI <- which(outz < (-out.thres))
       cs1.out <- cs1[-c(out.HCI, out.LCI)]
