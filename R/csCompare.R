@@ -35,7 +35,7 @@
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 #' @examples
-#' csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
+#' csCompare(cs1 = stats::rnorm(100, 10), cs2 = stats::rnorm(100, 0))
 #' @export
 csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                       alternative = "two.sided", conf.level = 0.95,
@@ -184,7 +184,6 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     if (out.thres != 0){
       if (paired){
         cout <- cs1 - cs2
-        ### BUGG
         outz <- stats::rstandard(stats::lm(cout~1))
         out.HCI <- which(outz > out.thres)
         out.LCI <- which(outz < (-out.thres))
