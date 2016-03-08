@@ -6,7 +6,7 @@
 \usage{
 csSensitivity(cs1, cs2, group = NULL, data = NULL,
   alternative = "two.sided", conf.level = 0.95, mu = 0,
-  rscaleSens = c("medium", "wide", "ultrawide"))
+  rscaleSens = c(0.707, 1, 1.41), out.thres = 3)
 }
 \arguments{
 \item{cs1,cs2}{a numeric vector of values. If data is defined, it can refer
@@ -25,6 +25,9 @@ the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 \item{mu}{a numeric value for the mean value or mean difference}
 
 \item{rscaleSens}{the scale factor for the prior used in the Bayesian t.test}
+
+\item{out.thres}{The threeshold for detecting outliers (default is 3). If set
+to 0, no outliers analysis is performed.}
 }
 \value{
 The function returns a data frame with the results of the student
