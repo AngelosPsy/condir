@@ -36,15 +36,24 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
 
       # Create objects based on the results
       for (i in 1:ncol(csCompareObj$freq.results)){
-        assign(names(csCompareObj$freq.results)[i], csCompareObj$freq.results[[i]])
+        #assign(names(csCompareObj$freq.results)[i], csCompareObj$freq.results[[i]])
+        assign(bquote(.(names(csCompareObj$freq.results[i]))), bquote(.(csCompareObj$freq.results[i])))
       }
 
       for (i in 1:ncol(csCompareObj$bayes.results)){
-        assign(names(csCompareObj$bayes.results)[i], csCompareObj$bayes.results[[i]])
+        #assign(names(csCompareObj$bayes.results)[i], csCompareObj$bayes.results[[i]])
+        assign(bquote(.(names(csCompareObj$bayes.results[i]))), bquote(.(csCompareObj$bayes.results[i])))
       }
 
+      # Solution to 'no visible binding for global variable' note
+      t.statistic <- t.statistic
+      p.value <- p.value
+      rscale <- rscale
+      bf10 <- bf10
+      bf01 <- bf01
       # Define symbol for reporting p value
-      r.p.value <- ifelse (p.value < 0.01, "< 0.01", paste(" = ", round(p.value, 3)))
+      r.p.value <- ifelse (p.value < 0.01, "< 0.01",
+                           paste(" = ", round(p.value, 3)))
 
       # Change the phrasing when an one sided t-tests was used
       if (alternative != "two.sided") {
@@ -57,7 +66,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       # Report frequentist results
       repF <- paste0("We performed a ", alternative, " ", method,
                      ". The results are t (", round(df, 3), ") ", "= ",
-                     round(t.statistic, 3), ", p ", r.p.value, ".")
+                     t.statistic, ", p ", r.p.value, ".")
 
       if (interpretation){
         # Report whether there are significant or non-significant results
@@ -163,9 +172,13 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
     rep <- csSensitivityObj
   }
 
+  # Report outliers
+
+
   # Save file if that is asked, otherwise print the results on screen.
   if (save){
     cat(rep, file = paste0(fileName, ".txt"))
+    cat("Report file saved in ", getwd())
   } else{
     return(rep)
   }
