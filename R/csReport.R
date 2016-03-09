@@ -36,11 +36,11 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
 
       # Create objects based on the results
       for (i in 1:ncol(csCompareObj$freq.results)){
-        assign(bquote(.(names(csCompareObj$freq.results[i]))), bquote(.(csCompareObj$freq.results[i])))
+        assign(names(csCompareObj$freq.results)[i], csCompareObj$freq.results[[i]])
       }
 
       for (i in 1:ncol(csCompareObj$bayes.results)){
-        assign(bquote(.(names(csCompareObj$bayes.results[i]))), bquote(.(csCompareObj$bayes.results[i])))
+        assign(names(csCompareObj$bayes.results)[i], csCompareObj$bayes.results[[i]])
       }
 
       # Solution to 'no visible binding for global variable' note
@@ -62,7 +62,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       method <- tolower(method)
 
       # Report frequentist results
-      repF <- paste0("We performed a ", alternative, " ", method,
+      repF <- paste0("\n\nWe performed a ", alternative, " ", method,
                      ". The results are t (", round(df, 3), ") ", "= ",
                      t.statistic, ", p ", r.p.value, ".")
 
@@ -80,10 +80,10 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
           inter <- paste0("These results suggest that there are no statistically significant between group differences, for an alpha level of ", alphalevel, ".")
         }
 
-        repF <- paste(repF, inter, sep = "\n\n")
+        repF <- paste0(repF, inter, sep = "\n\n")
       }
       # Report Bayesian results
-      repB <- paste0("\n\nWe perfromed a ", alternative,
+      repB <- paste0("\nWe perfromed a ", alternative,
                      " Bayesian t-test, with a Catchy prior, with its width set to ",
                      rscale,
                      ". The BF10 was equal to BF10 = ",
@@ -107,8 +107,8 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
           interbf10 <- "decisive"
         }
 
-        interbf10 <- paste("The results suggest that there is", interbf10,
-                           "evidence for H1, relative to H0.")
+        interbf10 <- paste0("The results suggest that there is ", interbf10,
+                           " evidence for H1, relative to H0.")
 
         # Determine level of evidence for bf01
         if (bf01 > 0 && bf01 < 1){
@@ -143,9 +143,10 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       stop("The csSensitivityObj has not been generated
            with the csSensitivity function.")
     } else {
+      csSensitivityElement = csSensitivityObj[[1]]
       # Create objects based on the results
-      for (i in 1:ncol(csSensitivityObj)){
-        assign(names(csSensitivityObj)[i], csSensitivityObj[, i])
+      for (i in 1:ncol(csSensitivityElement)){
+        assign(names(csSensitivityElement)[i], csSensitivityElement[, i])
       }
 
       # Report Sensitivity analysis results
@@ -162,24 +163,35 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
   }
 
   # Check which reports should be exported
-  if (!is.null(csCompareObj) && !is.null(csSensitivityObj)){
+  if (!is.null(csCompareObj) && !is.null(csSensitivityElement)){
     rep <- paste(repCompare, repSensitivity)
-  } else if (!is.null(csCompareObj) && is.null(csSensitivityObj)){
+  } else if (!is.null(csCompareObj) && is.null(csSensitivityElement)){
     rep <- repCompare
-  } else if (is.null(csCompareObj) && !is.null(csSensitivityObj)){
-    rep <- csSensitivityObj
+  } else if (is.null(csCompareObj) && !is.null(csSensitivityElement)){
+    rep <- repSensitivity
   }
 
   # Report outliers
+  # csCompare analyses
+  if(!is.null(csCompareObj$res.out)){
+    report.outliers <- paste(csReport(csCompareObj$res.out))
+    rep <- paste0("Main analyses\n", rep,
+                  "\n\n**Outliers report**\n", report.outliers)
+  }
 
-
-
+  # csSensitivity analyses
+  if(!is.null(csSensitivityObj$res.out)){
+    report.outliers <- paste(csReport(csSensitivityObj = list(csSensitivityObj$res.out)))
+    rep <- paste0("Sensitivity analyses\n", rep,
+                  "\n\n**Sensitivity analyses - Outliers report**\n",
+                  report.outliers)
+  }
 
   # Save file if that is asked, otherwise print the results on screen.
   if (save){
     cat(rep, file = paste0(fileName, ".txt"))
-    cat("Report file saved in ", getwd())
-  } else{
+    cat("Report file saved in the following directory: ", getwd())
+  } else {
     return(rep)
   }
 }
