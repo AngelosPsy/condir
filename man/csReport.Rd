@@ -32,7 +32,7 @@ are interpreted according to Lee and Wagenmakers (2013).}
 Report results of data analyses run with the \code{csCompare}.
 }
 \examples{
-tmp <- csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
+tmp <- csCompare(cs1 = stats::rnorm(100, 10), cs2 = stats::rnorm(100, 0))
 csReport(tmp)
 }
 
