@@ -16,7 +16,7 @@
 #'  (Default TRUE). In case of the Bayesian results, the results
 #'  are interpreted according to Lee and Wagenmakers (2013).
 #' @examples
-#' tmp <- csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
+#' tmp <- csCompare(cs1 = stats::rnorm(100, 10), cs2 = stats::rnorm(100, 0))
 #' csReport(tmp)
 #' @export
 csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
@@ -36,12 +36,10 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
 
       # Create objects based on the results
       for (i in 1:ncol(csCompareObj$freq.results)){
-        #assign(names(csCompareObj$freq.results)[i], csCompareObj$freq.results[[i]])
         assign(bquote(.(names(csCompareObj$freq.results[i]))), bquote(.(csCompareObj$freq.results[i])))
       }
 
       for (i in 1:ncol(csCompareObj$bayes.results)){
-        #assign(names(csCompareObj$bayes.results)[i], csCompareObj$bayes.results[[i]])
         assign(bquote(.(names(csCompareObj$bayes.results[i]))), bquote(.(csCompareObj$bayes.results[i])))
       }
 
@@ -173,6 +171,8 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
   }
 
   # Report outliers
+
+
 
 
   # Save file if that is asked, otherwise print the results on screen.
