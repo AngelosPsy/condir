@@ -163,11 +163,11 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
   }
 
   # Check which reports should be exported
-  if (!is.null(csCompareObj) && !is.null(csSensitivityElement)){
+  if (!is.null(csCompareObj) && !is.null(csSensitivityObj)){
     rep <- paste(repCompare, repSensitivity)
-  } else if (!is.null(csCompareObj) && is.null(csSensitivityElement)){
+  } else if (!is.null(csCompareObj) && is.null(csSensitivityObj)){
     rep <- repCompare
-  } else if (is.null(csCompareObj) && !is.null(csSensitivityElement)){
+  } else if (is.null(csCompareObj) && !is.null(csSensitivityObj)){
     rep <- repSensitivity
   }
 
