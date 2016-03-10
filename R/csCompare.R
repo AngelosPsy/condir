@@ -111,10 +111,10 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     if (descriptives){
       if(paired){
        desc <- psych::describe(data.frame(cs1, cs2), skew = FALSE,
-                              ranges = FALSE)
+                              ranges = TRUE)
       } else {
       desc <- by(data.frame(cs1, cs2, cs3), group, psych::describe,
-                      skew = FALSE, ranges = FALSE)
+                      skew = FALSE, ranges = TRUE)
       }
     }
 
