@@ -160,8 +160,8 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                             propError = btt$properror, row.names = NULL)
 
     if(descriptives){
-      res <- list(freq.results = freq.res,
-                        bayes.results = bayes.res, descriptives = desc)
+      res <- list(descriptives = desc, freq.results = freq.res,
+                        bayes.results = bayes.res)
     } else {
       res <- list(results = res)
     }
