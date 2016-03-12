@@ -154,11 +154,13 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       repB <- paste0("We perfromed a Sensitivity Analysis using the scaling factors: ",
                      paste(rscale, collapse = ", "),
                      ". The results for BF01 were: ",
-                     paste(sapply(as.numeric(levels(bf01))[as.integer(bf01)], roundBF), collapse = ", "),
-                      # collapse = ", "),
+                    paste(mapply(roundBF, as.numeric(levels(bf01))[as.integer(bf01)],
+                                       rscale), collapse = ", "),
                      " respectively.",
                      " The results for BF10 were: ",
-                    paste(sapply(as.numeric(levels(bf10))[as.integer(bf10)], roundBF), collapse = ", "),
+                    paste(mapply(roundBF,
+                                 as.numeric(levels(bf10))[as.integer(bf10)],
+                                 rscale), collapse = ", "),
                     " respectively.")
     }
     repSensitivity <- paste(repB, collapse = " ")
