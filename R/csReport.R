@@ -50,7 +50,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       bf10 <- bf10
       bf01 <- bf01
       # Define symbol for reporting p value
-      r.p.value <- ifelse (p.value < 0.01, "< 0.01",
+      r.p.value <- ifelse (p.value < 0.001, "< 0.001",
                            paste(" = ", round(p.value, 3)))
 
       # Change the phrasing when an one sided t-tests was used
@@ -83,13 +83,15 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
         repF <- paste0(repF, inter, sep = "\n\n")
       }
       # Report Bayesian results
+      # Adjust symbol for BF factor
+
       repB <- paste0("\nWe perfromed a ", alternative,
                      " Bayesian t-test, with a Catchy prior, with its width set to ",
                      rscale,
-                     ". The BF10 was equal to BF10 = ",
-                     round(as.numeric(as.character(bf10)), 2),
-                     ". The BF01 was equal to BF01 = ",
-                     round(as.numeric(as.character(bf01)), 2), ".")
+                     ". The BF10 was BF10",
+                     roundBF(bf10),
+                     ". The BF01 was BF01",
+                     roundBF(bf01), ".")
 
       if (interpretation){
         # Determine level of evidence for bf10
@@ -153,10 +155,10 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       repB <- paste0("We perfromed a Sensitivity Analysis using the scaling factors: ",
                      paste(rscale, collapse = ", "),
                      ". The results for BF01 were: ",
-                     paste(round(as.numeric(as.character(bf01)), 2),
+                     paste(round(as.numeric(as.character(bf01)), 3),
                        collapse = ", "), " respectively.",
                      " The results for BF10 were: ",
-                     paste(round(as.numeric(as.character(bf10)), 2),
+                     paste(round(as.numeric(as.character(bf10)), 3),
                            collapse = ", "), " respectively.")
     }
     repSensitivity <- paste(repB, collapse = " ")
