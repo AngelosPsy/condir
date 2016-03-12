@@ -150,16 +150,16 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       for (i in 1:ncol(csSensitivityElement)){
         assign(names(csSensitivityElement)[i], csSensitivityElement[, i])
       }
-
       # Report Sensitivity analysis results
       repB <- paste0("We perfromed a Sensitivity Analysis using the scaling factors: ",
                      paste(rscale, collapse = ", "),
                      ". The results for BF01 were: ",
-                     paste(round(as.numeric(as.character(bf01)), 3),
-                       collapse = ", "), " respectively.",
+                     paste(sapply(as.numeric(levels(bf01))[as.integer(bf01)], roundBF), collapse = ", "),
+                      # collapse = ", "),
+                     " respectively.",
                      " The results for BF10 were: ",
-                     paste(round(as.numeric(as.character(bf10)), 3),
-                           collapse = ", "), " respectively.")
+                    paste(sapply(as.numeric(levels(bf10))[as.integer(bf10)], roundBF), collapse = ", "),
+                    " respectively.")
     }
     repSensitivity <- paste(repB, collapse = " ")
   }
