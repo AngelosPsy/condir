@@ -19,6 +19,7 @@ library(condir)
 
 ### One group example
 ```{r}
+set.seed(100)
 cs1 <- rnorm(50, 5, 5)
 cs2 <- rnorm(50, 1, 5)
 tmp <- csCompare(cs1, cs2)
