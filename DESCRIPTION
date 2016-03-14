@@ -2,6 +2,7 @@ Package: condir
 Title: Computation of P Values and Bayes Factors for Conditioning Data
 Version: 0.0.0.9000
 Authors@R: "Angelos-Miltiadis Krypotos <amkrypotos@gmail.com> [aut,cre]"
+Date: 2016
 Description: Set of functions for the easy analysis and plotting of conditioning data. 
 Depends:
     R (>= 3.2.2),
