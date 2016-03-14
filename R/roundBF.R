@@ -1,10 +1,11 @@
 #' Local function for determining how BF is reported
 #'
 #' @description Function used for determining the symbol, and the form, of the
-#' BF reported. This function is not be exported in the NAMESPACE.
+#' BF reported.
 #' @param bf Logical. The BF.
-#' @rscale rscale The rscale that was used.
-#' @rscale BF01 Whether the BF01 (default) should be reported or not
+#' @param rscale The rscale that was used.
+#' @param BF01 Whether the BF01 (default) should be reported or not
+#' @export
 roundBF = function(bf, rscale, BF01 = TRUE){
   bf.round <- round(as.numeric(as.character(bf)), 3)
   if (bf > 1000){
