@@ -64,7 +64,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       # Report frequentist results
       repF <- paste0("\n\nWe performed a ", alternative, " ", method,
                      ". The results are t (", round(df, 3), ") ", "= ",
-                     t.statistic, ", p ", r.p.value, ".")
+                     round(t.statistic, 3), ", p ", r.p.value, ".")
 
       if (interpretation){
         # Report whether there are significant or non-significant results
@@ -88,9 +88,9 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       repB <- paste0("\nWe perfromed a ", alternative,
                      " Bayesian t-test, with a Catchy prior, with its width set to ",
                      rscale,
-                     ". The BF10 was BF10",
+                     ". The BF10 was: ",
                      condir::roundBF(bf10, rscale),
-                     ". The BF01 was BF01",
+                     ". The BF01 was: ",
                      condir::roundBF(bf01, rscale), ".")
 
       if (interpretation){
