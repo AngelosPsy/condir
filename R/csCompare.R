@@ -203,8 +203,8 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
         }
 
         } else {
+          cs3 <- cs1 - cs2
           cout <- cs3
-          print ("found it")
           outz <- stats::rstandard(stats::lm(cout~group))
           out.HCI <- which(outz > out.thres)
           out.LCI <- which(outz < (-out.thres))
