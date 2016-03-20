@@ -68,7 +68,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
     # Set graphic parameters
     op <- graphics::par(no.readonly = TRUE)
     on.exit(graphics::par(op))
-    graphics::par(mar = c(6, 7, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
+    graphics::par(mar = c(6, 10, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
                   mgp = c(2, 1, .5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
                   pch = 19)
 
@@ -96,7 +96,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                      as.character(sensRes$rscale)), 2),
                    lwd = 2, cex.axis = 1.5)
     graphics::axis(side = 2, at = atYAxis,
-                   labels = labYAxis, lwd = 2,
+                   labels = format(labYAxis, scientific = TRUE), lwd = 2,
                    cex.axis = 1.5)
     graphics::mtext(text = "Cauchy's Scale", side = 1, line = 3,
                     cex = 2)
