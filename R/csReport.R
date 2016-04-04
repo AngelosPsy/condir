@@ -54,7 +54,9 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                            paste(" = ", round(p.value, 3)))
 
       # Change the phrasing when an one sided t-tests was used
-      if (alternative != "two.sided") {
+      if (alternative == "two.sided") {
+        alternative <- paste0("two sided (", alternative, ")")
+      } else {
         alternative <- paste0("one sided (", alternative, ")")
       }
 
