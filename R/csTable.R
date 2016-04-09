@@ -12,7 +12,7 @@
 #' tmp <- csCompare(cs1 = c(1, 2, 3, 1, 4), cs2 = c(10, 12, 12, 31, 13))
 #' csTable(tmp)
 #' @export
-csTable <- function(csCompareObj, typeOfTable = c("latex")) {
+csTable <- function(csCompareObj, typeOfTable = "latex") {
   if (length(typeOfTable) > 1){
       warning("You can produce one type of table at a time. The first
                     type of table of the typeOfTable argument was selected.
@@ -21,13 +21,13 @@ csTable <- function(csCompareObj, typeOfTable = c("latex")) {
   # Print type of selected table
   if (typeOfTable == "latex"){
     for (i in 1:length(csCompareObj)){
-     print(xtable::xtable(as.data.frame(csCompareObj)))
+     print(xtable::xtable(as.data.frame(csCompareObj[[i]])))
      cat("\n\n")
     }
   } else{
     if (typeOfTable == "markdown"){
       for (i in 1:length(csCompareObj)){
-        print(knitr::kable(as.data.frame(csCompareObj)))
+        print(knitr::kable(as.data.frame(csCompareObj[[i]])))
         cat("\n\n")
       }
   }
