@@ -91,9 +91,9 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                      " Bayesian t-test, with a Catchy prior, with its width set to ",
                      rscale,
                      ". The BF10 was: ",
-                     condir::roundBF(bf10, rscale),
+                     condir::roundBF(bf10, rscale, BF01 = TRUE),
                      ". The BF01 was: ",
-                     condir::roundBF(bf01, rscale), ".")
+                     condir::roundBF(bf01, rscale, BF01 = FALSE), ".")
 
       if (interpretation){
         # Determine level of evidence for bf10
@@ -158,12 +158,12 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                      ". The results for BF01 were: ",
                     paste(mapply(condir::roundBF,
                                  as.numeric(levels(bf01))[as.integer(bf01)],
-                                rscale), collapse = ", "),
+                                rscale, BF01 = TRUE), collapse = ", "),
                      " respectively.",
                      " The results for BF10 were: ",
                     paste(mapply(condir::roundBF,
                                  as.numeric(levels(bf10))[as.integer(bf10)],
-                                 rscale), collapse = ", "),
+                                 rscale, BF01 = FALSE), collapse = ", "),
                     " respectively.")
     }
     repSensitivity <- paste(repB, collapse = " ")
