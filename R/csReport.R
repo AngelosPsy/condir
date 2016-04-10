@@ -87,7 +87,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       # Report Bayesian results
       # Adjust symbol for BF factor
 
-      repB <- paste0("\nWe perfromed a ", alternative,
+      repB <- paste0("\nWe performed a ", alternative,
                      " Bayesian t-test, with a Catchy prior, with its width set to ",
                      rscale,
                      ". The BF10 was: ",
@@ -153,7 +153,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
         assign(names(csSensitivityElement)[i], csSensitivityElement[, i])
       }
       # Report Sensitivity analysis results
-      repB <- paste0("We perfromed a Sensitivity Analysis using the scaling factors: ",
+      repB <- paste0("We performed a Sensitivity Analysis using the scaling factors: ",
                      paste(rscale, collapse = ", "),
                      ". The results for BF01 were: ",
                     paste(mapply(condir::roundBF,
