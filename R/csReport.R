@@ -49,6 +49,11 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       rscale <- rscale
       bf10 <- bf10
       bf01 <- bf01
+
+      # Name CSs
+      cs1 <- rownames(csCompareObj$descriptives)[1]
+      cs2 <- rownames(csCompareObj$descriptives)[2]
+
       # Define symbol for reporting p value
       r.p.value <- ifelse (p.value < 0.001, "< 0.001",
                            paste(" = ", round(p.value, 3)))
@@ -67,12 +72,12 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
 
       if (interpretation){
         # Report whether there are significant or non-significant results
-        paired <- ifelse(as.character(method) == "Paired t-test", TRUE, FALSE)
+        paired <- ifelse(as.character(method) == "paired t-test", TRUE, FALSE)
         p.val <- as.numeric(as.character(p.value))
         if (paired && p.val < alphalevel){
-          inter <- paste0("These results suggest that there are statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
+          inter <- paste0("These results suggest that there are statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphalevel, ".")
         } else if (paired && p.val >= alphalevel){
-          inter <- paste0("These results suggest that there are no statistically significant differences between cs1 and cs2, for an alpha level of ", alphalevel, ".")
+          inter <- paste0("These results suggest that there are no statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphalevel, ".")
         } else if (!paired && p.val < alphalevel){
           inter <- paste0("These results suggest that there are statistically significant between group differences, for an alpha level of ", alphalevel, ".")
         } else if (!paired && p.val >= alphalevel){
