@@ -87,6 +87,9 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
      }
      }
 
+    # Set y axis to scientific or not
+    scient <- ifelse(max(bfNum) > 100 || min(bfNum) < -100, TRUE, FALSE)
+
     # Main plot
     graphics::plot(x = as.numeric(sensRes$rscale), y = bfNum,
                    type = "b", xlab = "", ylab = "", ylim = ylimz,
@@ -96,7 +99,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                      as.character(sensRes$rscale)), 2),
                    lwd = 2, cex.axis = 1.5)
     graphics::axis(side = 2, at = atYAxis,
-                   labels = format(labYAxis, scientific = TRUE), lwd = 2,
+                   labels = format(labYAxis, scientific = scient), lwd = 2,
                    cex.axis = 1.5)
     graphics::mtext(text = "Cauchy's Scale", side = 1, line = 3,
                     cex = 2)
