@@ -4,7 +4,7 @@
 \alias{csTable}
 \title{Produce tables of \code{csCompare} results}
 \usage{
-csTable(csCompareObj, typeOfTable = c("latex"))
+csTable(csCompareObj, typeOfTable = "latex")
 }
 \arguments{
 \item{csCompareObj}{a list or data frame returned from
