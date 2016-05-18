@@ -91,11 +91,11 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       # Adjust symbol for BF factor
 
       repB <- paste0("\nWe performed a ", alternative,
-                     " Bayesian t-test, with a Catchy prior, with its width set to ",
+                     " Bayesian t-test, with a Cauchy prior, with its width set to ",
                      rscale,
-                     ". The BF10 was: ",
-                     condir::roundBF(bf10, rscale, BF01 = TRUE),
                      ". The BF01 was: ",
+                     condir::roundBF(bf10, rscale, BF01 = TRUE),
+                     ". The BF10 was: ",
                      condir::roundBF(bf01, rscale, BF01 = FALSE), ".")
 
       if (interpretation){
