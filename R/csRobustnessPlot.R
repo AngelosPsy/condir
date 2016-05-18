@@ -1,15 +1,7 @@
 #' Plot robusteness results
 #'
 #' @description Plots the results of robustness test
-#' @param cs1,cs2 a numeric vector of values. If data is defined, it can refer
-#' to either the column index or the column name of the data object.
-#' @param group column index or name that contain the group data. See details.
-#' @param data numeric matrix or data frame that contains all data.
-#' @param alternative a character string for the speficication of
-#'  the alternative hypothesis. Possible values: \code{"two.sided"} (default),
-#'  \code{"greater"} or \code{"less"}.
-#' @param mu a numeric value for the mean value or mean difference.
-#' @param conf.level confidence level of the interval.
+#' @inheritParams csCompare
 #' @param rscaleSens the scale factor for the prior used in the Bayesian t.test
 #' @param BF01 Should the BF01 be plotted (Default is set to TRUE). If FALSE,
 #' the BF10 is plotted.

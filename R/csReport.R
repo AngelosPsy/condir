@@ -49,6 +49,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       rscale <- rscale
       bf10 <- bf10
       bf01 <- bf01
+      df <- df
 
       # Name CSs
       cs1 <- rownames(csCompareObj$descriptives)[1]

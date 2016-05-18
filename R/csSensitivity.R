@@ -2,18 +2,8 @@
 #'
 #' @description Perform a sensitivity analysis for the Bayes factors computed
 #' with the \code{csCompare} results
-#' @param cs1,cs2 a numeric vector of values. If data is defined, it can refer
-#' to either the column index or the column name of the data object.
-#' @param group column index or name that contain the group data. See details.
-#' @param data numeric matrix or data frame that contains all data.
-#' @param alternative a character string for the speficication of
-#'  the alternative hypothesis. Possible values: \code{"two.sided"} (default),
-#'  \code{"greater"} or \code{"less"}.
-#' @param conf.level confidence level of the interval.
-#' @param mu a numeric value for the mean value or mean difference
+#' @inheritParams csCompare
 #' @param rscaleSens the scale factor for the prior used in the Bayesian t.test
-#' @param out.thres The threeshold for detecting outliers (default is 3). If set
-#' to 0, no outliers analysis is performed.
 #' @details
 #' \code{csCompare} performs both a student t-test (using the
 #' \code{stats::t.test} function) and a Bayesian t-test (using the

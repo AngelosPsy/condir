@@ -1,10 +1,7 @@
 #' Plot CRs for each CS
 #'
 #' @description Plot the mean of median of each CRs, for each CS
-#' @param cs1,cs2 a numeric vector of values. If data is defined, it can refer
-#' to either the column index or the column name of the data object.
-#' @param group column index or name that contain the group data. See details.
-#' @param data numeric matrix or data frame that contains all data.
+#' @inheritParams csCompare
 #' @param col The color of the error bars to be used (either given as a numeric
 #'  vector or a character string). The length of the chosen colors should
 #'  be equal to the length of the legend names otherwise a warning is returned.
@@ -22,7 +19,7 @@
 #' In case the group argument is defined
 #' but, after removal of NA's (\code{stats::na.omit}), only one group
 #' is defined, a paired samples t-test is run.
-#' @param ... Additional plot arguments.
+#' @param ... Further plotting arguments.
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 #' @examples
@@ -94,5 +91,4 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL,
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)
   }
-
 }

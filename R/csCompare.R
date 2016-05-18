@@ -1,22 +1,73 @@
-#' Statistically compare two CSs
+#' Statistically compare CRs towards two CSs
 #'
-#' @description Compare two CSs within a frequentist and a Bayesian framework.
-#' @param cs1,cs2 a numeric vector of values. If data is defined, it can refer
-#' to either the column index or the column name of the data object.See details.
-#' @param group column index or name that contain the group data. See details.
-#' @param data numeric matrix or data frame that contains all data.
+#' @description Compare CRs towards two CSs within a frequentist and
+#' a Bayesian framework.
+#' @param cs1,cs2 a numeric vector of values. If the \code{data} argument is
+#' defined, it can refer to either the column index or the column name of
+#' the data object. See \code{Details} for more information.
+#' @param group column index or name that contain the group data. See
+#' \code{Details} for more information.
+#' @param data numeric matrix or data frame that contains the relevant data.
 #' @param alternative a character string for the speficication of
 #'  the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 #'  \code{"greater"} or \code{"less"}.
-#' @param conf.level confidence level of the interval.
-#' @param mu a numeric value for the mean value or mean difference
+#' @param conf.level Interval's confidence level.
+#' @param mu a numeric value for the mean value or mean difference.
 #' @param rscale the scale factor for the prior used in the Bayesian t.test.
-#' @param descriptives Returns basic descriptive statistics for the dependent
-#' variable(s).
+#' @param descriptives Returns basic descriptive statistics for \code{cs1} and
+#' \code{cs2}.
 #' @param out.thres The threeshold for detecting outliers (default is 3). If set
-#' to 0, no outliers analysis is performed.
+#' to 0, no outliers analysis will be performed. See \code{Details} below for
+#' more information.
 #' @param boxplot Should a boxplot of the variables be produced
 #' (default is TRUE)?
+#' @return
+#' The function returns (at least) 3 list objects. These are: \code{descriptives},
+#' \code{freq.results}, and \code{bayes.results}. In case outliers are detected,
+#' then the outlier analyses are returned as well with the name \code{res.out}
+#' as prefix to all list objects. For example, the descriptive statistics of
+#' the outlier analyses, can be indexed by using
+#' \code{obj$res.out$descriptives}, with obj being the object of the csCompare
+#' results.
+#'
+#' The values of the \code{descriptives} are described in
+#' \code{psych::describe}.
+#'
+#' The values of the \code{freq.results} are:
+#' \code{method}: which test was run.
+#'
+#' \code{alternative}: the alternative hypothesis.
+#'
+#' \code{WG1, WG2}: the Shapiro test values, separately for group 1 and group 2.
+#' In case of a paired-samples t-test, the WG2 is 0.
+#'
+#' \code{WpG1, WpG2}: the p-values of Shapiro test, separately for group 1
+#' and group 2. In case of a paired-samples t-test, the WpG2 is 0.
+#'
+#' \code{null.value}: The value defined by \code{mu} (see above).
+#'
+#' \code{LCI, HCI}: The low (\code{LCI}) and high (\code{HCI}) bounds
+#' of the confidence intervals.
+#'
+#' \code{t.statistic}: Logical.
+#'
+#' \code{df}: The degrees of freedom of the t-test performed.
+#'
+#' \code{p.value}: The p-value of the performed t-test.
+#'
+#' The values of the \code{bayes.results} are:
+#'
+#' \code{LNI, HNI}: The low (\code{LNI}) and high (\code{HNI}) intervals of the
+#' hypothesis to test.
+#'
+#' \code{rscale}: The used scale (see \code{rscale} argument above).
+#'
+#' \code{bf10}: The BF10.
+#'
+#' \code{bf01}: The BF01.
+#'
+#' \code{propError}: The proportional error of the computed Bayes factor.
+#'
 #' @details
 #' \code{csCompare} performs both a student t-test (using the
 #' \code{stats::t.test} function) and a Bayesian t-test (using the
@@ -24,14 +75,28 @@
 #' are or refer to multiple columns of a matrix or a data.frame, then
 #' the row means are computed before the t-tests are performed.
 #' In case \code{group} is \code{NULL},
-#' paired-samples t-tests are run. In case the \code{group} is different
+#' paired-samples t-tests will be run. In case the \code{group} is different
 #' than \code{NULL}, then the csCompare first computes difference scores between
 #'  the cs1 and the cs2 (i.e., cs1 - cs2).
 #' In case the group argument is defined
 #' but, after removal of NA's (\code{stats::na.omit}), only one group
-#' is defined, a paired samples t-test is run.
+#' is present, a paired samples t-test is run.
 #' In case of independent samples t-test, the function runs
 #' a Welch's t-test.
+#'
+#' Regarding outliers, those are detected based on the deviations from the
+#' standardized residuals of each test. For example, in case of a paired-samples
+#' t-test, the \code{csCompare} function will run an additional regression for
+#' detecting deviations (defined in the \code{out.thres} argument)
+#' from the standardized residuals. The detected outliers are removed from both
+#' the frequentists and Bayesian analyses.
+#'
+#' @references
+#' Rouder, J. N., Speckman, P. L., Sun, D., Morey, R. D., & Iverson, G. (2009).
+#' Bayesian t-tests for accepting and rejecting the null hypothesis.
+#' Psychonomic Bulletin & Review, 16, 225-237
+#'
+#'
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 #' @examples
