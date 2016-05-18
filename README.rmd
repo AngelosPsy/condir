@@ -41,4 +41,5 @@ csReport(csCompareObj = tmp)
 tmp <- csSensitivity(cs1, cs2)
 csRobustnessPlot(cs1, cs2, group, BF01 = FALSE)
 csReport(csSensitivityObj = tmp)
+
 ```

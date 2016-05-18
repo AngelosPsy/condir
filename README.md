@@ -62,7 +62,7 @@ csReport(tmp)
 ```
 
 ```
-## [1] "\n\nWe performed a two.sided paired t-test. The results are t (49) = 5.7345844191611, p < 0.001.These results suggest that there are statistically significant between group differences, for an alpha level of 0.05.\n\n \nWe perfromed a two.sided Bayesian t-test, with a Catchy prior, with its width set to 0.707. The BF10 was BF10BF01(0.707)  >  1000. The BF01 was BF01BF01(0.707)  <  1e-04.\n\nThe results suggest that there is decisive evidence for H1, relative to H0.\n\nThe results suggest that there is no evidence for H0, relative to H1."
+## [1] "\n\nWe performed a two sided paired t-test. The results are t (49) = 5.735, p < 0.001.These results suggest that there are statistically significant differences between cs1 and cs2 for an alpha level of 0.05.\n\n \nWe performed a two sided Bayesian t-test, with a Cauchy prior, with its width set to 0.707. The BF01 was: BF01(0.707)  >  1000. The BF10 was: BF10(0.707)  <  1e-04.\n\nThe results suggest that there is decisive evidence for H1, relative to H0.\n\nThe results suggest that there is no evidence for H0, relative to H1."
 ```
 
 ```r
@@ -77,7 +77,7 @@ csReport(csSensitivityObj = tmp)
 ```
 
 ```
-## [1] "We perfromed a Sensitivity Analysis using the scaling factors: 0.707, 1, 1.41. The results for BF01 were: BF01(0.707)  <  1e-04, BF01(1)  <  1e-04, BF01(1.41)  <  1e-04 respectively. The results for BF10 were: BF01(0.707)  >  1000, BF01(1)  >  1000, BF01(1.41)  >  1000 respectively."
+## [1] "We performed a Sensitivity Analysis using the scaling factors: 0.707, 1, 1.41. The results for BF01 were: BF01(0.707)  <  1e-04, BF01(1)  <  1e-04, BF01(1.41)  <  1e-04 respectively. The results for BF10 were: BF10(0.707)  >  1000, BF10(1)  >  1000, BF10(1.41)  >  1000 respectively."
 ```
 
 ### Two groups example
@@ -143,7 +143,7 @@ csReport(csCompareObj = tmp)
 ```
 
 ```
-## [1] "\n\nWe performed a two.sided welch two sample t-test. The results are t (47.57) = -1.25570062731001, p  =  0.215.These results suggest that there are no statistically significant between group differences, for an alpha level of 0.05.\n\n \nWe perfromed a two.sided Bayesian t-test, with a Catchy prior, with its width set to 0.707. The BF10 was BF10BF01(0.707)  =  0.538. The BF01 was BF01BF01(0.707)  =  1.859.\n\nThe results suggest that there is no evidence for H1, relative to H0.\n\nThe results suggest that there is anecdotal evidence for H0, relative to H1."
+## [1] "\n\nWe performed a two sided welch two sample t-test. The results are t (47.57) = -1.256, p  =  0.215.These results suggest that there are no statistically significant between group differences, for an alpha level of 0.05.\n\n \nWe performed a two sided Bayesian t-test, with a Cauchy prior, with its width set to 0.707. The BF01 was: BF01(0.707)  =  0.538. The BF10 was: BF10(0.707)  =  1.859.\n\nThe results suggest that there is no evidence for H1, relative to H0.\n\nThe results suggest that there is anecdotal evidence for H0, relative to H1."
 ```
 
 ```r
@@ -158,5 +158,5 @@ csReport(csSensitivityObj = tmp)
 ```
 
 ```
-## [1] "We perfromed a Sensitivity Analysis using the scaling factors: 0.707, 1, 1.41. The results for BF01 were: BF01(0.707)  <  1e-04, BF01(1)  <  1e-04, BF01(1.41)  <  1e-04 respectively. The results for BF10 were: BF01(0.707)  >  1000, BF01(1)  >  1000, BF01(1.41)  >  1000 respectively."
+## [1] "We performed a Sensitivity Analysis using the scaling factors: 0.707, 1, 1.41. The results for BF01 were: BF01(0.707)  <  1e-04, BF01(1)  <  1e-04, BF01(1.41)  <  1e-04 respectively. The results for BF10 were: BF10(0.707)  >  1000, BF10(1)  >  1000, BF10(1.41)  >  1000 respectively."
 ```
