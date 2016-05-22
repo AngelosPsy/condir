@@ -20,13 +20,13 @@ csTable <- function(csCompareObj, typeOfTable = "latex") {
   }
   # Print type of selected table
   if (typeOfTable == "latex"){
-    for (i in 1:length(csCompareObj)){
+    for (i in seq_along(csCompareObj)){
      print(xtable::xtable(as.data.frame(csCompareObj[[i]])))
      cat("\n\n")
     }
   } else{
     if (typeOfTable == "markdown"){
-      for (i in 1:length(csCompareObj)){
+      for (i in seq_along(csCompareObj)){
         print(knitr::kable(as.data.frame(csCompareObj[[i]])))
         cat("\n\n")
       }
