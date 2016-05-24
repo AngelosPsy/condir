@@ -113,9 +113,13 @@ from the standardized residuals. The detected outliers are removed from both
 the frequentists and Bayesian analyses.
 }
 \examples{
-csCompare(cs1 = stats::rnorm(100, 10), cs2 = stats::rnorm(100, 0))
+csCompare(cs1 = rnorm(n = 100, mean = 10), cs2 = rnorm(n = 100, mean = 9))
 }
 \references{
+Krypotos, A.-M., Klugkist, I., & Engelhard, I. M. (submitted).Bayesian
+Hypothesis Testing for Human Threat Conditioning Research: An introduction
+and the condir R package.
+
 Rouder, J. N., Speckman, P. L., Sun, D., Morey, R. D., & Iverson, G. (2009).
 Bayesian t-tests for accepting and rejecting the null hypothesis.
 Psychonomic Bulletin & Review, 16, 225-237

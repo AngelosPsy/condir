@@ -23,7 +23,7 @@
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 #' @examples
-#' csPlot(cs1 = rnorm(10, 10, 2), cs2 = rnorm(10, 9, 3))
+#' csPlot(cs1 = rnorm(n = 100, mean = 10), cs2 = rnorm(n = 100, mean = 9))
 #' @export
 csPlot <- function(cs1, cs2, group = NULL, data = NULL,
                    col = c("black", "grey"), legend = c("cs1", "cs2"), ...){

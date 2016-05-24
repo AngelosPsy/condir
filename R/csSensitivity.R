@@ -17,11 +17,17 @@
 #' is defined, a paired samples t-test is run.
 #' @return The function returns a data frame with the results of the student
 #' t-test and the Bayesian t-test.
+#' @references
+#' Krypotos, A.-M., Klugkist, I., & Engelhard, I. M. (submitted).Bayesian
+#' Hypothesis Testing for Human Threat Conditioning Research: An introduction
+#' and the condir R package.
+#'
 #' @seealso
 #' \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
 #' \code{\link[BayesFactor]{ttest.tstat}}
 #' @examples
-#' csSensitivity(cs1 = rnorm(10, 10, 2), cs2 = rnorm(10, 9, 3))
+#' csSensitivity(cs1 = rnorm(n = 100, mean = 10),
+#' cs2 = rnorm(n = 100, mean = 9))
 #' @export
 csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,
@@ -81,10 +87,11 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
         out.present <- TRUE
         cs1.out <- cs1[-c(out.HCI, out.LCI)]
         cs2.out <- cs2[-c(out.HCI, out.LCI)]
-        res.out <- condir::csSensitivity(cs1 = cs1.out, cs2 = cs2.out, group = NULL,
-                                 data = NULL, alternative = alternative,
-                                 conf.level = conf.level, mu = mu,
-                                 rscaleSens = rscaleSens, out.thres = 0)
+        res.out <- condir::csSensitivity(cs1 = cs1.out, cs2 = cs2.out,
+                                         group = NULL, data = NULL,
+                                         alternative = alternative,
+                                         conf.level = conf.level, mu = mu,
+                                         rscaleSens = rscaleSens, out.thres = 0)
       }
 
     } else {

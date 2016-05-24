@@ -16,7 +16,8 @@
 #'  (Default TRUE). In case of the Bayesian results, the results
 #'  are interpreted according to Lee and Wagenmakers (2013).
 #' @examples
-#' tmp <- csCompare(cs1 = stats::rnorm(100, 10), cs2 = stats::rnorm(100, 0))
+#' tmp <- csCompare(cs1 = rnorm(n = 100, mean = 10),
+#' cs2 = rnorm(n = 100, mean = 9))
 #' csReport(tmp)
 #' @export
 csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,

@@ -47,7 +47,7 @@ but, after removal of NA's (\code{stats::na.omit}), only one group
 is defined, a paired samples t-test is run.
 }
 \examples{
-csPlot(cs1 = rnorm(10, 10, 2), cs2 = rnorm(10, 9, 3))
+csPlot(cs1 = rnorm(n = 100, mean = 10), cs2 = rnorm(n = 100, mean = 9))
 }
 \seealso{
 \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}

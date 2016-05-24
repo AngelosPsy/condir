@@ -12,10 +12,16 @@
 #' x-axis or the width of the Cauchy's Scale is plotted. On the y-axis either
 #' BF01 is plotted (if \code{BF01} is set to TRUE) or
 #' BF10 (if \code{BF01} is set to FALSE).
+#' @references
+#' Krypotos, A.-M., Klugkist, I., & Engelhard, I. M. (submitted).Bayesian
+#' Hypothesis Testing for Human Threat Conditioning Research: An introduction
+#' and the condir R package.
+#'
 #' @seealso
 #' \code{\link[condir]{csCompare}}, #' \code{\link[condir]{csSensitivity}}
 #' @examples
-#' csRobustnessPlot(cs1 = rnorm(10, 10, 2), cs2 = rnorm(10, 9, 3))
+#' csRobustnessPlot(cs1 = rnorm(n = 100, mean = 10),
+#' cs2 = rnorm(n = 100, mean = 9))
 #' @export
 csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,

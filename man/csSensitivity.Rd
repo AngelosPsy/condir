@@ -57,7 +57,13 @@ but, after removal of NA's (\code{stats::na.omit}), only one group
 is defined, a paired samples t-test is run.
 }
 \examples{
-csSensitivity(cs1 = rnorm(10, 10, 2), cs2 = rnorm(10, 9, 3))
+csSensitivity(cs1 = rnorm(n = 100, mean = 10),
+cs2 = rnorm(n = 100, mean = 9))
+}
+\references{
+Krypotos, A.-M., Klugkist, I., & Engelhard, I. M. (submitted).Bayesian
+Hypothesis Testing for Human Threat Conditioning Research: An introduction
+and the condir R package.
 }
 \seealso{
 \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
