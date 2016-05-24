@@ -8,7 +8,8 @@
 #' @param ylimz the limits of the y-axis.
 #' @param ... Further plotting arguments.
 #' @details
-#' This plot is influenced by the JASP way to plot robustness results. On the
+#' This plot template is influenced by the JASP way
+#' (\url{https://jasp-stats.org/}) to plot robustness results. On the
 #' x-axis or the width of the Cauchy's Scale is plotted. On the y-axis either
 #' BF01 is plotted (if \code{BF01} is set to TRUE) or
 #' BF10 (if \code{BF01} is set to FALSE).

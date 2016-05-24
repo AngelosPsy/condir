@@ -21,7 +21,8 @@
 #' csReport(tmp)
 #' @export
 csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
-                     fileName = "report", alphalevel = 0.05, interpretation = TRUE) {
+                     fileName = "report", alphalevel = 0.05,
+                     interpretation = TRUE) {
 
   if (is.null(csCompareObj) && is.null(csSensitivityObj)){
     rep <- "[No report was produced.]"
