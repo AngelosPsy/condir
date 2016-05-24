@@ -75,10 +75,10 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL,
   if(!is.null(group)){
     meanz <- c(desc[[1]]["mean"], desc[[2]]["mean"])
     sdz <- c(desc[[1]]["se"], desc[[2]]["se"])
-    print(meanz)
-    print(sdz)
     graphics::barplot(matrix(unlist(meanz), 2, 2), col = col,
-                      beside = T, names.arg = NULL, ...)
+                      beside = T,
+                      names.arg = unlist(attr(table(group), "dimnames")),
+                      cex.names = 1.5, ...)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)
