@@ -7,7 +7,7 @@
 csRobustnessPlot(cs1, cs2, group = NULL, data = NULL,
   alternative = "two.sided", conf.level = 0.95, mu = 0,
   rscaleSens = c("medium", "wide", "ultrawide"), BF01 = TRUE, ylimz = c(0,
-  10), ...)
+  10))
 }
 \arguments{
 \item{cs1}{a numeric vector of values. If the \code{data} argument is
@@ -37,8 +37,6 @@ the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 the BF10 is plotted.}
 
 \item{ylimz}{the limits of the y-axis.}
-
-\item{...}{Further plotting arguments.}
 }
 \description{
 Plots the results of robustness test

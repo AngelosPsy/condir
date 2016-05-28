@@ -2,6 +2,7 @@
 #'
 #' @description Plot the mean of median of each CRs, for each CS
 #' @inheritParams csCompare
+#' @param ylab Label for the x-axis
 #' @param col The color of the error bars to be used (either given as a numeric
 #'  vector or a character string). The length of the chosen colors should
 #'  be equal to the length of the legend names otherwise a warning is returned.
@@ -19,14 +20,13 @@
 #' In case the group argument is defined
 #' but, after removal of NA's (\code{stats::na.omit}), only one group
 #' is defined, a paired samples t-test is run.
-#' @param ... Further plotting arguments.
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 #' @examples
 #' csPlot(cs1 = rnorm(n = 100, mean = 10), cs2 = rnorm(n = 100, mean = 9))
 #' @export
-csPlot <- function(cs1, cs2, group = NULL, data = NULL,
-                   col = c("black", "grey"), legend = c("cs1", "cs2"), ...){
+csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
+                   col = c("black", "grey"), legend = c("cs1", "cs2")){
   # Since no more groups may be defined, the function terminates if that is
   # the case. Also, if 1 group is selected, then it runs a paired samples
   # t-test.
@@ -78,7 +78,7 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL,
     graphics::barplot(matrix(unlist(meanz), 2, 2), col = col,
                       beside = T,
                       names.arg = unlist(attr(table(group), "dimnames")),
-                      cex.names = 1.5, ...)
+                      cex.names = 1.5, ylab = ylab)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)
@@ -86,7 +86,7 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL,
     meanz <- desc["mean"]
     sdz <- desc["se"]
     graphics::barplot(as.numeric(unlist(meanz)), col = col,
-                      names.arg = NULL, ...)
+                      names.arg = NULL, ylab = ylab)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2, 0),
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)

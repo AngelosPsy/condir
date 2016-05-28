@@ -6,7 +6,6 @@
 #' @param BF01 Should the BF01 be plotted (Default is set to TRUE). If FALSE,
 #' the BF10 is plotted.
 #' @param ylimz the limits of the y-axis.
-#' @param ... Further plotting arguments.
 #' @details
 #' This plot template is influenced by the JASP way
 #' (\url{https://jasp-stats.org/}) to plot robustness results. On the
@@ -27,7 +26,7 @@
 csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,
                           rscaleSens = c("medium", "wide", "ultrawide"),
-                          BF01 = TRUE, ylimz = c(0, 10), ...){
+                          BF01 = TRUE, ylimz = c(0, 10)){
 
   sensRes <- condir::csSensitivity(cs1 = cs1, cs2 = cs2, group = group,
                                    data = data, alternative = alternative,
@@ -92,7 +91,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
     # Main plot
     graphics::plot(x = as.numeric(sensRes$rscale), y = bfNum,
                    type = "b", xlab = "", ylab = "", ylim = ylimz,
-                   axes = FALSE, lwd = 2, ...)
+                   axes = FALSE, lwd = 2)
     graphics::axis(side = 1, at = sensRes$rscale,
                    labels = round(as.numeric(
                      as.character(sensRes$rscale)), 2),
