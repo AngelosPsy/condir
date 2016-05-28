@@ -2,7 +2,10 @@
 #'
 #' @description Compare CRs towards two CSs within a frequentist and
 #' a Bayesian framework.
-#' @param cs1,cs2 a numeric vector of values. If the \code{data} argument is
+#' @param cs1 a numeric vector of values. If the \code{data} argument is
+#' defined, it can refer to either the column index or the column name of
+#' the data object. See \code{Details} for more information.
+#' @param cs2 a numeric vector of values. If the \code{data} argument is
 #' defined, it can refer to either the column index or the column name of
 #' the data object. See \code{Details} for more information.
 #' @param group column index or name that contain the group data. See

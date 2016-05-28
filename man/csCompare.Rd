@@ -9,7 +9,11 @@ csCompare(cs1, cs2, group = NULL, data = NULL, alternative = "two.sided",
   out.thres = 3, boxplot = TRUE)
 }
 \arguments{
-\item{cs1, cs2}{a numeric vector of values. If the \code{data} argument is
+\item{cs1}{a numeric vector of values. If the \code{data} argument is
+defined, it can refer to either the column index or the column name of
+the data object. See \code{Details} for more information.}
+
+\item{cs2}{a numeric vector of values. If the \code{data} argument is
 defined, it can refer to either the column index or the column name of
 the data object. See \code{Details} for more information.}
 
