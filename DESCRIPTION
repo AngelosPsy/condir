@@ -5,7 +5,7 @@ Authors@R: "Angelos-Miltiadis Krypotos <amkrypotos@gmail.com> [aut,cre]"
 Date: 2016
 Description: Set of functions for the easy analyses of conditioning data.
 Depends:
-    R (>= 3.2.5),
+    R (>= 3.3.0),
 License: GPL-3
 LazyData: true
 RoxygenNote: 5.0.1
