@@ -68,6 +68,10 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       # Change case for method
       method <- tolower(method)
 
+      # Correct in case of Welch
+      if (grepl("welch", method)){
+          method <- gsub("welch", "Welch", method)
+      }
       # Report frequentist results
       repF <- paste0("\n\nWe performed a ", alternative, " ", method,
                      ". The results are t (", round(df, 3), ") ", "= ",
@@ -78,13 +82,13 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
         paired <- ifelse(as.character(method) == "paired t-test", TRUE, FALSE)
         p.val <- as.numeric(as.character(p.value))
         if (paired && p.val < alphalevel){
-          inter <- paste0("These results suggest that there are statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphalevel, ".")
+          inter <- paste0(" These results suggest that there are statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphalevel, ".")
         } else if (paired && p.val >= alphalevel){
-          inter <- paste0("These results suggest that there are no statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphalevel, ".")
+          inter <- paste0(" These results suggest that there are no statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphalevel, ".")
         } else if (!paired && p.val < alphalevel){
-          inter <- paste0("These results suggest that there are statistically significant between group differences, for an alpha level of ", alphalevel, ".")
+          inter <- paste0(" These results suggest that there are statistically significant between group differences, for an alpha level of ", alphalevel, ".")
         } else if (!paired && p.val >= alphalevel){
-          inter <- paste0("These results suggest that there are no statistically significant between group differences, for an alpha level of ", alphalevel, ".")
+          inter <- paste0(" These results suggest that there are no statistically significant between group differences, for an alpha level of ", alphalevel, ".")
         }
 
         repF <- paste0(repF, inter, sep = "\n\n")
@@ -200,10 +204,13 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
   }
 
   # Save file if that is asked, otherwise print the results on screen.
+  # The invisible function at the end makes sure that the results are returned
+  # in case the function is assigned to an object's character.
   if (save){
     cat(rep, file = paste0(fileName, ".txt"))
     cat("Report file saved in the following directory: ", getwd())
   } else {
-    return(rep)
+    cat(rep)
+    invisible(rep)
   }
 }
