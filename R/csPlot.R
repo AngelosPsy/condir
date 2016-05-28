@@ -61,7 +61,7 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
   # Set graphic parameters
   op <- graphics::par(no.readonly = TRUE)
   on.exit(graphics::par(op))
-  graphics::par(mar=c(5.1, 4.1, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
+  graphics::par(mar=c(5.1, 5.1, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
                 mgp = c(2,1,.5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
                 pch = 19)
 
