@@ -78,7 +78,8 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
     graphics::barplot(matrix(unlist(meanz), 2, 2), col = col,
                       beside = T,
                       names.arg = unlist(attr(table(group), "dimnames")),
-                      cex.names = 1.5, ylab = ylab)
+                      cex.names = 1.5)
+    mtext(ylab, 2, line = 3, cex = 1.5)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)
