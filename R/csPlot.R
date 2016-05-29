@@ -79,7 +79,7 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
                       beside = T,
                       names.arg = unlist(attr(table(group), "dimnames")),
                       cex.names = 1.5)
-    mtext(ylab, 2, line = 3, cex = 1.5, las=0)
+    graphics::mtext(ylab, 2, line = 3, cex = 1.5, las=0)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)
@@ -88,7 +88,7 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
     sdz <- desc["se"]
     graphics::barplot(as.numeric(unlist(meanz)), col = col,
                       names.arg = NULL)
-    mtext(ylab, 2, line = 3, cex = 1.5, las=0)
+    graphics::mtext(ylab, 2, line = 3, cex = 1.5, las=0)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2, 0),
                      title = "Stimulus", bty = "n", pch = 15,
                      bg = "black", col = col, cex = 1.5)
