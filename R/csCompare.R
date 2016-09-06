@@ -186,7 +186,6 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       } else {
        descInit <- by(data = data.frame(cs1, cs2, cs3), INDICES = group,
                  FUN =  psych::describe, skew = FALSE, ranges = TRUE)
-       #' Fix that so that it can be read by xtable
        desc <- list(descInit[[1]], descInit[[2]])
        names(desc) <- names(descInit)
       }
