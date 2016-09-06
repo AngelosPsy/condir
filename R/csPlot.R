@@ -59,11 +59,10 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
   }
 
   # Set graphic parameters
-  op <- graphics::par(no.readonly = TRUE)
-  on.exit(graphics::par(op))
-  graphics::par(mar=c(5.1, 5.1, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
-                mgp = c(2,1,.5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
-                pch = 19)
+  opmar <- graphics::par()$mar
+  opmgp <- graphics::par()$mgp
+  on.exit(graphics::par(mar = opmar, mgp = opmgp))
+  graphics::par(mar = c(6, 10, 4.1, 8.1), mgp = c(2, 1, .5))
 
   if (length(col) != length(legend)){
     warning("The length of the color argument,
@@ -78,7 +77,9 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
     graphics::barplot(matrix(unlist(meanz), 2, 2), col = col,
                       beside = T,
                       names.arg = unlist(attr(table(group), "dimnames")),
-                      cex.names = 1.5)
+                      cex.names = 1.5, cex.main = 1.5, las=1, cex.lab = 2,
+                      cex.axis = 1, bty = "n", lwd = 1, xpd = T,
+                      pch = 19)
     graphics::mtext(ylab, 2, line = 3, cex = 1.5, las=0)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2,0),
                      title = "Stimulus", bty = "n", pch = 15,
@@ -87,7 +88,9 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
     meanz <- desc["mean"]
     sdz <- desc["se"]
     graphics::barplot(as.numeric(unlist(meanz)), col = col,
-                      names.arg = NULL)
+                      names.arg = NULL, cex.main = 1.5, las=1, cex.lab = 2,
+                      cex.axis = 1, bty = "n", lwd = 1, xpd = T,
+                      pch = 19)
     graphics::mtext(ylab, 2, line = 3, cex = 1.5, las=0)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2, 0),
                      title = "Stimulus", bty = "n", pch = 15,

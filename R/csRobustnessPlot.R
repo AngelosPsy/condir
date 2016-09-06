@@ -63,12 +63,13 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
 
     bfNum <- as.numeric(as.character(sensRes[[bf]]))
 
-    # Set graphic parameters
-    op <- graphics::par(no.readonly = TRUE)
-    on.exit(graphics::par(op))
-    graphics::par(mar = c(6, 10, 4.1, 8.1), cex.main = 1.5, las=1, cex.lab = 2,
-                  mgp = c(2, 1, .5), cex.axis = 1, bty = "n", lwd = 1, xpd = T,
-                  pch = 19)
+    # Set graphic parameters. We need to reset them
+    # at exit. We redefine only the relevant parameters,
+    # and not all of them, to avoid errors and warnings.
+    opmar <- graphics::par()$mar
+    opmgp <- graphics::par()$mgp
+    on.exit(graphics::par(mar = opmar, mgp = opmgp))
+    graphics::par(mar = c(6, 10, 4.1, 8.1), mgp = c(2, 1, .5))
 
     # Limits of y axis is adjusted in case of BF values above 10
     if(exists(as.character(ylimz))){
@@ -91,7 +92,8 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
     # Main plot
     graphics::plot(x = as.numeric(sensRes$rscale), y = bfNum,
                    type = "b", xlab = "", ylab = "", ylim = ylimz,
-                   axes = FALSE, lwd = 2)
+                   axes = FALSE, lwd = 2, las = 1, bty = "n", xpd = T,
+                   cex.main = 1.5)
     graphics::axis(side = 1, at = sensRes$rscale,
                    labels = round(as.numeric(
                      as.character(sensRes$rscale)), 2),
@@ -100,8 +102,8 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                    labels = format(labYAxis, scientific = scient), lwd = 2,
                    cex.axis = 1.5)
     graphics::mtext(text = "Cauchy's Scale", side = 1, line = 3,
-                    cex = 2)
+                    cex = 2, xpd = T)
     graphics::mtext(text = substitute("BF"[subscript,
                     list(subscript = subscript)]),
-                    side = 2, line = 3, cex = 2)
+                    side = 2, line = 3, cex = 2, xpd = T)
 }
