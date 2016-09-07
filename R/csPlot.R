@@ -32,10 +32,10 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
   # t-test.
   if(!is.null(group)){
     ng <- length(unique(stats::na.omit(group)))
-    if (ng == 1) {
+    if (ng %in% c(0, 1)) {
       group <- NULL
     } else {
-      if (ng != 2){
+      if (ng > 2){
         stop("You can define up to two groups.
                    Number of groups defined: ", as.character(ng))
       }
