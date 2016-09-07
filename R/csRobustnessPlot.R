@@ -100,7 +100,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                    lwd = 2, cex.axis = 1.5)
     graphics::axis(side = 2, at = atYAxis,
                    labels = format(labYAxis, scientific = scient), lwd = 2,
-                   cex.axis = 1.5)
+                   cex.axis = 1.5, las = 1)
     graphics::mtext(text = "Cauchy's Scale", side = 1, line = 3,
                     cex = 2, xpd = T)
     graphics::mtext(text = substitute("BF"[subscript,
