@@ -113,14 +113,14 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                       mu = 0, rscale = .707, descriptives = TRUE, out.thres = 3,
                       boxplot = TRUE){
     # Since no more that 2 groups may be defined, the function terminates if
-    # that is the case. Also, if 1 group is selected, then it runs a paired
+    # that is the case. Also, if 1 (or 0) group is selected, then it runs a paired
     #  samples t-test.
     if(!is.null(group)){
      ng <- length(unique(stats::na.omit(group)))
      if (ng %in% c(0, 1)) {
        group = NULL
      } else {
-      if (ng == 2){
+      if (ng > 2){
         stop("You can define up to two groups.
                    Number of groups defined: ", as.character(ng))
     }
