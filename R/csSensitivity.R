@@ -40,7 +40,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                   descriptives = TRUE, boxplot = FALSE, out.thres = out.thres)
 
   # Need to define the number of participants for each group
-  paired <- ifelse(is.null(group), TRUE, FALSE)
+  paired <- ifelse(is.null(group) || group == "NULL", TRUE, FALSE)
   if (paired){
     n1 <- nrow(stats::na.omit(cbind(cs1, cs2)))
     n2 <- 0
