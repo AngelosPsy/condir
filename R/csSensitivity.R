@@ -40,6 +40,20 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                   descriptives = TRUE, boxplot = FALSE, out.thres = out.thres)
 
   # Need to define the number of participants for each group
+  # Since no more that 2 groups may be defined, the function terminates if
+  # that is the case. Also, if 1 (or 0) group is selected, then it runs a paired
+  #  samples t-test.
+  if(!is.null(group)){
+    ng <- length(unique(stats::na.omit(group)))
+    if (ng %in% c(0, 1) || group == "NULL") {
+      group = NULL
+    } else {
+      if (ng > 2){
+        stop("You can define up to two groups.
+             Number of groups defined: ", as.character(ng))
+      }
+      }
+    }
   paired <- ifelse(is.null(group) || group == "NULL", TRUE, FALSE)
   if (paired){
     n1 <- nrow(stats::na.omit(cbind(cs1, cs2)))
