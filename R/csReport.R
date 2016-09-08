@@ -13,7 +13,7 @@
 #' @param alphalevel The alpha level to be used for determining significant
 #' or non-significant results.
 #' @param interpretation Should an interpretation of the results be included?
-#'  (Default TRUE). In case of the Bayesian results, the results
+#'  (FALSE). In case of the Bayesian results, the results
 #'  are interpreted according to Lee and Wagenmakers (2013).
 #' @examples
 #' tmp <- csCompare(cs1 = rnorm(n = 100, mean = 10),
@@ -22,7 +22,7 @@
 #' @export
 csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                      fileName = "report", alphalevel = 0.05,
-                     interpretation = TRUE) {
+                     interpretation = FALSE) {
 
   if (is.null(csCompareObj) && is.null(csSensitivityObj)){
     rep <- "[No report was produced.]"
