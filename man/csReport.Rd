@@ -5,7 +5,7 @@
 \title{Report results of conditioning data}
 \usage{
 csReport(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
-  fileName = "report", alphalevel = 0.05, interpretation = TRUE)
+  fileName = "report", alphalevel = 0.05, interpretation = FALSE)
 }
 \arguments{
 \item{csCompareObj}{a list or data frame returned from
@@ -25,7 +25,7 @@ ignored if \code{save} is set to \code{FALSE}.}
 or non-significant results.}
 
 \item{interpretation}{Should an interpretation of the results be included?
-(Default TRUE). In case of the Bayesian results, the results
+(FALSE). In case of the Bayesian results, the results
 are interpreted according to Lee and Wagenmakers (2013).}
 }
 \description{
