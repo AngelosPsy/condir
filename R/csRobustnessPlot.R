@@ -3,9 +3,11 @@
 #' @description Plots the results of robustness test
 #' @inheritParams csCompare
 #' @param rscaleSens the scale factor for the prior used in the Bayesian t.test
-#' @param BF01 Should the BF01 be plotted (Default is set to TRUE). If FALSE,
+#' @param BF01 Should the BF01 be plotted (default is set to TRUE). If FALSE,
 #' the BF10 is plotted.
 #' @param ylimz the limits of the y-axis.
+#' @param sensitivity Should the sensitivity results be returned (default is set
+#' to FALSE).
 #' @details
 #' This plot template is influenced by the JASP way
 #' (\url{https://jasp-stats.org/}) to plot robustness results. On the
@@ -26,7 +28,7 @@
 csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                           alternative = "two.sided", conf.level = 0.95, mu = 0,
                           rscaleSens = c("medium", "wide", "ultrawide"),
-                          BF01 = TRUE, ylimz = c(0, 10)){
+                          BF01 = TRUE, ylimz = c(0, 10), sensitivity = FALSE){
 
   sensRes <- condir::csSensitivity(cs1 = cs1, cs2 = cs2, group = group,
                                    data = data, alternative = alternative,
@@ -106,4 +108,8 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
     graphics::mtext(text = substitute("BF"[subscript,
                     list(subscript = subscript)]),
                     side = 2, line = 3, cex = 2, xpd = T)
+
+    if (sens){
+      return(sensRes)
+    }
 }
