@@ -7,7 +7,7 @@
 csRobustnessPlot(cs1, cs2, group = NULL, data = NULL,
   alternative = "two.sided", conf.level = 0.95, mu = 0,
   rscaleSens = c("medium", "wide", "ultrawide"), BF01 = TRUE, ylimz = c(0,
-  10))
+  10), sensitivity = FALSE)
 }
 \arguments{
 \item{cs1}{a numeric vector of values. If the \code{data} argument is
@@ -33,10 +33,13 @@ the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 
 \item{rscaleSens}{the scale factor for the prior used in the Bayesian t.test}
 
-\item{BF01}{Should the BF01 be plotted (Default is set to TRUE). If FALSE,
+\item{BF01}{Should the BF01 be plotted (default is set to TRUE). If FALSE,
 the BF10 is plotted.}
 
 \item{ylimz}{the limits of the y-axis.}
+
+\item{sensitivity}{Should the sensitivity results be returned (default is set
+to FALSE).}
 }
 \description{
 Plots the results of robustness test
