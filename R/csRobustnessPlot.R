@@ -109,7 +109,8 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                     list(subscript = subscript)]),
                     side = 2, line = 3, cex = 2, xpd = T)
 
-    if (sens){
+    # Print sensitivity results
+    if (sensitivity){
       return(sensRes)
     }
 }
