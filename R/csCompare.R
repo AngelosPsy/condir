@@ -223,10 +223,6 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
 
     }
 
-    # Compute Cohen's d
-
-
-
     # Compute Bayes factor
     btt <- BayesFactor::ttest.tstat(t = ftt$statistic, n1 = n1, n2 = n2,
                                     nullInterval = nullInterval,
