@@ -10,9 +10,6 @@
 #' Hypothesis Testing for Human Threat Conditioning Research: An introduction
 #' and the condir R package.
 #'
-#' @seealso
-#' \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
-#' \code{\link[BayesFactor]{ttest.tstat}}
 #' @export
 csShine <- function (){
   shiny::runApp(system.file('app', package='condir'))
