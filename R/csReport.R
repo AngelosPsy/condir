@@ -10,7 +10,7 @@
 #' report is generated.
 #' @param fileName The file name of the produced report. The argument is
 #' ignored if \code{save} is set to \code{FALSE}.
-#' @param alphalevel The alpha level to be used for determining significant
+#' @param alphaLevel The alpha level to be used for determining significant
 #' or non-significant results.
 #' @param interpretation Should an interpretation of the results be included?
 #'  (FALSE). In case of the Bayesian results, the results
@@ -21,7 +21,7 @@
 #' csReport(tmp)
 #' @export
 csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
-                     fileName = "report", alphalevel = 0.05,
+                     fileName = "report", alphaLevel = 0.05,
                      interpretation = FALSE) {
 
   if (is.null(csCompareObj) && is.null(csSensitivityObj)){
@@ -85,14 +85,14 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
         # Report whether there are significant or non-significant results
         paired <- ifelse(as.character(method) == "paired t-test", TRUE, FALSE)
         p.val <- as.numeric(as.character(p.value))
-        if (paired && p.val < alphalevel){
-          inter <- paste0(" These results suggest that there are statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphalevel, ".")
-        } else if (paired && p.val >= alphalevel){
-          inter <- paste0(" These results suggest that there are no statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphalevel, ".")
-        } else if (!paired && p.val < alphalevel){
-          inter <- paste0(" These results suggest that there are statistically significant between group differences, for an alpha level of ", alphalevel, ".")
-        } else if (!paired && p.val >= alphalevel){
-          inter <- paste0(" These results suggest that there are no statistically significant between group differences, for an alpha level of ", alphalevel, ".")
+        if (paired && p.val < alphaLevel){
+          inter <- paste0(" These results suggest that there are statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphaLevel, ".")
+        } else if (paired && p.val >= alphaLevel){
+          inter <- paste0(" These results suggest that there are no statistically significant differences between ", cs1, " and ", cs2, " for an alpha level of ", alphaLevel, ".")
+        } else if (!paired && p.val < alphaLevel){
+          inter <- paste0(" These results suggest that there are statistically significant between group differences, for an alpha level of ", alphaLevel, ".")
+        } else if (!paired && p.val >= alphaLevel){
+          inter <- paste0(" These results suggest that there are no statistically significant between group differences, for an alpha level of ", alphaLevel, ".")
         }
 
         repF <- paste0(repF, inter, sep = "\n\n")

@@ -5,7 +5,7 @@
 \title{Report results of conditioning data}
 \usage{
 csReport(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
-  fileName = "report", alphalevel = 0.05, interpretation = FALSE)
+  fileName = "report", alphaLevel = 0.05, interpretation = FALSE)
 }
 \arguments{
 \item{csCompareObj}{a list or data frame returned from
@@ -21,7 +21,7 @@ report is generated.}
 \item{fileName}{The file name of the produced report. The argument is
 ignored if \code{save} is set to \code{FALSE}.}
 
-\item{alphalevel}{The alpha level to be used for determining significant
+\item{alphaLevel}{The alpha level to be used for determining significant
 or non-significant results.}
 
 \item{interpretation}{Should an interpretation of the results be included?
