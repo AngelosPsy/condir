@@ -52,6 +52,8 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
       bf10 <- bf10
       bf01 <- bf01
       df <- df
+      cohenD <- cohenD
+      cohenDM <- cohenDM
 
       # Name CSs
       cs1 <- rownames(csCompareObj$descriptives)[1]
