@@ -58,6 +58,14 @@
 #'
 #' \code{p.value}: The p-value of the performed t-test.
 #'
+#' \code{cohenD}: The Cohen's d for the performed t-test.
+#'
+#' \code{cohenDM}: The magnitude of the resulting Cohen's d.
+#'
+#' \code{hedgesG}: The Hedge's g for the performed t-test.
+#'
+#' \code{hedgesGM}: The magnitude of the resulting Hedge's g.
+#'
 #' The values of the \code{bayes.results} are:
 #'
 #' \code{LNI, HNI}: The low (\code{LNI}) and high (\code{HNI}) intervals of the
@@ -191,14 +199,17 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       }
     }
 
-    # Perform t-test
+    # Perform t-test, including the computation of Cohen's D
     if (paired){
       n1 <- nrow(stats::na.omit(cbind(cs1, cs2)))
       n2 <- 0
       ftt <- stats::t.test(x = cs1, y = cs2, data = data,
                           alternative = alternative, mu = mu, paired = paired,
                           var.equal = FALSE, conf.level = conf.level)
-
+      effsize::cohen.d(cs1, cs2, paired = TRUE)
+      cD <- effsize::cohen.d(d = cs1, f = cs2, paired = TRUE)
+      hG <- effsize::cohen.d(d = cs1, f = cs2, paired = TRUE,
+                             hedges.correction = TRUE)
     } else {
      groupLevels <- attr(table(group), "dimnames")[[1]]
      n1 <- length(group[group == groupLevels[1]])
@@ -206,8 +217,15 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
      ftt <- stats::t.test(cs3~group, data = data,
                          alternative = alternative, mu = mu, paired = paired,
                          var.equal = FALSE, conf.level = conf.level)
+     cD <- effsize::cohen.d(d = cs1, f = cs2, paired = FALSE)
+     hG <- effsize::cohen.d(d = cs1, f = cs2, paired = FALSE,
+                            hedges.correction = TRUE)
 
     }
+
+    # Compute Cohen's d
+
+
 
     # Compute Bayes factor
     btt <- BayesFactor::ttest.tstat(t = ftt$statistic, n1 = n1, n2 = n2,
@@ -225,7 +243,12 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                           HCI = ftt$conf.int[[2]],
                           t.statistic = ftt$statistic,
                           df = as.numeric(ftt$parameter),
-                          p.value = as.numeric(ftt$p.value), row.names = NULL)
+                          p.value = as.numeric(ftt$p.value),
+                          cohenD = as.numeric(cD$estimate),
+                          cohenDM = as.character(cD$magnitude),
+                          hedgesG = as.numeric(hG$estimate),
+                          hedgesGM = as.character(hG$magnitude),
+                            row.names = NULL)
     bayes.res <- data.frame(LNI = nullInterval[[1]],
                             HNI = nullInterval[[2]], rscale = rscale,
                             bf10 = exp(btt[["bf"]]),
