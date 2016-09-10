@@ -76,6 +76,14 @@ of the confidence intervals.
 
 \code{p.value}: The p-value of the performed t-test.
 
+\code{cohenD}: The Cohen's d for the performed t-test.
+
+\code{cohenDM}: The magnitude of the resulting Cohen's d.
+
+\code{hedgesG}: The Hedge's g for the performed t-test.
+
+\code{hedgesGM}: The magnitude of the resulting Hedge's g.
+
 The values of the \code{bayes.results} are:
 
 \code{LNI, HNI}: The low (\code{LNI}) and high (\code{HNI}) intervals of the
