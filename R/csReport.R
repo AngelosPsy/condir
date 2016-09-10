@@ -73,9 +73,11 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
           method <- gsub("welch", "Welch", method)
       }
       # Report frequentist results
-      repF <- paste0("\n\nWe performed a ", alternative, " ", method,
+      repF <- paste0("\nWe performed a ", alternative, " ", method,
                      ". The results are t (", round(df, 3), ") ", "= ",
-                     round(t.statistic, 3), ", p ", r.p.value, ".")
+                     round(t.statistic, 3), ", p ", r.p.value,
+                     ", Cohen's d = ", round(cohenD, 3),
+                     " (", cohenDM, " effect size).")
 
       if (interpretation){
         # Report whether there are significant or non-significant results
