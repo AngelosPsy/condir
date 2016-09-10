@@ -64,15 +64,17 @@ tmp
 
 ```
 $descriptives
-    vars  n mean   sd median trimmed  mad   min   max range   se
-cs1    1 50 5.41 4.10   5.33    5.31 3.74 -4.39 16.55 20.94 0.58
-cs2    2 50 4.12 5.96   4.09    3.98 6.34 -6.86 17.41 24.27 0.84
+    vars  n mean   sd   min   max range   se
+cs1    1 50 5.41 4.10 -4.39 16.55 20.94 0.58
+cs2    2 50 4.12 5.96 -6.86 17.41 24.27 0.84
 
 $freq.results
          method alternative       WG1      WpG1 WG2 WpG2 null.value
 1 Paired t-test   two.sided 0.9738392 0.3292263   0    0          0
-         LCI      HCI t.statistic df   p.value
-1 -0.3911855 2.963113    1.540853 49 0.1297863
+         LCI      HCI t.statistic df   p.value    cohenD cohenDM   hedgesG
+1 -0.3911855 2.963113    1.540853 49 0.1297863 0.2179096   small 0.2162376
+  hedgesGM
+1    small
 
 $bayes.results
    LNI HNI rscale      bf10     bf01    propError
@@ -97,15 +99,8 @@ csReport(tmp)
 
 ```
 
-
-We performed a two sided paired t-test. The results are t (49) = 1.541, p  =  0.13. These results suggest that there are no statistically significant differences between cs1 and cs2 for an alpha level of 0.05.
-
- 
+We performed a two sided paired t-test. The results are t (49) = 1.541, p  =  0.13, Cohen's d = 0.218 (small effect size). 
 We performed a two sided Bayesian t-test, with a Cauchy prior, with its width set to 0.707. The BF01 was: BF01(0.707)  =  0.464. The BF10 was: BF10(0.707)  =  2.155.
-
-The results suggest that there is no evidence for H1, relative to H0.
-
-The results suggest that there is anecdotal evidence for H0, relative to H1.
 ```
 
 Lastly, the csSensitivity function can be used for a sensitivity analysis,
@@ -152,23 +147,26 @@ tmp
 
 ```
 $descriptives
-group: 1
-    vars  n mean   sd median trimmed  mad    min   max range   se
-cs1    1 25 3.32 2.80   3.18    3.38 2.64  -3.88 10.33 14.21 0.56
-cs2    2 25 3.07 5.15   2.61    3.09 5.81  -6.86 13.14 20.00 1.03
-cs3    3 25 0.24 5.58   0.47    0.33 6.21 -10.53 12.44 22.98 1.12
--------------------------------------------------------- 
-group: 2
-    vars  n mean   sd median trimmed  mad   min   max range   se
-cs1    1 25 7.50 4.16   7.55    7.56 3.07 -4.39 16.55 20.94 0.83
-cs2    2 25 5.17 6.61   4.25    5.06 7.52 -5.87 17.41 23.28 1.32
-cs3    3 25 2.33 6.14   1.33    2.26 6.74 -8.71 12.51 21.22 1.23
+$descriptives$`1`
+    vars  n mean   sd    min   max range   se
+cs1    1 25 3.32 2.80  -3.88 10.33 14.21 0.56
+cs2    2 25 3.07 5.15  -6.86 13.14 20.00 1.03
+cs3    3 25 0.24 5.58 -10.53 12.44 22.98 1.12
+
+$descriptives$`2`
+    vars  n mean   sd   min   max range   se
+cs1    1 25 7.50 4.16 -4.39 16.55 20.94 0.83
+cs2    2 25 5.17 6.61 -5.87 17.41 23.28 1.32
+cs3    3 25 2.33 6.14 -8.71 12.51 21.22 1.23
+
 
 $freq.results
                    method alternative       WG1      WpG1      WG2
 1 Welch Two Sample t-test   two.sided 0.9786503 0.8571079 0.945581
        WpG2 null.value       LCI      HCI t.statistic       df   p.value
 1 0.1989623          0 -5.421001 1.253531   -1.255701 47.57035 0.2153574
+     cohenD cohenDM   hedgesG hedgesGM
+1 0.2514526   small 0.2495233    small
 
 $bayes.results
    LNI HNI rscale      bf10     bf01    propError
@@ -187,15 +185,8 @@ csReport(csCompareObj = tmp)
 
 ```
 
-
-We performed a two sided Welch two sample t-test. The results are t (47.57) = -1.256, p  =  0.215. These results suggest that there are no statistically significant between group differences, for an alpha level of 0.05.
-
- 
+We performed a two sided Welch two sample t-test. The results are t (47.57) = -1.256, p  =  0.215, Cohen's d = 0.251 (small effect size). 
 We performed a two sided Bayesian t-test, with a Cauchy prior, with its width set to 0.707. The BF01 was: BF01(0.707)  =  0.538. The BF10 was: BF10(0.707)  =  1.859.
-
-The results suggest that there is no evidence for H1, relative to H0.
-
-The results suggest that there is anecdotal evidence for H0, relative to H1.
 ```
 
 ```r
