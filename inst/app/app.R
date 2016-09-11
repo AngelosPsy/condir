@@ -23,27 +23,32 @@ ui <- shiny::shinyUI(
          Uploading any other type of file will result in an error."
       )
     ),
+    # Main panel
     shiny::mainPanel(
-      # Main panel
       shiny::tabsetPanel(
         shiny::tabPanel("Data", shiny::dataTableOutput("contents"),
                         shiny::uiOutput("cs1"), shiny::uiOutput("cs2"),
                         shiny::uiOutput("group")),
-        shiny::tabPanel("Main Plot", shiny::plotOutput("plot", width = "100%")),
-        shiny::tabPanel("Robusteness Plot", shiny::uiOutput("bfChoice"),
-                        shiny::plotOutput("robplot")),
-        shiny::tabPanel("Results", shiny::tableOutput("desc"),
+        shiny::tabPanel("Results",
+                        h4("Descriptive results"),
+                        shiny::tableOutput("desc"),
+                        h4("Frequentist Results"),
                         shiny::tableOutput("freq"),
+                        h4("Bayesian Results"),
                         shiny::tableOutput("bayes")),
+        shiny::tabPanel("Plots", shiny::plotOutput("plot", width = "100%"),
+                        shiny::uiOutput("bfChoice"),
+                        shiny::plotOutput("robplot")),
         shiny::tabPanel("Summary",
+                        h4("Summary of main results"),
                         shiny::verbatimTextOutput("summaryMain"),
+                        h4("Summary of robustness test"),
                         shiny::verbatimTextOutput("summaryRob"),
-                        textInput(inputId = "sigLevel",
+                        shiny::textInput(inputId = "sigLevel",
                                   label = "What is the alpha level?",
                                   value = "0.05"),
-                        #verbatimTextOutput("sigLevel"),
                         shiny::radioButtons(inputId = "interpretation",
-                                  label = "Should the result be interpretated?",
+                                  label = "Should the result be interpreted?",
                                   choices = c("TRUE", "FALSE"),
                                   selected = "FALSE", inline = TRUE)),
         shiny::tabPanel("Output file", shiny::downloadButton("outputfile"))
@@ -129,14 +134,15 @@ server <- shiny::shinyServer(function(input, output) {
   # Plot tab
   output$plot <- shiny::renderPlot({
                  condir::csPlot(cs1 = cs1Ch(), cs2 = cs2Ch(), group = groupCh())
-  }, width = 400)
+  }, width = 600)
 
   # Robustness Plot tab
   output$bfChoice <- shiny::renderUI({
-                            shiny::req(input$cs1Button)
+                            shiny::req(input$file)
                             shiny::radioButtons(inputId = "bfChoice",
                             label = "What should be plotted?",
-                            choices = c("BF01", "BF10"), inline = TRUE)
+                            choices = c("BF01", "BF10"), selected = "BF01",
+                            inline = TRUE)
   })
 
   robChoice <- shiny::reactive({
@@ -161,19 +167,16 @@ server <- shiny::shinyServer(function(input, output) {
       } else {
         csComp()$descriptives
       }
-    }, caption = "Descriptives",
-    caption.placement = getOption("xtable.caption.placement", "top")
+    }, caption.placement = getOption("xtable.caption.placement", "top")
     )
 
   output$freq <- shiny::renderTable({
                         csComp()$freq.results
-    }, caption = "Frequentists Results",
-    caption.placement = getOption("xtable.caption.placement", "top")
+    }, caption.placement = getOption("xtable.caption.placement", "top")
   )
 
   output$bayes <- shiny::renderTable({
     csComp()$bayes.results},
-    caption = "Bayesian Results",
     caption.placement = getOption("xtable.caption.placement", "top"))
 
   # Summary tab
