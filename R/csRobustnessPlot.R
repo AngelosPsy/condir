@@ -30,8 +30,19 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                           rscaleSens = c("medium", "wide", "ultrawide"),
                           BF01 = TRUE, ylimz = c(0, 10), sensitivity = FALSE){
 
+  # You need to define the variables according to whether the 'data'
+  # argument is defined or not.
+  if(!is.null(data)){
+    cs1 <- data[, deparse(substitute(cs1))]
+    cs2 <- data[, deparse(substitute(cs2))]
+
+    if (deparse(substitute(group)) != "NULL"){
+      group <- data[, deparse(substitute(group))]
+    }
+  }
+
   sensRes <- condir::csSensitivity(cs1 = cs1, cs2 = cs2, group = group,
-                                   data = data, alternative = alternative,
+                                   data = NULL, alternative = alternative,
                                    conf.level = conf.level, mu = mu,
                                    rscaleSens = rscaleSens)[[1]]
 

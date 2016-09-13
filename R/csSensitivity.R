@@ -34,8 +34,19 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
                           rscaleSens = c(.707, 1, 1.41),
                           out.thres = 3){
 
+  # You need to define the variables according to whether the 'data'
+  # argument is defined or not.
+  if(!is.null(data)){
+    cs1 <- data[, deparse(substitute(cs1))]
+    cs2 <- data[, deparse(substitute(cs2))]
+
+    if (deparse(substitute(group)) != "NULL"){
+      group <- data[, deparse(substitute(group))]
+    }
+  }
+
   # Extract t statistic
-  ftt <- condir::csCompare(cs1 = cs1, cs2 = cs2, group = group, data = data,
+  ftt <- condir::csCompare(cs1 = cs1, cs2 = cs2, group = group, data = NULL,
                   alternative = alternative, conf.level = conf.level, mu = mu,
                   descriptives = TRUE, boxplot = FALSE, out.thres = out.thres)
 
@@ -53,7 +64,8 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
              Number of groups defined: ", as.character(ng))
       }
       }
-    }
+  }
+
   paired <- ifelse(is.null(group) || group == "NULL", TRUE, FALSE)
   if (paired){
     n1 <- nrow(stats::na.omit(cbind(cs1, cs2)))
@@ -125,7 +137,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
       } else {
         out.present <- TRUE
         res.out <- condir::csSensitivity(cs1 = cs1.out, cs2 = cs2.out,
-                                 group = group.out, data = data,
+                                 group = group.out, data = NULL,
                                  alternative = alternative,
                                  conf.level = conf.level, mu = mu,
                                  rscaleSens = rscaleSens, out.thres = 0)

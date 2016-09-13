@@ -27,6 +27,18 @@
 #' @export
 csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
                    col = c("black", "grey"), legend = c("cs1", "cs2")){
+
+  # You need to define the variables according to whether the 'data'
+  # argument is defined or not.
+  if(!is.null(data)){
+    cs1 <- data[, deparse(substitute(cs1))]
+    cs2 <- data[, deparse(substitute(cs2))]
+
+    if (deparse(substitute(group)) != "NULL"){
+      group <- data[, deparse(substitute(group))]
+    }
+  }
+
   # Since no more groups may be defined, the function terminates if that is
   # the case. Also, if 1 group is selected, then it runs a paired samples
   # t-test.
@@ -40,13 +52,6 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
                    Number of groups defined: ", as.character(ng))
       }
     }
-  }
-
-  # You need to define the variables according to whether the 'data'
-  # argument is defined or not.
-  if(!is.null(data)){
-    cs1 <- data[, cs1]
-    cs2 <- data[, cs2]
   }
 
   # Run descriptives

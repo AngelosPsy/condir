@@ -120,6 +120,18 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                       alternative = "two.sided", conf.level = 0.95,
                       mu = 0, rscale = .707, descriptives = TRUE, out.thres = 3,
                       boxplot = TRUE){
+
+    # You need to define the variables according to whether the 'data'
+    # argument is defined or not.
+    if(!is.null(data)){
+      cs1 <- data[, deparse(substitute(cs1))]
+      cs2 <- data[, deparse(substitute(cs2))]
+
+      if (deparse(substitute(group)) != "NULL"){
+        group <- data[, deparse(substitute(group))]
+      }
+    }
+
     # Since no more that 2 groups may be defined, the function terminates if
     # that is the case. Also, if 1 (or 0) group is selected, then it runs a paired
     #  samples t-test.
@@ -147,13 +159,6 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     # Based on the group option, it is determined whether a paired samples or
     # between-sample t-test will be performed.
     paired <- ifelse(is.null(group), TRUE, FALSE)
-
-    # You need to define the variables according to whether the 'data'
-    # argument is defined or not.
-    if(!is.null(data)){
-      cs1 <- data[, cs1]
-      cs2 <- data[, cs2]
-    }
 
     # You need to define the nullInterval for the BF test based on the
     # 'alternative' option.
@@ -290,7 +295,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
           cs1.out <- cs1[-c(out.HCI, out.LCI)]
           cs2.out <- cs2[-c(out.HCI, out.LCI)]
           compare.out <- condir::csCompare(cs1 = cs1.out, cs2 = cs2.out,
-                                           group = NULL, data = data,
+                                           group = group, data = NULL,
                                            alternative = alternative,
                                            conf.level = conf.level, mu = mu,
                                            rscale = rscale,
@@ -313,7 +318,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
           } else {
             out.present <- TRUE
             compare.out <- condir::csCompare(cs1 = cs1.out, cs2 = cs2.out,
-                                     group = group.out, data = data,
+                                     group = group.out, data = NULL,
                                      alternative = alternative,
                                      conf.level = conf.level, mu = mu,
                                      rscale = rscale,
