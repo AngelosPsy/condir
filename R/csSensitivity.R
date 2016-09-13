@@ -65,7 +65,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
   }
 
   # Need to compute Bayes factor
-  btt = sapply(rscaleSens,
+  btt <- sapply(rscaleSens,
    function(x) BayesFactor::ttest.tstat(t = ftt$freq.results$t.statistic,
                                         n1 = n1, n2 = n2,
                                         nullInterval = c(ftt$bayes.res$LN1,
@@ -85,6 +85,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
     bf10 = exp(btt[, i][["bf"]]),
     bf01 = 1/exp(btt[, i][["bf"]]), propError = btt[, i]$properror)
   }
+
   res <- list()
   res$res <- data.frame(res.mat)
   # Outlier analysis
@@ -123,7 +124,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
         out.present <- FALSE
       } else {
         out.present <- TRUE
-        compare.out <- condir::csSensitivity(cs1 = cs1.out, cs2 = cs2.out,
+        res.out <- condir::csSensitivity(cs1 = cs1.out, cs2 = cs2.out,
                                  group = group.out, data = data,
                                  alternative = alternative,
                                  conf.level = conf.level, mu = mu,
