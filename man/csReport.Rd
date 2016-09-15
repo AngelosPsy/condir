@@ -9,10 +9,10 @@ csReport(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
 }
 \arguments{
 \item{csCompareObj}{a list or data frame returned from
-the \code{csCompare} function.}
+the \code{csCompare} function. The object should be of class csCompare.}
 
 \item{csSensitivityObj}{Sensitivity analysis results returned from the
-\code{csSensitivity} function}
+\code{csSensitivity} function.  The object should be of class csSensitivity.}
 
 \item{save}{If \code{code} argument is set to \code{FALSE} (default), the
 results are printed on the sceen. Otherwise, a '.txt' file with the
