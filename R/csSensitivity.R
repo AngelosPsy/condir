@@ -151,5 +151,9 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
   if (out.present){
     res$res.out = res.out[[1]]
   }
+  # Create class csSensitivity
+
+  class(res) <- "csSensitivity"
+
   return(res)
 }
