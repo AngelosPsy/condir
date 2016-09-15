@@ -9,7 +9,7 @@ ui <- shiny::shinyUI(
       shiny::titlePanel("condir"),
       shiny::sidebarLayout(
       shiny::sidebarPanel(
-      shiny::fileInput("file", label = h3("Choose data file to analyse")),
+      shiny::fileInput("file", label = h4("Choose data file to analyse")),
       tags$hr(),
       shiny::checkboxInput('header', 'Header', TRUE),
       shiny::radioButtons('sep', 'Separator',
@@ -21,7 +21,7 @@ ui <- shiny::shinyUI(
       tags$hr(),
       p("Accepted file extensions: .txt, .csv, .sav.
          Uploading any other type of file will result in an error."
-      )
+      ), width = 3
     ),
     # Main panel
     shiny::mainPanel(
@@ -50,9 +50,8 @@ ui <- shiny::shinyUI(
                         shiny::radioButtons(inputId = "interpretation",
                                   label = "Should the result be interpreted?",
                                   choices = c("TRUE", "FALSE"),
-                                  selected = "FALSE", inline = TRUE)),
-        shiny::tabPanel("Output file", shiny::downloadButton("outputfile"))
-      ) # tabsetPanel
+                                  selected = "FALSE", inline = TRUE))
+        ) # tabsetPanel
     ) # mainPanel
   ) # sidebarLayout
 ) # fluidPage
@@ -193,14 +192,6 @@ server <- shiny::shinyServer(function(input, output) {
                                              alphaLevel = selSigLevel(),
                                              interpretation = intChoice())
   })
-
-  # Download tab
-  output$downloadData <- shiny::downloadHandler(
-    filename <- function() { paste(input$dataset, '.csv', sep='') },
-    content <- function(file) {
-      utils::write.csv(datasetInput(), file)
-    }
-  )
 }) # shinyServer
 
 # Run the application
