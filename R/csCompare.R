@@ -333,5 +333,8 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     if (out.present){
       res$res.out = compare.out
     }
+
+    # Create csCompare class
+    class(res) <- "csCompare"
     return(res)
 }
