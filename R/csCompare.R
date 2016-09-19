@@ -335,6 +335,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     }
 
     # Create csCompare class
-    class(res) <- "csCompare"
+    attr(res, "class") <- "csCompare"
+
     return(res)
 }
