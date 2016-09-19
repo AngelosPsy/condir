@@ -26,16 +26,25 @@ ui <- shiny::shinyUI(
     # Main panel
     shiny::mainPanel(
       shiny::tabsetPanel(
-        shiny::tabPanel("Data", shiny::dataTableOutput("contents"),
-                        shiny::uiOutput("cs1"), shiny::uiOutput("cs2"),
-                        shiny::uiOutput("group")),
+        shiny::tabPanel("Data", shiny::dataTableOutput("contents")),
         shiny::tabPanel("Results",
                         h4("Descriptive results"),
                         shiny::tableOutput("desc"),
                         h4("Frequentist Results"),
                         shiny::tableOutput("freq"),
                         h4("Bayesian Results"),
-                        shiny::tableOutput("bayes")),
+                        shiny::tableOutput("bayes"),
+                        shiny::uiOutput("cs1"), shiny::uiOutput("cs2"),
+                        shiny::uiOutput("group"),
+                        shiny::uiOutput("alternative"),
+                        shiny::uiOutput("Confidence Level"),
+                        shiny::uiOutput("mu"),
+                        shiny::textInput(inputId = "rscale",
+                               label = "What is the width of the Cauchy prior?",
+                                         value = ".707"),
+                        shiny::textInput(inputId = "sigLevel",
+                                         label = "What is the alpha level?",
+                                         value = "0.05")),
         shiny::tabPanel("Plots", shiny::plotOutput("plot", width = "100%"),
                         shiny::uiOutput("bfChoice"),
                         shiny::plotOutput("robplot")),
@@ -44,9 +53,6 @@ ui <- shiny::shinyUI(
                         shiny::verbatimTextOutput("summaryMain"),
                         h4("Summary of robustness test"),
                         shiny::verbatimTextOutput("summaryRob"),
-                        shiny::textInput(inputId = "sigLevel",
-                                  label = "What is the alpha level?",
-                                  value = "0.05"),
                         shiny::radioButtons(inputId = "interpretation",
                                   label = "Should the result be interpreted?",
                                   choices = c("TRUE", "FALSE"),
@@ -81,47 +87,66 @@ server <- shiny::shinyServer(function(input, output) {
   output$contents <- shiny::renderDataTable(expr = datz(),
                                      options = list(lengthMenu = c(5, 30, 50),
                                                     pageLength = 5))
-  colNames <- shiny::reactive(colnames(datz()))
+  colNames <- shiny::reactive({colnames(datz())})
+
+  # Results tab
+
+  # CS1
   output$cs1 <- shiny::renderUI({
                        shiny::radioButtons(inputId = "cs1Button",
                        label = "Which column has the CS1 data?",
                        choices = colNames(), inline = TRUE)
   })
 
+  cs1Ch <- shiny::reactive({
+    shiny::req(input$cs1Button)
+    datz()[, colnames(datz()) %in% input$cs1Button]
+  })
+
+  # CS2
   output$cs2 <- shiny::renderUI({
                        shiny::radioButtons(inputId = "cs2Button",
                                       label = "Which column has the CS2 data?",
                                       choices = colNames(), inline = TRUE)
   })
 
+  cs2Ch <- shiny::reactive({datz()[, colnames(datz()) %in% input$cs2Button]})
+
+  # Group
   output$group <- shiny::renderUI({
                          shiny::radioButtons(inputId = "groupButton",
                          label = "Which column has the group data? (Optional)",
                          choices = c("NULL", colNames()), inline = TRUE)
   })
 
-  cs1Ch <- shiny::reactive({
-                  shiny::req(input$cs1Button)
-                  datz()[, colnames(datz()) %in% input$cs1Button]
-  })
-
-  cs2Ch <- shiny::reactive({
-                  datz()[, colnames(datz()) %in% input$cs2Button]
-  })
-
   groupCh <- shiny::reactive({
-                    shiny::req(input$groupButton)
-                    datz()[, colnames(datz()) %in% input$groupButton]
+    shiny::req(input$groupButton)
+    datz()[, colnames(datz()) %in% input$groupButton]
   })
 
   groupPress <- shiny::reactive({
-                       shiny::req(input$groupButton)
-                       input$groupButton
+    shiny::req(input$groupButton)
+    input$groupButton
   })
+
+  # Alternative
+  output$alternative <- shiny::renderUI({
+                        shiny::radioButtons(inputId = "alternativeButton",
+                        label = "What is the alternative hypothesis?",
+                        choices = c("two.sided", "greater", "less"),
+                        inline = TRUE)
+  })
+
+  alternativeCh <- shiny::reactive({input$alternativeButton})
+
+  # rscale
+  rscale <- shiny::reactive({input$rscale})
 
   csComp <- shiny::reactive({
                    condir::csCompare(cs1 = cs1Ch(), cs2 = cs2Ch(),
                                      group = groupCh(),
+                                     alternative = alternativeCh(),
+                                     rscale = rscale(),
                                      boxplot = FALSE)
   })
 
@@ -144,9 +169,7 @@ server <- shiny::shinyServer(function(input, output) {
                             inline = TRUE)
   })
 
-  robChoice <- shiny::reactive({
-                      input$bfChoice
-  })
+  robChoice <- shiny::reactive({input$bfChoice})
 
   intChoice <- shiny::reactive({input$interpretation})
 
@@ -156,17 +179,18 @@ server <- shiny::shinyServer(function(input, output) {
                            BF01 <- ifelse (robChoice() == "BF01", TRUE, FALSE)
                            condir::csRobustnessPlot(cs1 = cs1Ch(),
                                    cs2 = cs2Ch(), group = groupCh(),
-                                   data = NULL, BF01 = BF01)
-  }, width = 600)
+                                   data = NULL, BF01 = BF01)}, width = 600)
 
   # Results tab
   output$desc <- shiny::renderTable({
       if (groupPress() != "NULL"){
-        data.frame(do.call("rbind", csComp()$descriptives), check.names = FALSE)
+        tmp <- do.call("rbind", csComp()$descriptives)
       } else {
-        csComp()$descriptives
+        tmp <- csComp()$descriptives
       }
-    }, caption.placement = getOption("xtable.caption.placement", "top")
+     tmp$vars <- row.names(tmp)
+     data.frame(tmp)
+     }, caption.placement = getOption("xtable.caption.placement", "top")
     )
 
   output$freq <- shiny::renderTable({
@@ -191,7 +215,7 @@ server <- shiny::shinyServer(function(input, output) {
                             condir::csReport(csSensitivityObj = csSens(),
                                              alphaLevel = selSigLevel(),
                                              interpretation = intChoice())
-  })
+   })
 }) # shinyServer
 
 # Run the application
