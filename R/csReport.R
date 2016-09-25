@@ -72,7 +72,7 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
           method <- gsub("welch", "Welch", method)
       }
       # Report frequentist results
-      repF <- paste0("\nWe performed a ", alternative, " ", method,
+      repF <- paste0("We performed a ", alternative, " ", method,
                      ". The results are t (", round(df, 3), ") ", "= ",
                      round(t.statistic, 3), ", p ", r.p.value,
                      ", Cohen's d = ", round(cohenD, 3),
@@ -101,9 +101,9 @@ csReport <- function(csCompareObj = NULL, csSensitivityObj = NULL, save = FALSE,
                      " Bayesian t-test, with a Cauchy prior, with its width set to ",
                      rscale,
                      ". The BF01 was: ",
-                     condir::roundBF(bf10, rscale, BF01 = TRUE),
+                     condir::roundBF(bf01, rscale, BF01 = TRUE),
                      ". The BF10 was: ",
-                     condir::roundBF(bf01, rscale, BF01 = FALSE), ".")
+                     condir::roundBF(bf10, rscale, BF01 = FALSE), ".")
 
       if (interpretation){
         # Determine level of evidence for bf10
