@@ -1,6 +1,7 @@
 # Shiny Application for condir
 library(shiny)
 library(condir)
+library(foreign)
 library(tools)
 
 # Define UI for application that draws a histogram
@@ -58,7 +59,7 @@ ui <- shiny::shinyUI(
                                   choices = c("TRUE", "FALSE"),
                                   selected = "FALSE", inline = TRUE))
         ) # tabsetPanel
-    ) # mainPanel
+   ) # mainPanel
   ) # sidebarLayout
 ) # fluidPage
 ) # shinyUI
@@ -97,6 +98,8 @@ server <- shiny::shinyServer(function(input, output) {
                        label = "Which column has the CS1 data?",
                        choices = colNames(), inline = TRUE)
   })
+
+
 
   cs1Ch <- shiny::reactive({
     shiny::req(input$cs1Button)
@@ -194,13 +197,15 @@ server <- shiny::shinyServer(function(input, output) {
     )
 
   output$freq <- shiny::renderTable({
-                        csComp()$freq.results
+    csComp()$freq.results
+
     }, caption.placement = getOption("xtable.caption.placement", "top")
   )
 
   output$bayes <- shiny::renderTable({
     csComp()$bayes.results},
-    caption.placement = getOption("xtable.caption.placement", "top"))
+    caption.placement = getOption("xtable.caption.placement", "top")
+    )
 
   # Summary tab
   output$summaryMain <- shiny::renderPrint({
