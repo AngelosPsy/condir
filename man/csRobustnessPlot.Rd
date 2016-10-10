@@ -46,7 +46,7 @@ Plots the results of robustness test
 }
 \details{
 This plot template is influenced by the JASP way
-(\url{https://jasp-stats.org/}) to plot robustness results. On the
+(\url{https://jasp-stats.org/}) for plotting sensitivity analysis results. On the
 x-axis or the width of the Cauchy's Scale is plotted. On the y-axis either
 BF01 is plotted (if \code{BF01} is set to TRUE) or
 BF10 (if \code{BF01} is set to FALSE).
@@ -61,6 +61,6 @@ Hypothesis Testing for Human Threat Conditioning Research: An introduction
 and the condir R package.
 }
 \seealso{
-\code{\link[condir]{csCompare}}, #' \code{\link[condir]{csSensitivity}}
+\code{\link[condir]{csCompare}}, \code{\link[condir]{csSensitivity}}
 }
 
