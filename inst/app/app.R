@@ -64,7 +64,8 @@ ui <- shiny::shinyUI(
 ) # fluidPage
 ) # shinyUI
 
-server <- shiny::shinyServer(function(input, output) {
+server <- shiny::shinyServer(function(input, output, session) {
+  session$onSessionEnded(stopApp)
   datz <- shiny::reactive({
           shiny::req(input$file)
           inFile <- input$file
@@ -88,6 +89,7 @@ server <- shiny::shinyServer(function(input, output) {
   output$contents <- shiny::renderDataTable(expr = datz(),
                                      options = list(lengthMenu = c(5, 30, 50),
                                                     pageLength = 5))
+
   colNames <- shiny::reactive({colnames(datz())})
 
   # Results tab
@@ -98,8 +100,6 @@ server <- shiny::shinyServer(function(input, output) {
                        label = "Which column has the CS1 data?",
                        choices = colNames(), inline = TRUE)
   })
-
-
 
   cs1Ch <- shiny::reactive({
     shiny::req(input$cs1Button)
