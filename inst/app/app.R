@@ -93,12 +93,10 @@ server <- shiny::shinyServer(function(input, output, session) {
   colNames <- shiny::reactive({colnames(datz())})
 
   # Results tab
-
-  # CS1
-  output$cs1 <- shiny::renderUI({
-                       shiny::radioButtons(inputId = "cs1Button",
-                       label = "Which column has the CS1 data?",
-                       choices = colNames(), inline = TRUE)
+  output$cs1 <-  shiny::renderUI({
+    selectInput("cs1Button", label = "Which column has the CS1 data?",
+              choices = colNames(),
+              selected = 1)
   })
 
   cs1Ch <- shiny::reactive({
@@ -107,20 +105,21 @@ server <- shiny::shinyServer(function(input, output, session) {
   })
 
   # CS2
-  output$cs2 <- shiny::renderUI({
-                       shiny::radioButtons(inputId = "cs2Button",
-                                      label = "Which column has the CS2 data?",
-                                      choices = colNames(), inline = TRUE)
+  output$cs2 <-  shiny::renderUI({
+    selectInput("cs2Button", label = "Which column has the CS2 data?",
+                choices = colNames(),
+                selected = 1)
   })
 
   cs2Ch <- shiny::reactive({datz()[, colnames(datz()) %in% input$cs2Button]})
 
   # Group
-  output$group <- shiny::renderUI({
-                         shiny::radioButtons(inputId = "groupButton",
-                         label = "Which column has the group data? (Optional)",
-                         choices = c("NULL", colNames()), inline = TRUE)
+  output$group <-  shiny::renderUI({
+    selectInput("groupButton", label = "Which column has the group data? (Optional)",
+                choices = c("NULL", colNames()),
+                selected = 1)
   })
+
 
   groupCh <- shiny::reactive({
     shiny::req(input$groupButton)
