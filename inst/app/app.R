@@ -95,8 +95,8 @@ server <- shiny::shinyServer(function(input, output, session) {
   # Results tab
   output$cs1 <-  shiny::renderUI({
     selectInput("cs1Button", label = "Which column has the CS1 data?",
-              choices = colNames(),
-              selected = 1)
+              choices = c("", colNames()),
+              selected = "")
   })
 
   cs1Ch <- shiny::reactive({
@@ -107,11 +107,13 @@ server <- shiny::shinyServer(function(input, output, session) {
   # CS2
   output$cs2 <-  shiny::renderUI({
     selectInput("cs2Button", label = "Which column has the CS2 data?",
-                choices = colNames(),
-                selected = 1)
+                choices = c("", colNames()),
+                selected = "")
   })
 
-  cs2Ch <- shiny::reactive({datz()[, colnames(datz()) %in% input$cs2Button]})
+  cs2Ch <- shiny::reactive({
+    shiny::req(input$cs2Button)
+    datz()[, colnames(datz()) %in% input$cs2Button]})
 
   # Group
   output$group <-  shiny::renderUI({
