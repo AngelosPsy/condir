@@ -81,7 +81,7 @@ server <- shiny::shinyServer(function(input, output, session) {
           } else if(ext == "sav"){
             datz <- foreign::read.spss(file = inFile$datapath,
                                        to.data.frame = TRUE)
-          }
+            }
            data.frame(datz)
   })
 
