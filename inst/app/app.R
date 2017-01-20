@@ -81,8 +81,8 @@ server <- shiny::shinyServer(function(input, output, session) {
           } else if(ext == "sav"){
             datz <- foreign::read.spss(file = inFile$datapath,
                                        to.data.frame = TRUE)
-            }
-           data.frame(datz)
+          }
+         data.frame(datz)
   })
 
   # Data tab
@@ -156,6 +156,7 @@ server <- shiny::shinyServer(function(input, output, session) {
 
   csSens <- shiny::reactive({
                    condir::csSensitivity(cs1 = cs1Ch(), cs2 = cs2Ch(),
+                           rscaleSens = c(.1, .3, .5, .7, 1, 1.5),
                            group = groupCh())
   })
 
@@ -183,7 +184,10 @@ server <- shiny::shinyServer(function(input, output, session) {
                            BF01 <- ifelse (robChoice() == "BF01", TRUE, FALSE)
                            condir::csRobustnessPlot(cs1 = cs1Ch(),
                                    cs2 = cs2Ch(), group = groupCh(),
-                                   data = NULL, BF01 = BF01)}, width = 600)
+                                   alternative = alternativeCh(),
+                                   data = NULL,
+                                   rscaleSens = c(.1, .3, .5, .7, 1, 1.5),
+                                   BF01 = BF01)}, width = 600)
 
   # Results tab
   output$desc <- shiny::renderTable({
