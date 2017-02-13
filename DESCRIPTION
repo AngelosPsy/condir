@@ -8,7 +8,7 @@ Depends:
     R (>= 3.3.0),
 License: GPL-3
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Imports:
     BayesFactor,
     stats,
