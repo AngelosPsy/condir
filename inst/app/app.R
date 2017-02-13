@@ -1,12 +1,14 @@
 # Shiny Application for condir
 library(shiny)
+library(shinythemes)
+library(BayesFactor)
 library(condir)
 library(foreign)
 library(tools)
 
 # Define UI for application that draws a histogram
 ui <- shiny::shinyUI(
-      shiny::fluidPage(theme = "bootstrap.css",
+      shiny::fluidPage(theme = shinytheme("flatly"),
       shiny::titlePanel("condir"),
       shiny::sidebarLayout(
       shiny::sidebarPanel(
