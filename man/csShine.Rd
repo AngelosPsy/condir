@@ -19,4 +19,3 @@ Krypotos, A.-M., Klugkist, I., & Engelhard, I. M. (submitted).Bayesian
 Hypothesis Testing for Human Threat Conditioning Research: An introduction
 and the condir R package.
 }
-

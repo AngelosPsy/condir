@@ -17,4 +17,3 @@ roundBF(bf, rscale, BF01 = TRUE)
 Function used for determining the symbol, and the form, of the
 BF reported.
 }
-
