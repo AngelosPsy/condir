@@ -57,7 +57,21 @@ ui <- shiny::shinyUI(
                         shiny::radioButtons(inputId = "interpretation",
                                   label = "Should the result be interpreted?",
                                   choices = c("TRUE", "FALSE"),
-                                  selected = "FALSE", inline = TRUE))
+                                  selected = "FALSE", inline = TRUE)),
+        shiny::tabPanel("Help",
+                        h3("General Description"),
+                        p("This Shiny application was designed so as to enable the
+                          easier use of the", code("condir"), "package. Step-to-step examples
+                          on how to use. An example of how to use", code("condir"), "via the R console
+                          are available here: ", a("https://github.com/AngelosPsy/condir"),
+                          "An example on how to use ", code("condir"), "can be found in Krypotos,
+                          Klugkist, and Engelhard (under revision).
+
+                          For bug and feature requests, please use the relevant github page",
+                          a("https://github.com/AngelosPsy/condir/issues"), "."),
+                        h3("Reference"),
+                         ("Krypotos, A-M., Klugkist, I., & Engelhard, I. M. (under revision). Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the
+                         condir R package."))
         ) # tabsetPanel
    ) # mainPanel
   ) # sidebarLayout
