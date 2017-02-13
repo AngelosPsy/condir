@@ -71,6 +71,39 @@ ui <- shiny::shinyUI(
 
                           For bug and feature requests, please use the relevant github page",
                           a("https://github.com/AngelosPsy/condir/issues"), "."),
+
+                        h3("Explanation of each tab"),
+                        p(code("condir"), "has 5 different tabs, each one with each function.
+                          Here, we provide brief explanations of each tab and
+                          we explain how data can be uploaded in ", code("condir"), "." ),
+                        h4("Data input"),
+                        p("By using the Browse button located on the left of the screen, the user
+                          can search and upload the data to be analysed. The current version of ",
+                          code("condir"), "accepts data files with the 'txt', 'csv', and 'sav' extensions. Note
+                          that the used data input method is based on the example used in Rstudio and that it
+                          can be find here: ", a("http://shiny.rstudio.com/gallery/upload-file.html")),
+                        h4("Data Tab"),
+                        p("After uploading the data, the Data tab will present the uploaded data. Please note
+                         that if the data columns use another than the 'tab' separator, the data will not be presented
+                         in separate column but into a single one. To change that, select the correct separator on the left
+                         of the tab. A sceenshot of the data panel follows: "),
+                        img(src='data.png', align = "center", width="600", height="400"),
+                        h4("Results Tab"),
+                        p("The results tab allows the user to select which column has the CS1, the CS2, and the group (optional)
+                          data. After all these options have been made, the Frequentists and the Bayesian results are returned. On
+                          the bottom of this page, the user can also control a few more analyses options (e.g., the scale factor
+                          of the Cauchy distribution). The revelant screenshot follows: "),
+                        img(src='results.png', align = "center", width="600", height="400"),
+                        h4("Plots Tab"),
+                        p("The plots tab depicts the mean responses for each stimulus -- and for each group if a between group
+                          analyses was performed. On the bottom, the relevant robustness test is depicted. This plot is based on
+                          a similar plot provided in ", a("https://jasp-stats.org/"), "For a screenshot of this tab, see below:"),
+                        img(src='plots.png', align = "center", width="600", height="400"),
+                        h4("Summary Tab"),
+                        p("The summary of the results is provided in this tab. The user may choose to interpret the findings.
+                          The interpretation is based on the numerical values of the results, and the user is free to accept or ignore
+                          the provided interpretation. The relevant screenshot follows: "),
+                        img(src='summary.png', align = "center", width="600", height="400"),
                         h3("Reference"),
                          ("Krypotos, A-M., Klugkist, I., & Engelhard, I. M. (under revision). Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the
                          condir R package."))
