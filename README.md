@@ -79,6 +79,9 @@ $freq.results
 $bayes.results
    LNI HNI rscale      bf10     bf01    propError
 1 -Inf Inf  0.707 0.4640282 2.155041 3.081811e-08
+
+attr(,"class")
+[1] "csCompare"
 ```
 
 The data can be plotted with the csPlot function.
@@ -98,9 +101,8 @@ csReport(tmp)
 ```
 
 ```
-
 We performed a two sided paired t-test. The results are t (49) = 1.541, p  =  0.13, Cohen's d = 0.218 (small effect size). 
-We performed a two sided Bayesian t-test, with a Cauchy prior, with its width set to 0.707. The BF01 was: BF01(0.707)  =  0.464. The BF10 was: BF10(0.707)  =  2.155.
+We performed a two sided Bayesian t-test, with a Cauchy prior, with its width set to 0.707. The BF01 was: BF01(0.707)  =  2.155. The BF10 was: BF10(0.707)  =  0.464.
 ```
 
 Lastly, the csSensitivity function can be used for a sensitivity analysis,
@@ -171,6 +173,9 @@ $freq.results
 $bayes.results
    LNI HNI rscale      bf10     bf01    propError
 1 -Inf Inf  0.707 0.5379827 1.858796 0.0002218691
+
+attr(,"class")
+[1] "csCompare"
 ```
 
 ```r
@@ -184,9 +189,8 @@ csReport(csCompareObj = tmp)
 ```
 
 ```
-
 We performed a two sided Welch two sample t-test. The results are t (47.57) = -1.256, p  =  0.215, Cohen's d = 0.251 (small effect size). 
-We performed a two sided Bayesian t-test, with a Cauchy prior, with its width set to 0.707. The BF01 was: BF01(0.707)  =  0.538. The BF10 was: BF10(0.707)  =  1.859.
+We performed a two sided Bayesian t-test, with a Cauchy prior, with its width set to 0.707. The BF01 was: BF01(0.707)  =  1.859. The BF10 was: BF10(0.707)  =  0.538.
 ```
 
 ```r
