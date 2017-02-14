@@ -3,3 +3,4 @@
 ^README\.rmd$
 ^figure$
 ^\.travis\.yml$
+^cran-comments\.Rmd$
