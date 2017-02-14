@@ -1,0 +1,19 @@
+citHeader("To cite condir in publications use:")
+
+citEntry(entry = "Article",
+         title        = "Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the {condir} R package.",
+         author       = personList(as.person("Angelos-Miltiadis Krypotos"),
+                                   as.person("Irene Klugkist"),
+                                   as.person("Iris M. Engelhard ")),
+         journal      = "European Journal of Psychotraumatology",
+         year         = "in press",
+         volume       = "",
+         number       = "",
+         pages        = "",
+         url          = "",
+
+         textVersion  =
+           paste("Angelos-Miltiadis Krypotos, Irene Klugkist, Iris M. Engelhard",
+                 "Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the {condir} R package.",
+                 "European Journal of Psychotraumatology.")
+)
