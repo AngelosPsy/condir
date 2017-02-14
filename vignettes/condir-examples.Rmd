@@ -46,7 +46,7 @@ library(condir)
 Here we show a single group example. Specifically, we first simulate data from
 a normal distribution for two stimuli, the cs1 and the cs2.
 
-```{r comment=NA}
+```{r comment = NA}
 set.seed(100)
 cs1 <- rnorm(50, 5, 5)
 cs2 <- rnorm(50, 4.5, 5)
@@ -56,34 +56,34 @@ These data correspond to the conditioned responses during the presentation of
 each stimulus (i.e., the cs1 and the cs2). For comparing the two stimuli, we
 can use the csCompare function in condir as follow.
 
-```{r, fig.height=5, fig.width=5, comment=NA}
+```{r fig.width = 7.5, fig.height = 5, comment = NA}
 tmp <- csCompare(cs1, cs2)
 tmp
 ```
 
 The data can be plotted with the csPlot function.
 
-```{r, fig.height=4, fig.width=8, comment=NA}
+```{r fig.width = 7.5, fig.height = 4, comment = NA}
 csPlot(cs1, cs2, ylab = "CRs")
 ```
 
 In order to make a basic report of the data, we use the csReport function.
 
-```{r comment=NA}
+```{r comment = NA}
 csReport(tmp)
 ```
 
 Lastly, the csSensitivity function can be used for a sensitivity analysis,
 with the csRobustnessPlot function plotting the results.
 
-```{r comment=NA, fig.width = 6, fig.height = 4}
+```{r fig.width = 7.5, fig.height = 4, comment=NA}
 tmp <- csSensitivity(cs1, cs2)
 csRobustnessPlot(cs1, cs2, BF01 = TRUE)
 ```
 
 The results are now reported with the csReport function.
 
-```{r comment=NA}
+```{r comment = NA}
 csReport(csSensitivityObj = tmp)
 ```
 
@@ -95,7 +95,7 @@ is that we now have to define the group allocation by using the group argument
 example above. That is why we provide the code for this example 
 in a single chunk of code.
 
-```{r comment=NA, fig.width = 8, fig.height = 4}
+```{r fig.width = 7.5, fig.height = 4, comment = NA}
 group <- rep(1:2, 25)
 tmp <- csCompare(cs1, cs2, group = group)
 tmp
