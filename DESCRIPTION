@@ -1,6 +1,6 @@
 Package: condir
 Title: Computation of P Values and Bayes Factors for Conditioning Data
-Version: 0.1
+Version: 0.1.0
 Authors@R: c(person("Angelos-Miltiadis Krypotos", "Developer", role = c("aut", "cre"),
                      email = "amkrypotos@gmail.com"))
 Date: 2017-02-14
@@ -21,3 +21,6 @@ Imports:
     shiny   (>= 1.0.0)
 URL: https://github.com/AngelosPsy/condir
 BugReports: https://github.com/AngelosPsy/condir/issues
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
