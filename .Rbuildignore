@@ -4,3 +4,4 @@
 ^figure$
 ^\.travis\.yml$
 ^cran-comments\.Rmd$
+^revdep$
