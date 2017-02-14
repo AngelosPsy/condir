@@ -1,0 +1,107 @@
+---
+title: "condir: Examples"
+author: Angelos-Miltiadis Krypotos"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+###  Condir
+
+Below we provide two basic examples that use the R package _condir_. The first
+example regards data coming from a single group, and the second example data
+coming from two groups. More details about the package condir are described in
+the paper by 
+Krypotos, A.-M., Klugkist, K., and Engelhard, I. M. (submitted). 
+Bayesian Hypothesis Testing for Human Threat Conditioning Research: 
+An introduction and the condir R package.
+
+
+### Installation
+To install condir, you first need to install and load the devtools package.
+This is done as follows.
+```{r eval = FALSE}
+install.packages ("devtools")
+library(devtools)
+```
+
+Now, the condir package can be installed by simply typing the following command
+in the R console.
+
+```{r eval = FALSE}
+install_github(repo = "AngelosPsy/condir")
+```
+
+For loading condir, use the line below. Please note that for using condir, you
+have to load it at every new R session.
+
+```{r eval = TRUE}
+library(condir)
+```
+
+### One group example
+Here we show a single group example. Specifically, we first simulate data from
+a normal distribution for two stimuli, the cs1 and the cs2.
+
+```{r comment = NA}
+set.seed(100)
+cs1 <- rnorm(50, 5, 5)
+cs2 <- rnorm(50, 4.5, 5)
+```
+
+These data correspond to the conditioned responses during the presentation of
+each stimulus (i.e., the cs1 and the cs2). For comparing the two stimuli, we
+can use the csCompare function in condir as follow.
+
+```{r fig.width = 7.5, fig.height = 5, comment = NA}
+tmp <- csCompare(cs1, cs2)
+tmp
+```
+
+The data can be plotted with the csPlot function.
+
+```{r fig.width = 7.5, fig.height = 4, comment = NA}
+csPlot(cs1, cs2, ylab = "CRs")
+```
+
+In order to make a basic report of the data, we use the csReport function.
+
+```{r comment = NA}
+csReport(tmp)
+```
+
+Lastly, the csSensitivity function can be used for a sensitivity analysis,
+with the csRobustnessPlot function plotting the results.
+
+```{r fig.width = 7.5, fig.height = 4, comment=NA}
+tmp <- csSensitivity(cs1, cs2)
+csRobustnessPlot(cs1, cs2, BF01 = TRUE)
+```
+
+The results are now reported with the csReport function.
+
+```{r comment = NA}
+csReport(csSensitivityObj = tmp)
+```
+
+### Two groups example
+
+The same steps as above are used for the two group example. The only difference
+is that we now have to define the group allocation by using the group argument
+-- see the first line below. Apart from that, the code is the same as in the 
+example above. That is why we provide the code for this example 
+in a single chunk of code.
+
+```{r fig.width = 7.5, fig.height = 4, comment = NA}
+group <- rep(1:2, 25)
+tmp <- csCompare(cs1, cs2, group = group)
+tmp
+csPlot(cs1, cs2, group = group, ylab = "CRs")
+csReport(csCompareObj = tmp)
+tmp <- csSensitivity(cs1, cs2)
+csRobustnessPlot(cs1, cs2, group, BF01 = TRUE)
+csReport(csSensitivityObj = tmp)
+```
