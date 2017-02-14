@@ -1,3 +1,4 @@
+[![Travis-CI Build Status](https://travis-ci.org/AngelosPsy/condir.svg?branch=master)](https://travis-ci.org/AngelosPsy/condir)
 # condir
 
 R package for the analysis of conditioning data.
