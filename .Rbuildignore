@@ -5,3 +5,4 @@
 ^\.travis\.yml$
 ^cran-comments\.Rmd$
 ^revdep$
+^cran-comments\.md$
