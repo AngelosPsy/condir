@@ -6,3 +6,4 @@
 ^cran-comments\.Rmd$
 ^revdep$
 ^cran-comments\.md$
+^cran-comments\.html$
