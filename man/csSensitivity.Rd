@@ -69,3 +69,4 @@ and the condir R package.
 \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
 \code{\link[BayesFactor]{ttest.tstat}}
 }
+

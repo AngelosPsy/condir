@@ -139,3 +139,4 @@ Psychonomic Bulletin & Review, 16, 225-237
 \seealso{
 \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 }
+
