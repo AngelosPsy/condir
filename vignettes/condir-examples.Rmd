@@ -47,7 +47,7 @@ Here we show a single group example. Specifically, we first simulate data from
 a normal distribution for two stimuli, the cs1 and the cs2.
 
 ```{r comment = NA}
-set.seed(100)
+set.seed(1000)
 cs1 <- rnorm(50, 5, 5)
 cs2 <- rnorm(50, 4.5, 5)
 ```
@@ -96,7 +96,7 @@ example above. That is why we provide the code for this example
 in a single chunk of code.
 
 ```{r fig.width = 7.5, fig.height = 4, comment = NA}
-group <- rep(1:2, 25)
+group <- factor(rep(1:2, length(cs1)/2))
 tmp <- csCompare(cs1, cs2, group = group)
 tmp
 csPlot(cs1, cs2, group = group, ylab = "CRs")
