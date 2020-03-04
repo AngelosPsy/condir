@@ -16,6 +16,7 @@
 #'  (FALSE). In case of the Bayesian results, the results
 #'  are interpreted according to Lee and Wagenmakers (2013).
 #' @examples
+#' set.seed(1000)
 #' tmp <- csCompare(cs1 = rnorm(n = 100, mean = 10),
 #' cs2 = rnorm(n = 100, mean = 9))
 #' csReport(tmp)

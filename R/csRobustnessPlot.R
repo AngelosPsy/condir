@@ -22,6 +22,7 @@
 #' @seealso
 #' \code{\link[condir]{csCompare}}, \code{\link[condir]{csSensitivity}}
 #' @examples
+#' set.seed(1000)
 #' csRobustnessPlot(cs1 = rnorm(n = 100, mean = 10),
 #' cs2 = rnorm(n = 100, mean = 9))
 #' @export

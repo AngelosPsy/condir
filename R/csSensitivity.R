@@ -26,6 +26,7 @@
 #' \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
 #' \code{\link[BayesFactor]{ttest.tstat}}
 #' @examples
+#' set.seed(1000)
 #' csSensitivity(cs1 = rnorm(n = 100, mean = 10),
 #' cs2 = rnorm(n = 100, mean = 9))
 #' @export
@@ -56,7 +57,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
   #  samples t-test.
   if(!is.null(group)){
     ng <- length(unique(stats::na.omit(group)))
-    if (ng %in% c(0, 1) || group == "NULL") {
+    if (ng %in% c(0, 1) || group[1] == "NULL") {
       group = NULL
     } else {
       if (ng > 2){
@@ -66,7 +67,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
       }
   }
 
-  paired <- ifelse(is.null(group) || group == "NULL", TRUE, FALSE)
+  paired <- ifelse(is.null(group) || group[1] == "NULL", TRUE, FALSE)
   if (paired){
     n1 <- nrow(stats::na.omit(cbind(cs1, cs2)))
     n2 <- 0

@@ -114,6 +114,7 @@
 #' @seealso
 #' \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 #' @examples
+#' set.seed(1000)
 #' csCompare(cs1 = rnorm(n = 100, mean = 10), cs2 = rnorm(n = 100, mean = 9))
 #' @export
 csCompare <- function(cs1, cs2, group = NULL, data = NULL,
@@ -137,7 +138,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     #  samples t-test.
     if(!is.null(group)){
      ng <- length(unique(stats::na.omit(group)))
-     if (ng %in% c(0, 1) || group == "NULL") {
+     if (ng %in% c(0, 1) || group[1] == "NULL") {
        group = NULL
      } else {
       if (ng > 2){
