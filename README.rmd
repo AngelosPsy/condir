@@ -4,7 +4,6 @@
 
 condir allows the easy analysis of conditioning data, within both a frequentists and Bayesian framework. 
 
-Installation information as well as relevant examples are provided in the vignette named 'condir-examples' as well as in Krypotos, A.-M., Klugkist, K., and 
-Engelhard, I. M. (submitted). Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the condir R package.
+Installation information as well as relevant examples are provided in the vignette named 'condir-examples' as well as in Krypotos, A. M., Klugkist, I., & Engelhard, I. M. (2017). Bayesian hypothesis testing for human threat conditioning research: An introduction and the condir R package. European journal of psychotraumatology, 8.
 
 The Shiny app included in condir can be accessed online by following this URL (https://utrecht-university.shinyapps.io/Condir/)
