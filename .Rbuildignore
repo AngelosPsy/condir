@@ -7,3 +7,5 @@
 ^revdep$
 ^cran-comments\.md$
 ^cran-comments\.html$
+^doc$
+^Meta$
