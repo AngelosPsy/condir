@@ -18,9 +18,10 @@
 #' @return The function returns a data frame with the results of the student
 #' t-test and the Bayesian t-test.
 #' @references
-#' Krypotos, A.-M., Klugkist, I., & Engelhard, I. M. (submitted).Bayesian
-#' Hypothesis Testing for Human Threat Conditioning Research: An introduction
-#' and the condir R package.
+#' Krypotos, A. M., Klugkist, I., & Engelhard, I. M. (2017). 
+#' Bayesian hypothesis testing for human threat conditioning research: 
+#' An introduction and the condir R package. 
+#' European Journal of Psychotraumatology, 8.
 #'
 #' @seealso
 #' \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
