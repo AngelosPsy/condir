@@ -4,9 +4,19 @@
 \alias{csCompare}
 \title{Statistically compare CRs towards two CSs}
 \usage{
-csCompare(cs1, cs2, group = NULL, data = NULL, alternative = "two.sided",
-  conf.level = 0.95, mu = 0, rscale = 0.707, descriptives = TRUE,
-  out.thres = 3, boxplot = TRUE)
+csCompare(
+  cs1,
+  cs2,
+  group = NULL,
+  data = NULL,
+  alternative = "two.sided",
+  conf.level = 0.95,
+  mu = 0,
+  rscale = 0.707,
+  descriptives = TRUE,
+  out.thres = 3,
+  boxplot = TRUE
+)
 }
 \arguments{
 \item{cs1}{a numeric vector of values. If the \code{data} argument is
@@ -125,6 +135,7 @@ from the standardized residuals. The detected outliers are removed from both
 the frequentists and Bayesian analyses.
 }
 \examples{
+set.seed(1000)
 csCompare(cs1 = rnorm(n = 100, mean = 10), cs2 = rnorm(n = 100, mean = 9))
 }
 \references{
@@ -139,4 +150,3 @@ Psychonomic Bulletin & Review, 16, 225-237
 \seealso{
 \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 }
-

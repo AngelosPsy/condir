@@ -4,9 +4,17 @@
 \alias{csSensitivity}
 \title{Sensitivity analysis for the Bayes Factors of \code{csCompare} results}
 \usage{
-csSensitivity(cs1, cs2, group = NULL, data = NULL,
-  alternative = "two.sided", conf.level = 0.95, mu = 0,
-  rscaleSens = c(0.707, 1, 1.41), out.thres = 3)
+csSensitivity(
+  cs1,
+  cs2,
+  group = NULL,
+  data = NULL,
+  alternative = "two.sided",
+  conf.level = 0.95,
+  mu = 0,
+  rscaleSens = c(0.707, 1, 1.41),
+  out.thres = 3
+)
 }
 \arguments{
 \item{cs1}{a numeric vector of values. If the \code{data} argument is
@@ -57,6 +65,7 @@ but, after removal of NA's (\code{stats::na.omit}), only one group
 is defined, a paired samples t-test is run.
 }
 \examples{
+set.seed(1000)
 csSensitivity(cs1 = rnorm(n = 100, mean = 10),
 cs2 = rnorm(n = 100, mean = 9))
 }
@@ -69,4 +78,3 @@ and the condir R package.
 \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
 \code{\link[BayesFactor]{ttest.tstat}}
 }
-

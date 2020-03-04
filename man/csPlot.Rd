@@ -4,8 +4,15 @@
 \alias{csPlot}
 \title{Plot CRs for each CS}
 \usage{
-csPlot(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
-  col = c("black", "grey"), legend = c("cs1", "cs2"))
+csPlot(
+  cs1,
+  cs2,
+  group = NULL,
+  data = NULL,
+  ylab = "CRs",
+  col = c("black", "grey"),
+  legend = c("cs1", "cs2")
+)
 }
 \arguments{
 \item{cs1}{a numeric vector of values. If the \code{data} argument is
@@ -47,9 +54,9 @@ but, after removal of NA's (\code{stats::na.omit}), only one group
 is defined, a paired samples t-test is run.
 }
 \examples{
+set.seed(1000)
 csPlot(cs1 = rnorm(n = 100, mean = 10), cs2 = rnorm(n = 100, mean = 9))
 }
 \seealso{
 \code{\link[stats]{t.test}}, \code{\link[BayesFactor]{ttest.tstat}}
 }
-

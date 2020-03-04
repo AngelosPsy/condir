@@ -4,10 +4,19 @@
 \alias{csRobustnessPlot}
 \title{Plot robusteness results}
 \usage{
-csRobustnessPlot(cs1, cs2, group = NULL, data = NULL,
-  alternative = "two.sided", conf.level = 0.95, mu = 0,
-  rscaleSens = c("medium", "wide", "ultrawide"), BF01 = TRUE, ylimz = c(0,
-  10), sensitivity = FALSE)
+csRobustnessPlot(
+  cs1,
+  cs2,
+  group = NULL,
+  data = NULL,
+  alternative = "two.sided",
+  conf.level = 0.95,
+  mu = 0,
+  rscaleSens = c("medium", "wide", "ultrawide"),
+  BF01 = TRUE,
+  ylimz = c(0, 10),
+  sensitivity = FALSE
+)
 }
 \arguments{
 \item{cs1}{a numeric vector of values. If the \code{data} argument is
@@ -52,6 +61,7 @@ BF01 is plotted (if \code{BF01} is set to TRUE) or
 BF10 (if \code{BF01} is set to FALSE).
 }
 \examples{
+set.seed(1000)
 csRobustnessPlot(cs1 = rnorm(n = 100, mean = 10),
 cs2 = rnorm(n = 100, mean = 9))
 }
@@ -63,4 +73,3 @@ and the condir R package.
 \seealso{
 \code{\link[condir]{csCompare}}, \code{\link[condir]{csSensitivity}}
 }
-
