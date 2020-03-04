@@ -139,9 +139,10 @@ set.seed(1000)
 csCompare(cs1 = rnorm(n = 100, mean = 10), cs2 = rnorm(n = 100, mean = 9))
 }
 \references{
-Krypotos, A.-M., Klugkist, I., & Engelhard, I. M. (submitted).Bayesian
-Hypothesis Testing for Human Threat Conditioning Research: An introduction
-and the condir R package.
+Krypotos, A. M., Klugkist, I., & Engelhard, I. M. (2017). 
+Bayesian hypothesis testing for human threat conditioning research: 
+An introduction and the condir R package. 
+European Journal of Psychotraumatology, 8.
 
 Rouder, J. N., Speckman, P. L., Sun, D., Morey, R. D., & Iverson, G. (2009).
 Bayesian t-tests for accepting and rejecting the null hypothesis.

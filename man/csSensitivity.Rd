@@ -70,9 +70,10 @@ csSensitivity(cs1 = rnorm(n = 100, mean = 10),
 cs2 = rnorm(n = 100, mean = 9))
 }
 \references{
-Krypotos, A.-M., Klugkist, I., & Engelhard, I. M. (submitted).Bayesian
-Hypothesis Testing for Human Threat Conditioning Research: An introduction
-and the condir R package.
+Krypotos, A. M., Klugkist, I., & Engelhard, I. M. (2017). 
+Bayesian hypothesis testing for human threat conditioning research: 
+An introduction and the condir R package. 
+European Journal of Psychotraumatology, 8.
 }
 \seealso{
 \code{\link[condir]{csCompare}}, \code{\link[stats]{t.test}},
