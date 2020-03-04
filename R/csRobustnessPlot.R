@@ -107,7 +107,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
     # Main plot
     graphics::plot(x = as.numeric(sensRes$rscale), y = bfNum,
                    type = "b", xlab = "", ylab = "", ylim = ylimz,
-                   axes = FALSE, lwd = 2, las = 1, bty = "n", xpd = T,
+                   axes = FALSE, lwd = 2, las = 1, bty = "n", xpd = TRUE,
                    cex.main = 1.5)
     graphics::axis(side = 1, at = sensRes$rscale,
                    labels = round(as.numeric(
@@ -117,10 +117,10 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                    labels = format(labYAxis, scientific = scient), lwd = 2,
                    cex.axis = 1.5, las = 1)
     graphics::mtext(text = "Cauchy's Scale", side = 1, line = 3,
-                    cex = 2, xpd = T)
+                    cex = 2, xpd = TRUE)
     graphics::mtext(text = substitute("BF"[subscript,
                     list(subscript = subscript)]),
-                    side = 2, line = 3, cex = 2, xpd = T)
+                    side = 2, line = 3, cex = 2, xpd = TRUE)
 
     # Print sensitivity results
     if (sensitivity){

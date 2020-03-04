@@ -275,11 +275,11 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       if (paired){
         graphics::boxplot(x = data.frame(cs1, cs2), cex.main = 1.5, las = 1,
                           cex.lab = 2, cex.axis = 1, bty = "n", lwd = 1,
-                          xpd = T, pch = 19)
+                          xpd = TRUE, pch = 19)
       } else{
         graphics::boxplot(data.frame(cs1, cs2, cs3), cex.main = 1.5, las = 1,
                           cex.lab = 2, cex.axis = 1, bty = "n", lwd = 1,
-                          xpd = T, pch = 19)
+                          xpd = TRUE, pch = 19)
       }
     }
 

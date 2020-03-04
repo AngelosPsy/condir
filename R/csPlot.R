@@ -81,10 +81,10 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
     meanz <- c(desc[[1]]["mean"], desc[[2]]["mean"])
     sdz <- c(desc[[1]]["se"], desc[[2]]["se"])
     graphics::barplot(matrix(unlist(meanz), 2, 2), col = col,
-                      beside = T,
+                      beside = TRUE,
                       names.arg = unlist(attr(table(group), "dimnames")),
                       cex.names = 1.5, cex.main = 1.5, las=1, cex.lab = 2,
-                      cex.axis = 1, bty = "n", lwd = 1, xpd = T,
+                      cex.axis = 1, bty = "n", lwd = 1, xpd = TRUE,
                       pch = 19)
     graphics::mtext(ylab, 2, line = 3, cex = 1.5, las=0)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2,0),
@@ -95,7 +95,7 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
     sdz <- desc["se"]
     graphics::barplot(as.numeric(unlist(meanz)), col = col,
                       names.arg = NULL, cex.main = 1.5, las=1, cex.lab = 2,
-                      cex.axis = 1, bty = "n", lwd = 1, xpd = T,
+                      cex.axis = 1, bty = "n", lwd = 1, xpd = TRUE,
                       pch = 19)
     graphics::mtext(ylab, 2, line = 3, cex = 1.5, las=0)
     graphics::legend(x = "topright", legend = legend, inset=c(-0.2, 0),
