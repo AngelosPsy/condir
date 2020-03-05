@@ -43,7 +43,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
     cs2 <- data[, deparse(substitute(cs2))]
 
     if (deparse(substitute(group)) != "NULL"){
-      group <- data[, deparse(substitute(group))]
+      group <- as.factor(data[, deparse(substitute(group))])
     }
   }
 
@@ -101,7 +101,7 @@ csSensitivity <- function(cs1, cs2, group = NULL, data = NULL,
   }
 
   res <- list()
-  res$res <- data.frame(res.mat)
+  res$res <- data.frame(res.mat, stringsAsFactors = FALSE)
   # Outlier analysis
   if (out.thres != 0){
     if (paired){

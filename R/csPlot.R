@@ -36,7 +36,7 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
     cs2 <- data[, deparse(substitute(cs2))]
 
     if (deparse(substitute(group)) != "NULL"){
-      group <- data[, deparse(substitute(group))]
+      group <- as.factor(data[, deparse(substitute(group))])
     }
   }
 
@@ -57,10 +57,10 @@ csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
 
   # Run descriptives
   if(!is.null(group)){
-    desc <- by(data.frame(cs1, cs2), group, psych::describe,
+    desc <- by(data.frame(cs1, cs2, stringsAsFactors = FALSE), group, psych::describe,
                      skew = FALSE, ranges = FALSE)
   } else {
-    desc <- psych::describe(data.frame(cs1, cs2), skew = FALSE,
+    desc <- psych::describe(data.frame(cs1, cs2, stringsAsFactors = FALSE), skew = FALSE,
                             ranges = FALSE)
   }
 

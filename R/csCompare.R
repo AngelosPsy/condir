@@ -130,7 +130,7 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       cs2 <- data[, deparse(substitute(cs2))]
 
       if (deparse(substitute(group)) != "NULL"){
-        group <- data[, deparse(substitute(group))]
+        group <- as.factor(data[, deparse(substitute(group))])
       }
     }
 
@@ -150,11 +150,11 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     }
 
     # Compute row means in case cs1 or cs2 refers to more than 1 column.
-    if (dim(as.data.frame(cs1))[2] > 1){
+    if (dim(as.data.frame(cs1, stringsAsFactors = FALSE))[2] > 1){
         cs1 <- rowMeans(cs1)
     }
 
-    if (dim(as.data.frame(cs2))[2] > 1){
+    if (dim(as.data.frame(cs2, stringsAsFactors = FALSE))[2] > 1){
       cs2 <- rowMeans(cs2)
     }
 
@@ -196,11 +196,16 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
     # Run descriptives
     if (descriptives){
       if(paired){
-       desc <- psych::describe(data.frame(cs1, cs2), skew = FALSE,
-                              ranges = TRUE)
+       desc <- psych::describe(data.frame(cs1, cs2, 
+                                          stringsAsFactors = FALSE),
+                               skew = FALSE,
+                               ranges = TRUE)
       } else {
-       descInit <- by(data = data.frame(cs1, cs2, cs3), INDICES = group,
-                 FUN =  psych::describe, skew = FALSE, ranges = TRUE)
+       descInit <- by(data = data.frame(cs1, cs2, cs3, 
+                                        stringsAsFactors = FALSE), 
+                      INDICES = group,
+                      FUN =  psych::describe, skew = FALSE, 
+                      ranges = TRUE)
        desc <- list(descInit[[1]], descInit[[2]])
        names(desc) <- names(descInit)
       }
@@ -256,7 +261,8 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
                             HNI = nullInterval[[2]], rscale = rscale,
                             bf10 = exp(btt[["bf"]]),
                             bf01 = 1/exp(btt[["bf"]]),
-                            propError = btt$properror, row.names = NULL)
+                            propError = btt$properror, row.names = NULL,
+                            stringsAsFactors = FALSE)
 
     if(descriptives){
       res <- list(descriptives = desc, freq.results = freq.res,
@@ -273,11 +279,11 @@ csCompare <- function(cs1, cs2, group = NULL, data = NULL,
       graphics::par(mar = c(6, 10, 4.1, 8.1), mgp = c(2, 1, .5))
 
       if (paired){
-        graphics::boxplot(x = data.frame(cs1, cs2), cex.main = 1.5, las = 1,
+        graphics::boxplot(x = data.frame(cs1, cs2, stringsAsFactors = FALSE), cex.main = 1.5, las = 1,
                           cex.lab = 2, cex.axis = 1, bty = "n", lwd = 1,
                           xpd = TRUE, pch = 19)
       } else{
-        graphics::boxplot(data.frame(cs1, cs2, cs3), cex.main = 1.5, las = 1,
+        graphics::boxplot(data.frame(cs1, cs2, cs3, stringsAsFactors = FALSE), cex.main = 1.5, las = 1,
                           cex.lab = 2, cex.axis = 1, bty = "n", lwd = 1,
                           xpd = TRUE, pch = 19)
       }
