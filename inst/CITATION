@@ -6,14 +6,14 @@ citEntry(entry = "Article",
                                    as.person("Irene Klugkist"),
                                    as.person("Iris M. Engelhard ")),
          journal      = "European Journal of Psychotraumatology",
-         year         = "in press",
-         volume       = "",
+         year         = "2017",
+         volume       = "8",
          number       = "",
          pages        = "",
          url          = "",
 
          textVersion  =
            paste("Angelos-Miltiadis Krypotos, Irene Klugkist, Iris M. Engelhard",
-                 "Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the condir R package.",
-                 "European Journal of Psychotraumatology.")
+                 "Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the condir R package.", "2017",
+                 "European Journal of Psychotraumatology, 8.")
 )
