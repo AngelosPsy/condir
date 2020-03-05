@@ -12,6 +12,6 @@
 #' European Journal of Psychotraumatology, 8.
 #'
 #' @export
-csShine <- function (){
-  shiny::runApp(system.file('app', package='condir'))
+csShine <- function () {
+  shiny::runApp(system.file('app', package = 'condir'))
 }

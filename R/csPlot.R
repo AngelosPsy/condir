@@ -26,80 +26,145 @@
 #' set.seed(1000)
 #' csPlot(cs1 = rnorm(n = 100, mean = 10), cs2 = rnorm(n = 100, mean = 9))
 #' @export
-csPlot <- function(cs1, cs2, group = NULL, data = NULL, ylab = "CRs",
-                   col = c("black", "grey"), legend = c("cs1", "cs2")){
-
+csPlot <- function(cs1,
+                   cs2,
+                   group = NULL,
+                   data = NULL,
+                   ylab = "CRs",
+                   col = c("black", "grey"),
+                   legend = c("cs1", "cs2")) {
   # You need to define the variables according to whether the 'data'
   # argument is defined or not.
-  if(!is.null(data)){
+  if (!is.null(data)) {
     cs1 <- data[, deparse(substitute(cs1))]
     cs2 <- data[, deparse(substitute(cs2))]
-
-    if (deparse(substitute(group)) != "NULL"){
+    
+    if (deparse(substitute(group)) != "NULL") {
       group <- as.factor(data[, deparse(substitute(group))])
     }
   }
-
+  
   # Since no more groups may be defined, the function terminates if that is
   # the case. Also, if 1 group is selected, then it runs a paired samples
   # t-test.
-  if(!is.null(group)){
+  if (!is.null(group)) {
     ng <- length(unique(stats::na.omit(group)))
     if (ng %in% c(0, 1)) {
       group <- NULL
     } else {
-      if (ng > 2){
+      if (ng > 2) {
         stop("You can define up to two groups.
-                   Number of groups defined: ", as.character(ng))
+             Number of groups defined: ",
+             as.character(ng))
       }
     }
-  }
-
+    }
+  
   # Run descriptives
-  if(!is.null(group)){
-    desc <- by(data.frame(cs1, cs2, stringsAsFactors = FALSE), group, psych::describe,
-                     skew = FALSE, ranges = FALSE)
+  if (!is.null(group)) {
+    desc <-
+      by(
+        data.frame(cs1, cs2, stringsAsFactors = FALSE),
+        group,
+        psych::describe,
+        skew = FALSE,
+        ranges = FALSE
+      )
   } else {
-    desc <- psych::describe(data.frame(cs1, cs2, stringsAsFactors = FALSE), skew = FALSE,
-                            ranges = FALSE)
+    desc <-
+      psych::describe(
+        data.frame(cs1, cs2, stringsAsFactors = FALSE),
+        skew = FALSE,
+        ranges = FALSE
+      )
   }
-
+  
   # Set graphic parameters
   opmar <- graphics::par()$mar
   opmgp <- graphics::par()$mgp
   on.exit(graphics::par(mar = opmar, mgp = opmgp))
   graphics::par(mar = c(6, 10, 4.1, 8.1), mgp = c(2, 1, .5))
-
-  if (length(col) != length(legend)){
-    warning("The length of the color argument,
-                 (i.e., ", length(col), "), is different than the length
-                  of the legend argument, (i.e.,", length(legend), ").
-            The plotted legends may not correspond to the right bars.")
+  
+  if (length(col) != length(legend)) {
+    warning(
+      "The length of the color argument,
+      (i.e., ",
+      length(col),
+      "), is different than the length
+      of the legend argument, (i.e.,",
+      length(legend),
+      ").
+      The plotted legends may not correspond to the right bars."
+      )
   }
-
-  if(!is.null(group)){
+  
+  if (!is.null(group)) {
     meanz <- c(desc[[1]]["mean"], desc[[2]]["mean"])
     sdz <- c(desc[[1]]["se"], desc[[2]]["se"])
-    graphics::barplot(matrix(unlist(meanz), 2, 2), col = col,
-                      beside = TRUE,
-                      names.arg = unlist(attr(table(group), "dimnames")),
-                      cex.names = 1.5, cex.main = 1.5, las=1, cex.lab = 2,
-                      cex.axis = 1, bty = "n", lwd = 1, xpd = TRUE,
-                      pch = 19)
-    graphics::mtext(ylab, 2, line = 3, cex = 1.5, las=0)
-    graphics::legend(x = "topright", legend = legend, inset=c(-0.2,0),
-                     title = "Stimulus", bty = "n", pch = 15,
-                     bg = "black", col = col, cex = 1.5, xpd = TRUE)
+    graphics::barplot(
+      matrix(unlist(meanz), 2, 2),
+      col = col,
+      beside = TRUE,
+      names.arg = unlist(attr(table(group), "dimnames")),
+      cex.names = 1.5,
+      cex.main = 1.5,
+      las = 1,
+      cex.lab = 2,
+      cex.axis = 1,
+      bty = "n",
+      lwd = 1,
+      xpd = TRUE,
+      pch = 19
+    )
+    graphics::mtext(ylab,
+                    2,
+                    line = 3,
+                    cex = 1.5,
+                    las = 0)
+    graphics::legend(
+      x = "topright",
+      legend = legend,
+      inset = c(-0.2, 0),
+      title = "Stimulus",
+      bty = "n",
+      pch = 15,
+      bg = "black",
+      col = col,
+      cex = 1.5,
+      xpd = TRUE
+    )
   } else {
     meanz <- desc["mean"]
     sdz <- desc["se"]
-    graphics::barplot(as.numeric(unlist(meanz)), col = col,
-                      names.arg = NULL, cex.main = 1.5, las=1, cex.lab = 2,
-                      cex.axis = 1, bty = "n", lwd = 1, xpd = TRUE,
-                      pch = 19)
-    graphics::mtext(ylab, 2, line = 3, cex = 1.5, las=0)
-    graphics::legend(x = "topright", legend = legend, inset=c(-0.2, 0),
-                     title = "Stimulus", bty = "n", pch = 15,
-                     bg = "black", col = col, cex = 1.5, xpd = TRUE)
+    graphics::barplot(
+      as.numeric(unlist(meanz)),
+      col = col,
+      names.arg = NULL,
+      cex.main = 1.5,
+      las = 1,
+      cex.lab = 2,
+      cex.axis = 1,
+      bty = "n",
+      lwd = 1,
+      xpd = TRUE,
+      pch = 19
+    )
+    graphics::mtext(ylab,
+                    2,
+                    line = 3,
+                    cex = 1.5,
+                    las = 0)
+    graphics::legend(
+      x = "topright",
+      legend = legend,
+      inset = c(-0.2, 0),
+      title = "Stimulus",
+      bty = "n",
+      pch = 15,
+      bg = "black",
+      col = col,
+      cex = 1.5,
+      xpd = TRUE
+    )
   }
-}
+  }

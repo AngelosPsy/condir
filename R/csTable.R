@@ -13,25 +13,30 @@
 #' csTable(tmp)
 #' @export
 csTable <- function(csCompareObj, typeOfTable = "latex") {
-  if (length(typeOfTable) > 1){
-      warning("You can produce one type of table at a time. The first
-                    type of table of the typeOfTable argument was selected.
-                    This is ", typeOfTable[1])
+  if (length(typeOfTable) > 1) {
+    warning(
+      "You can produce one type of table at a time. The first
+      type of table of the typeOfTable argument was selected.
+      This is ",
+      typeOfTable[1]
+    )
   }
   # Print type of selected table
-  if (typeOfTable == "latex"){
-    for (i in seq_along(csCompareObj)){
-     print(xtable::xtable(as.data.frame(csCompareObj[[i]], 
-                                        stringsAsFactors = FALSE)))
-     cat("\n\n")
+  if (typeOfTable == "latex") {
+    for (i in seq_along(csCompareObj)) {
+      print(xtable::xtable(as.data.frame(csCompareObj[[i]],
+                                         stringsAsFactors = FALSE)))
+      cat("\n\n")
     }
   } else{
-    if (typeOfTable == "markdown"){
-      for (i in seq_along(csCompareObj)){
-        print(knitr::kable(as.data.frame(csCompareObj[[i]], 
-                                         stringsAsFactors = FALSE)))
+    if (typeOfTable == "markdown") {
+      for (i in seq_along(csCompareObj)) {
+        print(knitr::kable(
+          as.data.frame(csCompareObj[[i]],
+                        stringsAsFactors = FALSE)
+        ))
         cat("\n\n")
       }
-  }
+    }
   }
 }
