@@ -39,7 +39,7 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
     cs2 <- data[, deparse(substitute(cs2))]
 
     if (deparse(substitute(group)) != "NULL"){
-      group <- data[, deparse(substitute(group))]
+      group <- as.factor(data[, deparse(substitute(group))])
     }
   }
 
@@ -48,8 +48,8 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                                    conf.level = conf.level, mu = mu,
                                    rscaleSens = rscaleSens)[[1]]
 
-    # Redifine rscale factors if they have been given with their string names
-    levels(sensRes$rscale)
+    # Redifine rscale factors if they have been given with their string names.
+    # This is in case the csSensitivity returns a factor. 
     if (any(levels(sensRes$rscale) %in% c("medium"))){
       levels(sensRes$rscale) <- c(levels(sensRes$rscale),
                                         sqrt(2)/2)
@@ -67,6 +67,20 @@ csRobustnessPlot <- function(cs1, cs2, group = NULL, data = NULL,
                                         sqrt(2))
       sensRes$rscale[which(sensRes$rscale %in% "ultrawide")] <- sqrt(2)
     }
+  
+    # This is when you have just a string from the csSensitivity
+  if (any(sensRes$rscale %in% c("medium"))){
+    sensRes$rscale[which(sensRes$rscale %in% "medium")] <-
+      sqrt(2)/2
+  }
+  
+  if (any(sensRes$rscale %in% c("wide"))){
+    sensRes$rscale[which(sensRes$rscale %in% "wide")] <- 1
+  }
+  
+  if (any(sensRes$rscale %in% c("ultrawide"))){
+    sensRes$rscale[which(sensRes$rscale %in% "ultrawide")] <- sqrt(2)
+  }
 
     if (BF01){
       bf <- "bf01"
