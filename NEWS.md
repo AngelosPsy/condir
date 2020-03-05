@@ -8,7 +8,9 @@ Changes:
 
 * Updated references in the documentation
 
+* All the data.frame calls have the stringsAsFactors argument set to FALSE
 
+* Corrected bugg that resulted in csRobustnessPlot to crash (this related to the message received via the CRAN team)
 
 
 
