@@ -66,6 +66,8 @@ csRobustnessPlot(cs1 = rnorm(n = 100, mean = 10),
 cs2 = rnorm(n = 100, mean = 9))
 }
 \references{
+JASP Team (2019). JASP (Version 0.11.1)[Computer software].
+
 Krypotos, A. M., Klugkist, I., & Engelhard, I. M. (2017). 
 Bayesian hypothesis testing for human threat conditioning research: 
 An introduction and the condir R package. 
