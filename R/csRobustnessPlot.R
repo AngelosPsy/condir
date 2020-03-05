@@ -15,6 +15,8 @@
 #' BF01 is plotted (if \code{BF01} is set to TRUE) or
 #' BF10 (if \code{BF01} is set to FALSE).
 #' @references
+#' JASP Team (2019). JASP (Version 0.11.1)[Computer software].
+#' 
 #' Krypotos, A. M., Klugkist, I., & Engelhard, I. M. (2017). 
 #' Bayesian hypothesis testing for human threat conditioning research: 
 #' An introduction and the condir R package. 
