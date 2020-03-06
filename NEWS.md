@@ -1,4 +1,4 @@
-# condir 0.1.1
+# condir 0.1.2
 
 Changes:
 
