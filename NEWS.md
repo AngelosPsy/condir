@@ -1,4 +1,4 @@
-# condir 0.1.1.999
+# condir 0.1.1
 
 Changes:
 
@@ -10,8 +10,8 @@ Changes:
 
 * All the data.frame calls have the stringsAsFactors argument set to FALSE
 
-* Corrected bugg that resulted in csRobustnessPlot to crash (this related to the message received via the CRAN team)
+* Corrected bug that resulted in csRobustnessPlot to crash (this related to the message received via the CRAN team:https://cran.rstudio.com//web/checks/check_results_condir.html)
 
-
+* Corrected spelling errors
 
 
