@@ -6,7 +6,7 @@
 #' @param csSensitivityObj Sensitivity analysis results returned from the
 #' \code{csSensitivity} function.  The object should be of class csSensitivity.
 #' @param save If \code{code} argument is set to \code{FALSE} (default), the
-#' results are printed on the sceen. Otherwise, a '.txt' file with the
+#' results are printed on the screen. Otherwise, a '.txt' file with the
 #' report is generated.
 #' @param fileName The file name of the produced report. The argument is
 #' ignored if \code{save} is set to \code{FALSE}.

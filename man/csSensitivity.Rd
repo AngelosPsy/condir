@@ -30,7 +30,7 @@ the data object. See \code{Details} for more information.}
 
 \item{data}{numeric matrix or data frame that contains the relevant data.}
 
-\item{alternative}{a character string for the speficication of
+\item{alternative}{a character string for the specification of
 the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 \code{"greater"} or \code{"less"}.}
 
@@ -40,7 +40,7 @@ the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 
 \item{rscaleSens}{the scale factor for the prior used in the Bayesian t.test}
 
-\item{out.thres}{The threeshold for detecting outliers (default is 3). If set
+\item{out.thres}{The threshold for detecting outliers (default is 3). If set
 to 0, no outliers analysis will be performed. See \code{Details} below for
 more information.}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/csRobustnessPlot.R
 \name{csRobustnessPlot}
 \alias{csRobustnessPlot}
-\title{Plot robusteness results}
+\title{Plot robustness results}
 \usage{
 csRobustnessPlot(
   cs1,
@@ -32,7 +32,7 @@ the data object. See \code{Details} for more information.}
 
 \item{data}{numeric matrix or data frame that contains the relevant data.}
 
-\item{alternative}{a character string for the speficication of
+\item{alternative}{a character string for the specification of
 the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 \code{"greater"} or \code{"less"}.}
 

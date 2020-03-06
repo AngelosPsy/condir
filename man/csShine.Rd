@@ -11,8 +11,9 @@ Lanches a Shiny app for performing the core analyses included
 in \code{condir}
 }
 \details{
-The function can be called without any arguments (i.e., csShine()). For the
-interface, we used a css template available at http://getbootstrap.com.
+The function can be called without any arguments (i.e., \code{csShine()}). 
+For the interface, we used a \code{css} template available 
+at http://getbootstrap.com.
 }
 \references{
 Krypotos, A. M., Klugkist, I., & Engelhard, I. M. (2017). 

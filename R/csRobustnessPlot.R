@@ -1,4 +1,4 @@
-#' Plot robusteness results
+#' Plot robustness results
 #'
 #' @description Plots the results of robustness test
 #' @inheritParams csCompare

@@ -11,7 +11,7 @@
 #' @param group column index or name that contain the group data. See
 #' \code{Details} for more information.
 #' @param data numeric matrix or data frame that contains the relevant data.
-#' @param alternative a character string for the speficication of
+#' @param alternative a character string for the specification of
 #'  the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 #'  \code{"greater"} or \code{"less"}.
 #' @param conf.level Interval's confidence level.
@@ -19,7 +19,7 @@
 #' @param rscale the scale factor for the prior used in the Bayesian t.test.
 #' @param descriptives Returns basic descriptive statistics for \code{cs1} and
 #' \code{cs2}.
-#' @param out.thres The threeshold for detecting outliers (default is 3). If set
+#' @param out.thres The threshold for detecting outliers (default is 3). If set
 #' to 0, no outliers analysis will be performed. See \code{Details} below for
 #' more information.
 #' @param boxplot Should a boxplot of the variables be produced
