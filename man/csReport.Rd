@@ -21,7 +21,7 @@ the \code{csCompare} function. The object should be of class csCompare.}
 \code{csSensitivity} function.  The object should be of class csSensitivity.}
 
 \item{save}{If \code{code} argument is set to \code{FALSE} (default), the
-results are printed on the sceen. Otherwise, a '.txt' file with the
+results are printed on the screen. Otherwise, a '.txt' file with the
 report is generated.}
 
 \item{fileName}{The file name of the produced report. The argument is

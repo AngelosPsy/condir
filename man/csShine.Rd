@@ -7,7 +7,7 @@
 csShine()
 }
 \description{
-Lanches a Shiny app for performing the core analyses included
+Launches a Shiny app for performing the core analyses included
 in \code{condir}
 }
 \details{
