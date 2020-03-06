@@ -1,25 +1,22 @@
-# Setup
+# Platform
 
-## Platform
-
-|setting  |value                        |
+|field    |value                        |
 |:--------|:----------------------------|
-|version  |R version 3.3.2 (2016-10-31) |
-|system   |x86_64, darwin13.4.0         |
-|ui       |RStudio (1.0.136)            |
+|version  |R version 3.6.2 (2019-12-12) |
+|os       |macOS Mojave 10.14.6         |
+|system   |x86_64, darwin15.6.0         |
+|ui       |RStudio                      |
 |language |(EN)                         |
 |collate  |en_US.UTF-8                  |
+|ctype    |en_US.UTF-8                  |
 |tz       |Europe/Amsterdam             |
-|date     |2017-02-14                   |
+|date     |2020-03-06                   |
 
-## Packages
+# Dependencies
 
-|package   |*  |version |date       |source                       |
-|:---------|:--|:-------|:----------|:----------------------------|
-|condir    |*  |0.1.0   |2017-02-14 |local (AngelosPsy/condir@NA) |
-|rmarkdown |   |1.3     |2016-12-21 |cran (@1.3)                  |
+|package |old   |new       |Δ  |
+|:-------|:-----|:---------|:--|
+|condir  |0.1.1 |0.1.1.999 |*  |
 
-# Check results
-0 packages
-
+# Revdeps
 
