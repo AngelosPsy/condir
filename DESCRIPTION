@@ -6,7 +6,7 @@ Maintainer: Angelos-Miltiadis Krypotos <amkrypotos@gmail.com>
 Date: 2020-03-07
 Description: Set of functions for the easy analyses of conditioning data.
 Depends:
-    R (>= 3.6.0),
+    R (>= 4.0.0),
 License: GPL-3
 LazyData: true
 RoxygenNote: 7.1.1
