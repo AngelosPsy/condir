@@ -9,7 +9,7 @@ Depends:
     R (>= 3.6.0),
 License: GPL-3
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 Imports:
     BayesFactor (>= 0.9.12),
