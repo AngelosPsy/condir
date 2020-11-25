@@ -14,7 +14,7 @@ csRobustnessPlot(
   mu = 0,
   rscaleSens = c("medium", "wide", "ultrawide"),
   BF01 = TRUE,
-  ylimz = c(0, 10),
+  ylimz = NULL,
   sensitivity = FALSE
 )
 }
@@ -45,7 +45,7 @@ the alternative hypothesis. Possible values: \code{"two.sided"} (default),
 \item{BF01}{Should the BF01 be plotted (default is set to TRUE). If FALSE,
 the BF10 is plotted.}
 
-\item{ylimz}{the limits of the y-axis.}
+\item{ylimz}{the limits of the y-axis (default to NULL).}
 
 \item{sensitivity}{Should the sensitivity results be returned (default is set
 to FALSE).}

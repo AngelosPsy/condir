@@ -5,7 +5,7 @@
 #' @param rscaleSens the scale factor for the prior used in the Bayesian t.test
 #' @param BF01 Should the BF01 be plotted (default is set to TRUE). If FALSE,
 #' the BF10 is plotted.
-#' @param ylimz the limits of the y-axis.
+#' @param ylimz the limits of the y-axis (default to NULL).
 #' @param sensitivity Should the sensitivity results be returned (default is set
 #' to FALSE).
 #' @details
@@ -38,7 +38,7 @@ csRobustnessPlot <- function(cs1,
                              mu = 0,
                              rscaleSens = c("medium", "wide", "ultrawide"),
                              BF01 = TRUE,
-                             ylimz = c(0, 10),
+                             ylimz = NULL,
                              sensitivity = FALSE) {
   # You need to define the variables according to whether the 'data'
   # argument is defined or not.
@@ -117,7 +117,7 @@ csRobustnessPlot <- function(cs1,
   graphics::par(mar = c(6, 10, 4.1, 8.1), mgp = c(2, 1, .5))
   
   # Limits of y axis is adjusted in case of BF values above 10
-  if (exists(as.character(ylimz))) {
+  if (!is.null(ylimz)) {
     atYaxis <- ylimz
   } else {
     if (max(bfNum) > 10 || min(bfNum) < 0) {
