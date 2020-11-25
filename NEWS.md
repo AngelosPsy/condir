@@ -2,6 +2,14 @@
 
 Changes:
 
+* Updated R version to 4.0.0 in Depends
+
+* Corrected text in condir-examples.Rmd vignette
+
+* I used set.seed(1000) throughout the vignette
+
+* Corrected csRobustnessPlot function so that ylimz argument is set to NULL by
+default
 
 # condir 0.1.2
 
