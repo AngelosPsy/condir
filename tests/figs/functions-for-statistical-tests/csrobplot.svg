@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 720.00 576.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    line, polyline, polygon, path, rect, circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<line x1='168.21' y1='473.65' x2='329.99' y2='473.65' style='stroke-width: 1.50;' />
+<line x1='344.39' y1='473.65' x2='579.15' y2='473.65' style='stroke-width: 1.50;' />
+<circle cx='161.01' cy='473.65' r='2.70pt' style='stroke-width: 1.50;' />
+<circle cx='337.19' cy='473.65' r='2.70pt' style='stroke-width: 1.50;' />
+<circle cx='586.35' cy='473.65' r='2.70pt' style='stroke-width: 1.50;' />
+<line x1='161.01' y1='496.80' x2='586.35' y2='496.80' style='stroke-width: 1.50;' />
+<line x1='161.01' y1='496.80' x2='161.01' y2='504.00' style='stroke-width: 1.50;' />
+<line x1='337.19' y1='496.80' x2='337.19' y2='504.00' style='stroke-width: 1.50;' />
+<line x1='586.35' y1='496.80' x2='586.35' y2='504.00' style='stroke-width: 1.50;' />
+<text x='143.49' y='522.72' style='font-size: 18.00px; font-family: Liberation Sans;' textLength='35.05px' lengthAdjust='spacingAndGlyphs'>0.71</text>
+<text x='332.18' y='522.72' style='font-size: 18.00px; font-family: Liberation Sans;' textLength='10.02px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='568.82' y='522.72' style='font-size: 18.00px; font-family: Liberation Sans;' textLength='35.05px' lengthAdjust='spacingAndGlyphs'>1.41</text>
+<line x1='136.80' y1='473.65' x2='136.80' y2='74.99' style='stroke-width: 1.50;' />
+<line x1='136.80' y1='473.65' x2='129.60' y2='473.65' style='stroke-width: 1.50;' />
+<line x1='136.80' y1='433.79' x2='129.60' y2='433.79' style='stroke-width: 1.50;' />
+<line x1='136.80' y1='354.05' x2='129.60' y2='354.05' style='stroke-width: 1.50;' />
+<line x1='136.80' y1='74.99' x2='129.60' y2='74.99' style='stroke-width: 1.50;' />
+<text x='107.38' y='479.85' style='font-size: 18.00px; font-family: Liberation Sans;' textLength='15.02px' lengthAdjust='spacingAndGlyphs'> 0</text>
+<text x='107.38' y='439.98' style='font-size: 18.00px; font-family: Liberation Sans;' textLength='15.02px' lengthAdjust='spacingAndGlyphs'> 1</text>
+<text x='107.38' y='360.25' style='font-size: 18.00px; font-family: Liberation Sans;' textLength='15.02px' lengthAdjust='spacingAndGlyphs'> 3</text>
+<text x='102.37' y='81.18' style='font-size: 18.00px; font-family: Liberation Sans;' textLength='20.03px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='291.36' y='544.32' style='font-size: 24.00px; font-family: Liberation Sans;' textLength='164.64px' lengthAdjust='spacingAndGlyphs'>Cauchy's Scale</text>
+<text transform='translate(93.32,299.00) rotate(-90)' style='font-size: 24.00px; font-family: Liberation Sans;' textLength='30.67px' lengthAdjust='spacingAndGlyphs'>BF</text>
+<text transform='translate(97.76,268.33) rotate(-90)' style='font-size: 16.80px; font-family: Liberation Sans;' textLength='18.69px' lengthAdjust='spacingAndGlyphs'>01</text>
+</svg>
