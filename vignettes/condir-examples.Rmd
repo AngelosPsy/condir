@@ -14,28 +14,18 @@ vignette: >
 Below we provide two basic examples that use the R package _condir_. The first
 example regards data coming from a single group, and the second example data
 coming from two groups. More details about the package condir are described in
-the paper by 
-Krypotos, A.-M., Klugkist, K., and Engelhard, I. M. (submitted). 
-Bayesian Hypothesis Testing for Human Threat Conditioning Research: 
-An introduction and the condir R package.
-
+the paper by:
+Krypotos, A. M., Klugkist, I., & Engelhard, I. M. (2017). Bayesian hypothesis testing for human threat conditioning research: An introduction and the condir R package. European Journal of Psychotraumatology, 8.
 
 ### Installation
-To install condir, you first need to install and load the devtools package.
-This is done as follows.
-```{r eval = FALSE}
-install.packages ("devtools")
-library(devtools)
-```
 
-Now, the condir package can be installed by simply typing the following command
-in the R console.
+You can install condir via cran using the following command:
 
 ```{r eval = FALSE}
-install_github(repo = "AngelosPsy/condir")
+install.packages("condir")
 ```
 
-For loading condir, use the line below. Please note that for using condir, you
+For loading condir, use the line below. Please note that for using condir you
 have to load it at every new R session.
 
 ```{r eval = TRUE}
@@ -77,6 +67,7 @@ Lastly, the csSensitivity function can be used for a sensitivity analysis,
 with the csRobustnessPlot function plotting the results.
 
 ```{r fig.width = 7.5, fig.height = 4, comment=NA}
+set.seed(1000)
 tmp <- csSensitivity(cs1, cs2)
 csRobustnessPlot(cs1, cs2, BF01 = TRUE)
 ```
@@ -96,6 +87,7 @@ example above. That is why we provide the code for this example
 in a single chunk of code.
 
 ```{r fig.width = 7.5, fig.height = 4, comment = NA}
+set.seed(1000)
 group <- factor(rep(1:2, length(cs1)/2))
 tmp <- csCompare(cs1, cs2, group = group)
 tmp
