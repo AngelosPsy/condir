@@ -1,5 +1,4 @@
 [![Travis-CI Build Status](https://travis-ci.org/AngelosPsy/condir.svg?branch=master)](https://travis-ci.org/AngelosPsy/condir)
-[![DOI](https://zenodo.org/badge/49427628.svg)](https://zenodo.org/badge/latestdoi/49427628)
 
 condir allows the easy analysis of conditioning data, within both a frequentists and Bayesian framework. By the term 'conditioning data' we refer to any type of collected responses from experiments that include the associations between different stimuli (e.g., a picture and an aversive sound).
 
