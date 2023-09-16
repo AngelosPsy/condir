@@ -1,19 +1,10 @@
-citHeader("To cite condir in publications use:")
+citation(auto = meta)
 
-citEntry(entry = "Article",
-         title        = "Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the condir R package.",
-         author       = personList(as.person("Angelos-Miltiadis Krypotos"),
-                                   as.person("Irene Klugkist"),
-                                   as.person("Iris M. Engelhard ")),
-         journal      = "European Journal of Psychotraumatology",
-         year         = "2017",
-         volume       = "8",
-         number       = "",
-         pages        = "",
-         url          = "",
 
-         textVersion  =
-           paste("Angelos-Miltiadis Krypotos, Irene Klugkist, Iris M. Engelhard",
-                 "Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the condir R package.", "2017",
-                 "European Journal of Psychotraumatology, 8.")
-)
+bibentry(bibtype = "Article",
+         title = "Bayesian Hypothesis Testing for Human Threat Conditioning Research: An introduction and the condir R package.",
+         author = c(person(c("Angelos-Miltiadis"), "Krypotos"),
+                    person(c("Irene"), "Klugkist"),
+                    person(c("Iris", "M."), "Engelhard")),
+         year = "2017", journal = "European Journal of Psychotraumatology",
+volume = "8", doi = "10.1080/20008198.2017.1314782")

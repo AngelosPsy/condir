@@ -228,12 +228,11 @@ csCompare <- function(cs1,
       n1 <- nrow(stats::na.omit(cbind(cs1, cs2)))
       n2 <- 0
       ftt <- stats::t.test(
-        x = cs1,
-        y = cs2,
+        Pair(x = cs1,
+        y = cs2)~1,
         data = data,
         alternative = alternative,
         mu = mu,
-        paired = paired,
         var.equal = FALSE,
         conf.level = conf.level
       )
@@ -278,7 +277,6 @@ csCompare <- function(cs1,
       complement = FALSE,
       simple = FALSE
     )
-    
 
     # Structure results. Then, depending on whether descriptives have been
     # asked or not, more results are generated.

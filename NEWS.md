@@ -1,5 +1,7 @@
 # condir 0.1.4
 
+* Fixed the paired t-test function to comply with the t.test(Pair(x, y) ~ 1, .....) formula
+
 # condir 0.1.3
 
 Changes:
