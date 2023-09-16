@@ -1,6 +1,6 @@
 Package: condir
 Title: Computation of P Values and Bayes Factors for Conditioning Data
-Version: 0.1.3
+Version: 0.1.4
 Author: Angelos-Miltiadis Krypotos <amkrypotos@gmail.com>
 Maintainer: Angelos-Miltiadis Krypotos <amkrypotos@gmail.com>
 Date: 2020-12-01
