@@ -1,6 +1,6 @@
 # condir 0.1.4
 
-* Fixed the paired t-test function to comply with the t.test(Pair(x, y) ~ 1, .....) formula
+* All t-tests are now using the formula interface. This is in line with the dev version of R
 
 # condir 0.1.3
 
