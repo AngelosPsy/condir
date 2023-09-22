@@ -3,7 +3,7 @@ Title: Computation of P Values and Bayes Factors for Conditioning Data
 Version: 0.1.4
 Authors@R: c(person("Angelos-Miltiadis", "Krypotos", email = "amkrypotos@gmail.com", role = c("aut", "cre")))
 Maintainer: Angelos-Miltiadis Krypotos <amkrypotos@gmail.com>
-Date: 2023-09-18
+Date: 2023-09-22
 Description: Set of functions for the easy analyses of conditioning data.
 Depends:
     R (>= 4.0.0),
